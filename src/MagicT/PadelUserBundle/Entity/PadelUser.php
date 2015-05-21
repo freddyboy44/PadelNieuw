@@ -68,7 +68,11 @@ class PadelUser extends BaseUser
      */
     private $Bevestigingscode;
 
-        
+    /**                                                 
+     * @ORM\ManyToMany(targetEntity="PadelGroup")            
+     * @ORM\JoinTable(name="padel_user_group")       
+     */                                                 
+    protected  $groups;       
 
     public function __construct()
     {

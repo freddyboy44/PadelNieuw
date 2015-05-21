@@ -30,7 +30,11 @@ fos_user:
         user_manager: sonata.user.orm.user_manager                      # If you're using doctrine orm (use sonata.user.mongodb.group_manager for mongodb)
 
 sonata_user:
+    table:
+        user_group: user_group
     class:
         user:               MagicT\PadelUserBundle\Entity\PadelUser
-        # To also override the Group object
-        # group:              MagicT\PadelUserBundle\Entity\PadelGroup
+        group:              MagicT\PadelUserBundle\Entity\PadelGroup
+    admin:                  # Admin Classes
+        user:
+            class:          MagicT\PadelUserBundle\Admin\UserAdmin         

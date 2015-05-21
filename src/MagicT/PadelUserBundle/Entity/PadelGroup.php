@@ -2,20 +2,24 @@
 
 
 namespace MagicT\PadelUserBundle\Entity;
-
+use Doctrine\ORM\Mapping as ORM;
 use Sonata\UserBundle\Entity\BaseGroup as BaseGroup;
 
-
-class Group extends BaseGroup
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="padelgroup")
+ */
+class PadelGroup extends BaseGroup
 {
     /**
-     * @var integer $id
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
 
     /**
-     * Get id
-     *
+     * Get id     
      * @return integer $id
      */
     public function getId()
