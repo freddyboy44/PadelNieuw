@@ -26,6 +26,8 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
             new MagicT\PadelUserBundle\PadelUserBundle(),
+            new MagicT\PadelSiteBundle\PadelSiteBundle(),
+            new MagicT\PadelReservatieBundle\PadelReservatieBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

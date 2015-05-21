@@ -1,0 +1,195 @@
+$hoogtemenu: 240;
+
+.nieuwsmenu {
+	color: $blauwekleur;
+	position: relative;
+	height: $hoogtemenu + px;
+	margin-bottom: 10px;
+
+	.actiefitem1 {
+		display: block;
+	}
+	.actiefitem2, .actiefitem3, .actiefitem4, .actiefitem5 {
+		display: none;
+	}
+
+	div {
+		width: 100%;
+		//text-align: center;
+		padding-top: 7px;
+		margin-bottom: 5px;
+	}
+
+	img {
+		margin:auto;
+		display: block;
+		padding: 5px;
+		//border: solid 1px $blauwekleur;
+		border-radius: 5px;
+	}
+
+	span {
+		//display: none;
+	}
+	p {
+		text-align: left;
+
+	}
+
+	
+	.actiefitem {
+		overflow: hidden;
+		height: $hoogtemenu + px;
+		padding: 10px;
+		position: absolute;
+		top: 10px;
+
+		.foto {
+			width: 50%;
+			float: left;
+			height: 100%;
+			//padding: 20px; 
+			max-width: 50%;
+			max-height: 100%;
+
+			-webkit-transition: background-image 140ms ease;
+		    -moz-transition: background-image 140ms ease;
+		    -ms-transition: background-image 140ms ease;
+		    -o-transition: background-image 140ms ease;
+		    transition: background-image 140ms ease;
+
+		    background-image: url("");
+		    background-repeat: no-repeat;
+		    background-position: center;
+		    background-size: contain ;
+		    
+		}
+
+		.tekst {
+			width: 50%;
+			float:right;
+			height: 100%;
+
+			h3 {
+				font-size: 3vw;
+
+				@include breakpoint(phablet) {
+					font-size: 26px;
+				}
+			}
+		}
+
+		img {
+			
+			
+			margin: auto;
+			width: auto;
+			height:auto;
+			max-height:100%;
+			max-width:100%;
+
+			display: block;
+			
+		}
+
+		p {
+			margin-top: 7px;
+			height: 200px;
+			display: block;
+			text-align: left;
+		}
+
+		a {
+			position: absolute;
+			bottom: 10px;
+			right: 70px;
+			background: $blauwekleur;
+			color: white;
+			padding: 10px;
+			padding-left: 30px;
+			padding-right: 30px;
+			border-radius: 3px;
+		}
+
+		a:hover {
+			background: darken($blauwekleur,10%) ;
+			color: darken($gelekleur,1%);
+		}
+	}
+}
+
+.nieuwsitems {
+	display: block;
+	width: 100%;
+	overflow: hidden;
+}
+
+.nieuwsitem {
+	padding-top: 7px;
+	margin-bottom: 7px;
+	border-bottom: solid 1px lighten($blauwekleur,20%);
+	margin-bottom: 3px;
+
+
+	div {
+		display:none;
+		font-size: 2vw;
+		overflow: visible;
+		@include breakpoint(phablet){
+			display: inline-block;
+			width: 100%;
+			text-align: center;
+			padding-top: 7px;
+			margin-bottom: 5px;
+			color: $blauwekleur;	
+		}
+		@include breakpoint(tablet) {
+			font-size: 1.8vw;
+		}
+		@include breakpoint(laptop) {
+			font-size: 14px;
+		}
+
+		
+	}
+
+	img {
+		margin:auto;
+		display: block;
+		max-width:100%;
+		height:auto;
+		padding: 5px;
+		border: solid 1px $blauwekleur;
+		border-radius: 5px;
+	}
+
+	span {
+		display: none;
+	}
+	p {
+		display: none;
+	}
+}
+
+.nieuwsitem:hover {
+	cursor: pointer;
+}
+
+.nieuwsitem.actief {
+	border-bottom: solid 4px $blauwekleur;
+}
+
+.items1, .items2, .items3, .items4, .items5 {
+	//height: 116px;
+	width: 100%;
+	max-width: 30%;
+	display: block;
+	float:left;
+}
+
+.items4 {
+	width: 25%;
+}
+.items5 {
+	width: 20%;
+}

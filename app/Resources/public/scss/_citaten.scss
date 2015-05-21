@@ -1,0 +1,37 @@
+
+.citaten {
+	@include breakpoint(phablet) {
+		background-color: white;	
+		color: $blauwekleur;
+	}
+	background-color: $blauwekleur;	
+	color: white;	
+	text-align: center;
+	position:relative;
+	height: 100%;
+	
+	border-radius: 4px;
+	padding: 7px;
+	.owl-item {
+			height: 100%;
+		}
+	.citaat {
+		height: 100%;
+
+		.auteur {
+			
+			font-weight: 0;
+			//position: absolute;
+			bottom:-25px;
+			width: 100%
+		}
+		.spreuk {
+			font-size: 30px;
+			line-height: 1;
+			font-family: 'blanchcaps';
+			margin-bottom: 7px;
+			font-style: italic;
+
+		}
+	}
+}

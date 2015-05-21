@@ -1,0 +1,55 @@
+.overzichtreservaties {
+
+	img.icoon-veld {
+		max-height: 12px;
+		width: auto;
+	}
+
+	.controls {
+		text-align: center;
+		display: block;
+		margin-bottom: 20px;
+		overflow: hidden;
+	}
+
+	table {
+		width: 100%;
+		th, td.uur {
+			background-color: white;
+			color: $blauwekleur;
+			text-align: center;
+			width: 12.5%;
+		}
+		td.veld, td.uur {
+			vertical-align: middle;
+			text-align: center;
+		}
+
+		td {
+			height: 60px;
+		}
+
+		td.veld:hover {
+			cursor: pointer;
+		}
+		td.bezet:hover {
+			cursor: auto;
+		}
+		td.bezet {
+			background-color: lighten($blauwekleur,15%);
+		}
+		td.tehoog {
+			height: 0px;
+		}
+	}
+	
+	.modal {
+		.modal-header {
+
+		}
+	}
+}
+
+h4.modal-title {
+	display: inline-block;
+}

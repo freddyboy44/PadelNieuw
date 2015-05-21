@@ -1,0 +1,139 @@
+.voorbeeld {
+	width: 100%;
+	border: 1px;
+	padding: 15px;
+}
+
+.beheer {
+	background-color: white;
+	color: $blauwekleur;
+	padding: 10px;
+	border-radius: 4px;
+	overflow: hidden;
+
+	
+
+	a.knop, a.nieuw, a.toon, a.bewerk {
+		padding: 5px 15px;
+		min-width:100px;
+		color: white;
+		text-align:center;
+		display: inline-block;
+		border-radius: 2px;
+		margin-bottom: 2px;
+		background-color: $groen;
+		border-color: darken($groen,15%);
+	}color: white;
+
+	a.nieuw {
+		background-color: $groen;
+		border-color: darken($groen,15%);
+	}
+
+	a.toon {
+		background-color: $groen;
+		border-color: darken($groen,15%);
+	}
+
+	a.bewerk {
+		background-color: $groen;
+		border-color: darken($groen,15%);
+	}
+	a.terug {
+
+	}
+
+
+	form {
+		div {
+			margin-bottom: 3px;
+		}
+		label {
+			min-width: 150px;
+			width: 15%;
+			vertical-align: top;
+		}
+		input[type="text"], textarea{
+			width: 70%;
+			min-width: 200px;
+			max-width: 500px;
+		}
+
+		textarea {
+			min-height:200px ;
+		}
+		input[type="file"]{
+			display: inline-block;
+		}
+
+		
+	}
+
+	.thumbnail {
+		max-height: 150px;
+		max-width: 150px;
+		border: 0;
+	}
+}
+.records_list, .record_properties {
+	width: 100%;
+	color: $blauwekleur;
+	padding:0px;
+
+	thead {
+		background-color: white;
+		color: $blauwekleur;
+		tr {
+			th {
+				align:left;
+				padding-left: 0px;
+
+			}	
+		}
+		
+	}
+	tbody {
+		tr {
+			max-height: 70px;
+
+			td{
+				vertical-align: middle;
+				padding:3px 0px;
+			}
+		}
+		a, a:hover, a:focus {
+			color: $blauwekleur;
+		}
+		a.knop, a.knop:hover, a.knop:focus{
+			color:white;
+		}
+		ul {
+			list-style: none;
+			padding-left: 0px;
+			margin:0;
+			li {
+				list-style: none;
+				display: inline-block;
+				position: relative;
+			}
+		}
+	}
+}
+
+#fotos	
+{
+	ul {
+		list-style: none;
+		li {
+			list-style: none;
+		}
+		li.x {
+			float:left;
+			margin-right: 3px;
+		}
+	}
+}
+
+.updatevolgorde {
+	
+}

@@ -23,10 +23,16 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "sonata-project/admin-bundle": "~2.3",
         "sonata-project/doctrine-orm-admin-bundle": "~2.3",
+        "moment/moment": "dev-master",
         "sonata-project/easy-extends-bundle": "~2.1",
         "sonata-project/block-bundle": "~2",
         "knplabs/knp-menu-bundle": "~2.0",
-        "sonata-project/user-bundle": "~2.2"
+        "sonata-project/user-bundle": "~2.2",
+        "components/jquery": "2.1.*",
+        "twbs/bootstrap": "3.2.*",
+        "braincrafted/bootstrap-bundle": "~2.0",
+        "components/underscore": "dev-master",
+        "dimsemenov/magnific-popup": "dev-master"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

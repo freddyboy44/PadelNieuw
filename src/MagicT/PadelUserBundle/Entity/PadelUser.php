@@ -72,7 +72,9 @@ class PadelUser extends BaseUser
      * @ORM\ManyToMany(targetEntity="PadelGroup")            
      * @ORM\JoinTable(name="padel_user_group")       
      */                                                 
-    protected  $groups;       
+    protected  $groups;     
+
+    private $volledigenaam;  
 
     public function __construct()
     {
@@ -380,7 +382,6 @@ class PadelUser extends BaseUser
     }
 
     
-
     /*
      * Is het lid een actief lid, is een vorm van lidmaatschap geldig tot vandaag
      */
@@ -388,4 +389,5 @@ class PadelUser extends BaseUser
     {
         return false;
     }
+
 }

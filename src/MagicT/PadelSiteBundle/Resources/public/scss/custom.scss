@@ -1,0 +1,1283 @@
+@import 'compass/css3';
+@import 'colors';
+@import 'fonts';
+@import 'animations';
+@import 'mixins';
+@import 'responsivevideo';
+@import 'calendar';
+@import 'nieuwsmenu';
+@import 'citaten';
+@import 'sponsors';
+@import 'responsive';
+@import 'twitter';
+@import 'record-list';
+@import 'login';
+@import 'social';
+@import 'registration';
+@import 'user';
+@import 'reservatie';
+
+a.btn {
+	color: $blauwekleur !important;
+
+}
+.btn {
+	color: $blauwekleur;
+	//min-width: 70px;
+	min-height: 16px;	
+}
+.btn.btn-white {
+	color: white !important;
+}
+a.btn.btn-danger, a.btn.btn-success {
+	i {
+		color: white;
+	}
+}
+
+$menuhoogte: 170px;
+$padding: 70px;
+
+html, body {
+	height: 100%;
+}
+
+.nopadding {
+	padding:0;
+}
+
+a {
+	color: $blauwekleur;
+	text-decoration: none;
+}
+
+a:hover,a:focus {
+	color: $linkkleurhover;
+	text-decoration: none;
+}
+
+.label-success, .label-danger {
+	padding: 10px;
+	width: 99%;
+	display: block;
+	overflow: hidden;
+	margin: auto;
+	border-radius: 4px;
+	font-size: 15px;
+}
+
+.social {
+	position: absolute;
+	right: 0px;
+	background-color: white;
+	color:$blauwekleur;
+	width:100%;
+	text-align: right;
+	padding-right: 10px;
+	padding-top: 10px;
+	margin-top: 0px;
+	top: 0px;
+	@include breakpoint(tablet) {
+		background-color: transparent;
+		color:white;
+		//width:auto;
+		//top: 15px;
+		//padding-top: 0px;
+	}
+	ul {
+		list-style: none;
+		li {
+
+			display: inline;
+			width: 30px;
+			i{
+				width: 40px;
+				vertical-align: middle;
+			}
+		}
+	}
+	@include breakpoint(tablet) {
+		right: 30px;
+	}
+	a {
+		color: $blauwekleur;
+		@include breakpoint(tablet) {
+			color:white;	
+		}
+		
+	}
+	a:hover {
+		color: lighten($blauwekleur,45%);
+		text-shadow: 0px 2px 8px lighten($blauwekleur,45%);
+	}
+}
+
+#map-canvas {
+	width: 100%;
+	height: 350px;
+	background-color: #CCC;
+	margin-bottom: 15px;
+}
+
+a.leesmeer {
+	position:relative;
+	display:inline-block;
+
+	background: $blauwekleur;
+	color: white;
+	padding: 10px;
+	padding-left: 30px;
+	padding-right: 30px;
+	border-radius: 3px;
+	float:right;
+
+	@include breakpoint(phablet){
+		position: absolute;
+		bottom: $padding;
+		right: $padding;
+	}
+}
+
+a.leesmeer:hover {
+	background: darken($blauwekleur,10%) ;
+	color: darken($gelekleur,1%);
+}
+
+.content {
+	
+	overflow: hidden;
+	width: 100%;
+}
+
+body {
+	color: white;
+	font-family: 'PT Sans', sans-serif;
+	
+
+	@include breakpoint(phablet) {
+		color: $tekstkleur;
+		background-color: $blauwekleur;
+	}
+
+	margin:auto;
+
+	@include breakpoint(phablet) {
+		
+	}
+	@include breakpoint(tablet) {
+		
+	}
+	@include breakpoint(laptop) {
+		
+	}
+}
+
+.volledigepagina {
+	background-color: $blauwekleur;
+	margin:auto;
+	@include breakpoint(desktop) {
+		max-width: 960px;
+	}
+	overflow:hidden;
+}
+
+h1, h2, h3, h4, h5 {
+	font-family: 'blanchcaps';
+	position: relative;
+	//top: -10px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+
+h1 {
+	font-size: 12vw;
+	@include breakpoint(desktop) {
+		font-size: 72px;
+	}
+}
+
+h2 {
+	font-size: 10vw;
+	text-align: center;
+	@include breakpoint(phablet) {
+		font-size: 8vw;
+	}
+	@include breakpoint(tablet) {
+		font-size: 5vw;
+	}
+	@include breakpoint(desktop) {
+		font-size: 48px;
+	}
+}
+
+
+header {
+	width: 100%;
+	background-color: white;
+	border-radius: 4px;
+	//height: 250px;
+	
+	
+	margin-bottom: 7px;
+	overflow:hidden;
+}
+
+.mobiel {
+	@include breakpoint(tablet) {
+		display: none;
+	}
+}
+
+nav {
+	position: relative;
+
+	@include breakpoint(phablet) {
+		margin-bottom: 25px;	
+	}
+
+	#menu {
+		width: 98%;
+		max-width: 900px;
+		margin: auto;
+		//overflow:hidden;
+		//height: 160px;
+		margin-top: 0px;
+		@include breakpoint(tablet) {
+			margin-top: 15px;	
+		}
+		
+		min-height:50px;
+		//width: auto;
+		//margin-bottom: 10px;
+
+		
+
+		.menudesktop {
+			display: none;
+			@include breakpoint(tablet){
+				display: block;
+			}
+			height: $menuhoogte;
+			ul {
+				list-style: none;
+				height: 100%;
+				width: 100%;
+				padding: 0px;
+				margin: 0px;
+				//background-image: url('../images/links.png'), url('../images/rechts.png') ;
+				background-size: 32% 50px, 32% 50px;
+
+				background-size: 32% 50px, 32% 50px;
+				
+				@include breakpoint(phablet){
+					background-position: left 25px center, right 10px center;
+				}
+				@include breakpoint(desktop){
+					background-position: left 35px center, right 45px center;
+				}
+				background-repeat: no-repeat;
+				
+				li {
+					height: 100%;
+					float:left;
+					top: 0px;
+					width: 19.8%;
+					text-align: center;
+					position:relative;
+					display: table;
+					background-image: url('../images/wit.png');
+					background-repeat: no-repeat;
+					background-size: 100% 40px;
+					background-position: center center;
+
+					a {
+						font-family: 'blanchcaps';
+						font-weight: 400;
+						//color: $blauwekleur;
+						display: table-cell;
+						vertical-align: middle;
+						text-align:center;
+						width: 100%;
+						//height: 100%; 
+						text-transform: uppercase;
+						font-size: 2vw;
+						@include breakpoint(phablet) {
+							font-size: 5vw;
+						}
+						@include breakpoint(tablet) {
+							font-size: 4vw;
+						}
+						@include breakpoint(laptop) {
+							font-size: 3.3vw;
+						}
+						@include breakpoint(desktop) {
+							font-size: 34px;
+						}
+					}
+
+					#submenu-info {
+						z-index: 1000;
+						display: none;
+						background:none;
+						position: absolute;
+						left:-30px;
+						top: 65%;
+						background-color: white;
+						box-shadow: 4px 4px 5px #888888;
+						//box-shadow: -4px 4px 5px #888888;
+						width: 200px;
+						height: auto;
+						
+						
+						@include breakpoint(tablet) {
+							left: -45px;
+						}
+
+						@include breakpoint(laptop) {
+							left: -10px;
+						}
+
+						@include breakpoint(desktop) {
+							width: 260px;	
+							left: -45px;
+						}
+						
+						li {
+							width: 100%;
+							height:auto;
+							display: block;
+							clear:both;
+							text-align: center;
+							a {
+								text-align: center;
+								display:block;
+								width: 100%;
+							}
+							a:hover {
+								color:darken($blauwekleur,15%);
+								//text-shadow: 0 0 0.2em darken($blauwekleur,15%), 0 0 0.2em darken($blauwekleur,15%);
+							}
+							img {
+								width: 16px;
+								height: 16px;
+								position: relative;
+								
+							}
+							img:first-child {
+								left: -10px;
+							}
+							img:last-child {
+								right: -7px;
+							}
+						}
+					}
+				}	
+
+				li.logo {
+					img {
+						max-width:100%;
+						height: auto;
+						max-height: $menuhoogte;
+						margin:auto;
+						display: block;
+					}
+					background: none;	
+				}
+				li:first-child {
+					
+					background-image: url('../images/links.png');
+					background-repeat: no-repeat;
+					background-size: 100% 40px;
+					background-position: 10px center;
+
+					text-align: right;
+					a {
+						text-align: right;
+					}
+				}
+				li:last-child {
+					background-image: url('../images/rechts.png');
+					background-repeat: no-repeat;
+					background-size: 100% 40px;
+					background-position: right 10px center;
+
+					text-align:left;
+					a {
+						text-align: left;
+					}
+				}
+
+				li:nth-child(2){
+					background-position: right 30px center;
+				}
+				li:nth-child(4){
+					background-position: left 30px center;	
+				}
+			}
+			
+		}
+
+		
+
+		#logo.mobiel {
+			margin-top: 8px;
+		}
+
+		.togglemobiel {
+			position: absolute;
+			right: 20px;
+			top: 50px;
+			width: 25px;
+			height:25px;
+
+			padding: 5px;
+			border: solid 1px white;
+			border-radius: 4px;
+			margin-top: 10px;
+
+			img {
+				width: 100%;
+				height: 100%;
+				display: block;
+
+			}
+
+			@include breakpoint(tablet) {
+				display: none;
+			}
+		}
+
+		.togglemobiel:hover {
+			cursor: pointer;
+		}
+		
+		.dummy {
+			height: 50px;
+			display:block;
+			@include breakpoint(tablet) {
+				display: none;
+			}
+		}
+
+		.logo {
+			@include breakpoint(tablet) {
+				//display: none !important;
+			}
+			background: none;
+			overflow:hidden;
+			margin: auto;
+			width: 100%;
+			a {
+				background: none;
+				width: 100%;
+				display: block;
+			}
+			img {
+				width: auto;
+				height: auto;
+				max-height: 170px;
+				margin:auto;
+				display: block;
+				margin-bottom: 10px;
+			}
+		}
+
+		.menumobiel {
+			display: none;
+			position:relative;
+			@include breakpoint(tablet) {
+				display: none !important;
+			}
+			//top: 40px;
+
+			ul {
+				margin:auto;
+				padding: 0px;
+				list-style: none;
+				display: block;
+				background-color: transparent;
+				border-radius: 4px;
+				width: 100%;
+				margin-bottom: 10px;
+				li {
+					//display: inline-block;
+					width: 100%;
+					margin:auto;
+					
+					color: $blauwekleur;
+					padding: 8px;
+					padding-bottom: 0px;
+					text-align: center;
+					position: relative;
+					overflow:hidden;
+
+					a {
+						font-family: 'blanchcaps';
+						text-align:center;
+						font-size: 9vw;
+						background: url('../images/menu-background.png');
+						background-position: center center;
+						background-size: 95%;
+						background-repeat: no-repeat;
+						width: 100%;
+						height: 100%;
+						display: block;
+						@include breakpoint(phablet) {
+							font-size: 6vw;
+						}
+					}
+
+					ul {
+						display: none;
+						width:90%;
+						position: relative;
+						//top: 15px;
+						margin:auto;
+						padding: 0px;
+						margin-bottom:0px;
+						
+						li {
+							background-color: transparent;
+							padding: 0px;
+							margin-bottom: 4px;
+							img {
+								width: 16px;
+								height: 16px;
+								margin-left: 7px;
+								margin-right: 7px;
+							}
+							a {
+								font-size: 7vw;
+								color: $blauwekleur;
+							}
+							a:hover {
+								color: darken($blauwekleur,15%);
+							}
+						}
+						li:first-child {
+							margin-top: 5px;
+						}
+
+					}
+				}
+
+				
+			}
+		}
+	}
+}
+
+section {
+	width: 100%;
+	
+	@include breakpoint(tablet) {
+		//width: 66%;
+		width: 98%;
+		margin:auto;
+		//float: left;
+		
+	}
+}
+
+aside {
+	width: 100%;
+	padding: 0;
+	//background-color: white;
+
+	@include breakpoint(tablet) {
+		width: 33%;
+		
+		float: right;
+	}
+}
+
+#partnersslideshow {
+	position: relative;
+	height: 150px;
+
+	img {
+		max-height: 150px;
+		width: auto;
+		margin: auto;
+		display: block;
+		position: relative;
+		top: 75px;
+		-webkit-transform: translateY(-50%);
+		  -ms-transform: translateY(-50%);
+		  transform: translateY(-50%);
+
+
+	}
+}
+
+.artikel {
+	display: block;
+	width: 100%;
+	padding: 10px;
+	padding-top: 0px;
+	@include breakpoint(phablet) {
+		background-color: white;
+		color: $blauwekleur;	
+		padding: 15px;
+	}
+	background-color: $blauwekleur;
+	color: white;
+	border-radius: 4px;
+	margin-bottom: 16px;
+
+	@include breakpoint(phablet) {
+		color: $blauwekleur;
+		background-color: white;
+	}
+
+	h2 {
+		
+
+		background-image: url('../images/wimpeltje.png');
+		background-size: 100% 50px;
+		background-position: center center;
+		background-repeat: no-repeat;
+		color: $blauwekleur;
+		
+		@include breakpoint(phablet) {
+			color: $blauwekleur;
+			background: none;
+		}
+		padding: 7px;
+		text-align: center;
+		border-radius: 4px;
+		//font-size: 55px;
+	}
+
+	p {
+		color: white;
+		overflow:hidden;
+		@include breakpoint(phablet) {
+			color: $blauwekleur;
+		}
+	}
+
+	.datum {
+		text-align: center;
+		text-transform: uppercase;
+		font-family: 'blanchcaps';
+		font-size: 7vw;
+		position: relative;
+		@include breakpoint(phablet) {
+			font-size: 4vw;
+		}
+		@include breakpoint(tablet) {
+			font-size: 3vw;
+		}
+		@include breakpoint(desktop) {
+			font-size: 30px;
+		}
+	}
+	.datum:before, .datum:after {
+		border-bottom: solid 5px white;
+		width: 25%;
+		height: 50%;
+		content: "";
+		position: absolute;
+		@include breakpoint(phablet) {
+			border-bottom: solid 2px $blauwekleur;
+			width: 16%;
+		}
+		@include breakpoint(desktop) {
+			border-bottom: solid 3px $blauwekleur;
+		}
+	}
+	.datum:before {
+		left: 0%;
+	}
+	.datum:after {
+		right: 0%;
+	}
+	
+
+	.foto {
+		display:none;
+		max-height: 150px;
+		width:100%;
+		@include breakpoint(phablet){
+			max-height: 250px;
+			display: inline-block;
+		}
+		img {
+			max-height: 150px;
+			display: block;
+			margin:auto;
+
+			@include breakpoint(laptop){
+				max-height: 250px;
+			}
+		}
+	}
+
+	#leesverder {
+		padding: 5px 9px;
+		
+		background-color: white;
+		color:$blauwekleur;
+		border-radius: 3px;
+		margin: auto;
+
+		@include breakpoint(phablet) {
+			background-color: $blauwekleur;
+			color:white;
+		}
+	}
+	#leesverder:hover {
+		color: darken($blauwekleur,15%);
+		@include breakpoint(phablet) {
+			background-color: darken($blauwekleur,15%);
+			color:white;
+		}
+	}
+
+	.info-onderdeel {
+		width: 100%;
+		overflow:hidden;
+		clear:both;
+		margin-bottom: 15px;
+
+		img {
+			width: 30%;
+			float: left;
+			display: block;
+			padding-top: 5px;
+
+			display: none;
+			@include breakpoint(tablet) {
+				display: inline-block;
+
+			}
+			@include breakpoint(desktop) {
+				padding-top: 13px;
+			}
+		}
+
+		h2, .tekst {
+			margin-bottom: 10px;
+			@include breakpoint(tablet) {
+				width: 70%;
+				float:right;	
+			}
+			width: 100%;
+			color: $blauwekleur;
+			@include breakpoint(tablet) {
+				text-align: left;	
+			}
+			
+			@include breakpoint(desktop){
+
+			}
+			padding-left: 15px;
+			vertical-align: top;
+		}
+		h2 {
+			padding-top: 0px;
+		}
+
+	}
+}
+
+.leesverder {
+
+
+	display: inline-block;
+	margin-top: 10px;
+	padding: 8px;
+	background-color: white;
+	color: $blauwekleur;
+	@include breakpoint(phablet) {
+		background-color: $blauwekleur;
+		color:white;	
+	}
+	
+	border-radius: 3px;
+}
+.leesverder:hover {
+	background-color: darken($blauwekleur,15%);
+	color:white;
+}
+
+.voorpagina {
+	overflow:hidden;
+	width: 99%;
+	margin: auto;
+
+	.kolom1 {
+		width: 98%;
+		margin:auto;
+		@include breakpoint(phablet) {
+			width: 50%;
+			padding: 7px;
+			float:left;
+		}
+		@include breakpoint(tablet) {
+			width: 33%;
+			padding-right: 8px;
+			float: left;
+
+			div:first-child {
+				margin-top: 0px;
+			}
+		}
+
+	}
+	.kolom2 {
+		width: 98%;
+		margin:auto;
+		@include breakpoint(phablet) {
+			width: 50%;
+			padding: 7px;
+			float:right;
+		}
+		@include breakpoint(tablet) {
+			float: left;
+			padding-left: 8px;
+			padding-right: 8px;
+			width: 34%;
+		}
+	}
+	.kolom3 {
+		width: 98%;
+		margin: auto;
+		@include breakpoint(phablet) {
+			width: 50%;
+			padding: 7px;
+			float:left;
+			//clear: both;
+		}
+		@include breakpoint(tablet) {
+			clear: none;
+			width: 33%;
+			padding-left: 8px;
+			float:right;
+		}
+	}
+	
+}
+
+.pagina {
+	border-radius: 7px;
+	background-color: $blauwekleur;
+	color: white;
+	@include breakpoint(phablet) {
+		background-color: white;
+		color: $blauwekleur;	
+	}
+	padding: 15px;
+	overflow:hidden;
+
+	.tekst {
+		float:left;
+		.foto {
+			img {
+				width : 100%;
+				height: auto;
+			}
+			top:15px;
+			position: relative;
+			max-width: 340px;
+			width: 30%;
+			min-width: 160px;
+			height: 100%;
+			display: block;
+			float:right;
+		}
+	}
+	.fotos {
+		overflow:hidden;
+		width: 100%;
+		.foto {
+			width: 50%;
+			max-width: 100px;
+			padding: 5px;
+			overflow: hidden;
+			float: left;
+			@include breakpoint(tablet) {
+				width: 25%;
+			}
+			img {
+				display: inline-block;
+
+			}
+		}
+	}
+	img {
+		width: 98%;
+		max-width: 250px;
+		height: auto;
+		display: block;
+		margin:auto;
+		margin-bottom: 10px;
+		margin-top: 10px;
+		@include breakpoint(tablet){
+			float: right;	
+
+		}
+		
+		max-height: 200px;
+	}
+
+	hr {
+		clear: both;
+	}
+	a.bewerk {
+		position: absolute;
+		top: 5px;
+		right: 5px;
+	}
+
+	h2 {
+		margin-top: 0px;
+		background-image: url('../images/wimpeltje.png');
+		background-size: 100% 50px;
+		background-position: center center;
+		background-repeat: no-repeat;
+		color: $blauwekleur;
+		margin-bottom: 7px;
+		
+		@include breakpoint(phablet) {
+			color: $blauwekleur;
+			background: none;
+		}
+	}
+
+}
+
+::-webkit-input-placeholder { /* WebKit browsers */
+    color:   $blauwekleur;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:   $blauwekleur;
+   opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:   $blauwekleur;
+   opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+   color:   $blauwekleur;
+}
+
+.contact {
+	width: 99%;
+	margin:auto;
+	background-color:$blauwekleur;
+	color:white;
+
+	h4 {
+		margin-bottom: 5px;
+	}
+
+	@include breakpoint(tablet) {
+		background-color: white;
+		color: $blauwekleur;
+	}
+
+	.kolom {
+		width: 98%;
+		float: left;
+		display: block;
+		
+		
+		@include breakpoint(phablet) {
+			width: 50%;
+		}
+
+		@include breakpoint(desktop) {
+			width: 33.3%;
+			padding:8px;
+		}
+	}
+	.kolom:last-child {
+		width: 100%;
+		@include breakpoint(phablet) {
+			border-top: solid 2px $blauwekleur;
+			width: 100%;
+		}
+		@include breakpoint(desktop) {
+			border-top: none;
+			width: 33.3%;
+		}
+		
+
+	}
+
+	ul {
+		list-style: none;
+		padding:0px;
+		li {
+			display: inline-block;
+			margin:5px;
+		}
+	}
+
+	form {
+		label {
+			width: 40%;
+		}
+		label[for=form_message]{
+			width: 100%;
+		}
+		input, textarea,button  {
+			width: 55%;
+			vertical-align: top;
+			border: solid 1px $blauwekleur;
+			color: $blauwekleur;
+		}
+		button {
+			max-width:100px;
+		}
+
+		textarea {
+			height: 150px;
+
+		}
+
+		#recaptcha_table {
+			width: 100%;
+			border: none !important;
+		}
+
+
+		#recaptcha_challenge_image, #recaptcha_image {
+			width: 95%;
+			float: left;
+			border: none !important;
+
+		}
+		#recaptcha_response_field {
+			padding: 7px;
+			width: 95% !important;
+			border: solid 1px $blauwekleur !important;
+		}
+	}
+}
+
+@media only screen and (max-width : 480px) {
+    #recaptcha_challenge_image{
+    margin: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    }
+    #recaptcha_response_field
+    {
+    margin: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    }
+    .recaptchatable #recaptcha_image {
+    margin: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    }
+    .recaptchatable .recaptcha_r1_c1, 
+    .recaptchatable .recaptcha_r3_c1, 
+    .recaptchatable .recaptcha_r3_c2, 
+    .recaptchatable .recaptcha_r7_c1, 
+    .recaptchatable .recaptcha_r8_c1, 
+    .recaptchatable .recaptcha_r3_c3, 
+    .recaptchatable .recaptcha_r2_c1, 
+    .recaptchatable .recaptcha_r4_c1, 
+    .recaptchatable .recaptcha_r4_c2, 
+    .recaptchatable .recaptcha_r4_c4, 
+    .recaptchatable .recaptcha_image_cell {
+
+    margin: 0 !important;
+    width: 100% !important;
+    background: none !important;
+    height: auto !important;
+    }
+
+}
+
+.content {
+	width: 100%;
+	/* padding-left:7px;
+	padding-right:7px; */
+
+	
+
+	article {
+		background-color: white;
+		border-radius: 4px;
+		color: $blauwekleur;
+		padding: 7px;
+		position: relative;
+		overflow: hidden; 
+		margin-bottom: 12px;
+
+
+
+		.gegevens {
+			width: 100%;
+			background-color: $blauwekleur;
+			color:white;
+			overflow:hidden;
+			padding:7px;
+			border-radius: 4px;
+			margin-bottom: 4px;
+			.auteur {
+				font-size: 12px;
+				width: 30%;
+				float:left;
+			}
+			.datum {
+				font-size: 12px;
+				width: 30%;
+				float:right;
+				text-align: right;
+			}
+		}
+
+		.foto {
+			clear:both;
+			@include breakpoint(phablet) {
+				width: 30%;	
+				float: left;		
+			}
+
+			img {
+				width: 100%;
+				height: auto;
+				display: block;
+			}	
+		}
+		
+
+		.tekst {
+			
+			padding: 5px 2px;
+			font-size: 3vw;
+			margin-bottom: 15px;
+
+			@include breakpoint(phablet) {
+				width: 69.9%;
+				float:right;
+				font-size: 2vw;
+				padding: 0px 7px;
+				margin-bottom: 0px;
+			}
+
+			@include breakpoint(tablet) {
+				font-size: 1.6vw;
+				padding: 7px 0px;
+			}
+
+			@include breakpoint(desktop) {
+				font-size: 16px;
+				padding: 0px 10px;
+			}
+		}
+
+		
+	}
+
+}
+
+.footerbeneden {
+	position: absolute;
+	bottom: 0px;
+}
+
+footer {
+	margin-top: 15px;
+	width: 100%;
+
+	display: block;
+	clear: both;
+	background-color:white;
+	color: $blauwekleur;
+
+	.volledigepagina {
+		background-color:white;
+		max-width: 960px;
+		margin:auto;
+	}
+	$centerfooter : left;
+	.kolom {
+		position: relative;
+		width: 100%;
+		float: left;
+		padding: 10px;
+		text-align: $centerfooter;
+		@include breakpoint(tablet) {
+			width: 50%;
+			padding: 15px;
+		}
+		@include breakpoint(laptop){
+			width: 25%;
+			padding: 5px;
+		}
+		
+		h2 {
+			text-align: $centerfooter;
+		}
+		img {
+			display:block;
+			margin:auto;
+			max-width: 75%;
+			
+		}
+
+		a {
+			display: block;
+			margin-top: 7px;
+
+		}
+	}
+
+	.social {
+		color: $blauwekleur;
+		position: relative;
+		text-align: left;
+		right: 0px;
+		margin-bottom: 10px;
+		ul {
+			padding-left: 0px;
+		}
+		a {
+			color: $blauwekleur;
+			display: inline-block;
+		}
+		a:hover {
+			color: lighten($blauwekleur,10%);
+		}
+	}
+
+	.copyright {
+		font-size: 12px;
+		margin:auto;
+		display:block;
+		text-align: center;
+		margin-bottom: 15px;
+	}
+	/* .kolom:first-child {
+		text-align: right;
+		h2 {
+			text-align: right;
+		}
+	} */
+}
+
+
+.nieuwsbrief {
+	input[type='text'] {
+		color: $blauwekleur;
+		border-color: solid 1px $blauwekleur;
+		width: 250px;
+		margin-right: 15px;
+		margin-bottom: 10px;
+	}
+	input[type='submit'] {
+		color: $blauwekleur;
+	}
+	.antwoord {
+		display: none;
+	}
+}

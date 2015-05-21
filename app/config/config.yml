@@ -35,7 +35,7 @@ twig:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [ ]
+    bundles:        [ PadelSiteBundle, PadelReservatieBundle ]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -65,10 +65,14 @@ doctrine:
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
-        mappings:
+        entity_managers:
+            default:
+                mappings:
                     FOSUserBundle: ~
                     PadelUserBundle: ~
                     SonataUserBundle: ~
+                    PadelReservatieBundle: ~
+                    PadelSiteBundle: ~
 
 # Swiftmailer Configuration
 swiftmailer:

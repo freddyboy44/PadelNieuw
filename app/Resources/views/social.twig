@@ -1,0 +1,43 @@
+{{ dump(app.user) }}
+<div class="social">
+	<ul>
+		<div class="useractions">
+			
+			{% if app.user %}
+				{% if app.user.avatar is not null %}
+					<span id="userinfo" href="{{ path("fos_user_profile_show") }}">
+						<img class="usericoon" src="{{ app.user.avatar }}">
+					</span>
+				{% else %}
+					<span id="userinfo" href="{{ path("fos_user_profile_show")  }}">
+						{{ app.user.firstname }} {{ app.user.lastname }}
+
+					</span>
+				{% endif %}
+				<div id="profiel">
+					<a href="{{ path("fos_user_profile_show")  }}">Bekijk profiel</a><br/>
+					<a href="maakreserveratie }}">Reserveren</a><br/>
+					<a href="{{ path("fos_user_security_logout")  }}">Uitloggen</a>
+				</div>
+				
+			 {% else %}
+			 	<a href="{{ path("fos_user_security_login")  }}">Inloggen</a>
+			 {% endif %}
+		</div>
+		<li><a target=_new href="https://www.facebook.com/PadelClubBrugge"><i class="fa fa-2x fa-facebook"></a></i></li>
+		<li><a target=_new href="https://twitter.com/padelbrugge"><i class="fa fa-2x fa-twitter"></a></i></li>
+		<!--<li><i class="fa fa-2x fa-google-plus"></i></li>
+		
+		<li><i class="fa fa-2x fa-instagram"></i></li>
+		<li><i class="fa fa-2x fa-linkedin"></i></li>-->
+	</ul>
+</div>
+
+    <script>
+    	$('#userinfo').click(function(){
+    		$('#profiel').slideToggle(250);
+    	})
+    	
+
+
+    </script>

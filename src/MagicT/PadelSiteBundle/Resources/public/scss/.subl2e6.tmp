@@ -1,0 +1,150 @@
+
+@import 'colors';
+@import 'animations';
+@import 'mixins';
+
+a {
+	color: $linkkleur;
+	text-decoration: none;
+}
+
+a:hover,a:focus {
+	color: $linkkleurhover;
+	text-decoration: none;
+}
+
+body {
+	color: $tekstkleur;
+	background-color: $blauwekleur;
+	@include breakpoint(phablet) {
+		
+	}
+	@include breakpoint(tablet) {
+		
+	}
+	@include breakpoint(laptop) {
+		
+	}
+	@include breakpoint(desktop) {
+		max-width: 78em;
+	}
+}
+
+header {
+	background-color: red;
+	height: 250px;
+}
+
+nav {
+	#menu {
+		width: 98%;
+		margin: auto;
+
+		@include breakpoint(desktop) {
+			max-width: 75em;
+		}
+
+		.logo {
+			margin-top: 15px;
+			background:transparent url('../images/logo.png') center center no-repeat ;
+			background-size: contain;
+			height: 240px;
+			width: auto;
+			margin-bottom: 10px;
+		}
+
+		.togglemobiel {
+			position: absolute;
+			top: 20px;
+			right: 20px;
+
+			img {
+				width: 15px;
+				height: 15px;
+			}
+
+			@include breakpoint(phablet) {
+				display: none;
+			}
+		}
+
+		.togglemobiel:hover {
+			cursor: pointer;
+		}
+
+		.menumobiel {
+			display: none;
+
+			ul {
+				padding-left: 7px;
+				padding-right: 7px;
+				list-style: none;
+				display: block;
+				background-color: white;
+				border-radius: 4px;
+				li {
+					display: inline-block;
+					width: 100%;
+					background-color: white;
+					color: $blauwekleur;
+					padding: 8px;
+					text-align: center;
+					a {
+						text-align:center;
+					}
+				}
+			}
+		}
+	}
+}
+
+.content {
+	width: 100%;
+	padding-left:7px;
+	padding-right:7px;
+	max-width: 75em;
+
+	article {
+		background-color: white;
+		border-radius: 4px;
+		color: $blauwekleur;
+		padding: 7px;
+		position: relative;
+		overflow: hidden; 
+		
+		.foto {
+			@include breakpoint(phablet) {
+				width: 30%;	
+				float: left;		
+			}
+
+			img {
+				width: 100%;
+				height: auto;
+				display: block;
+			}	
+		}
+		
+
+		.tekst {
+			padding: 7px;
+			@include breakpoint(phablet) {
+				width: 69%;
+				float:right;
+			}
+		}
+	}
+
+}
+
+
+
+
+
+
+
+
+
+footer {
+	margin-top: 5px;
+}

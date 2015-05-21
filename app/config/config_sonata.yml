@@ -9,6 +9,12 @@ sonata_block:
 sonata_user:
     security_acl: true
     manager_type: orm # can be orm or mongodb
+    class:
+        user: MagicT\PadelUserBundle\Entity\PadelUser
+        group: MagicT\PadelUserBundle\Entity\PadelGroup
+    admin:                  # Admin Classes
+        user:
+            class: MagicT\PadelUserBundle\Admin\Model\UserAdmin         
 
 sonata_block:
     blocks:
@@ -21,20 +27,9 @@ fos_user:
     firewall_name:  main
     user_class:     MagicT\PadelUserBundle\Entity\PadelUser
 
-
     group:
         group_class:   MagicT\PadelUserBundle\Entity\PadelGroup
         group_manager: sonata.user.orm.group_manager                    # If you're using doctrine orm (use sonata.user.mongodb.user_manager for mongodb)
 
     service:
         user_manager: sonata.user.orm.user_manager                      # If you're using doctrine orm (use sonata.user.mongodb.group_manager for mongodb)
-
-sonata_user:
-    table:
-        user_group: user_group
-    class:
-        user:               MagicT\PadelUserBundle\Entity\PadelUser
-        group:              MagicT\PadelUserBundle\Entity\PadelGroup
-    admin:                  # Admin Classes
-        user:
-            class:          MagicT\PadelUserBundle\Admin\UserAdmin         

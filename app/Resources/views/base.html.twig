@@ -1,13 +1,117 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {# make sure we always display a proper title: The record's title if there is one, appended with the
+       sitename. If there is no title, we append the sitename with the payoff, if there is one. #}
+        <title>{% block title %}Padel Symfony{% endblock %}</title>
+        {% include 'stylesheets.html.twig' %}
+        {% block javascripts %}
+            {% javascripts
+                '%kernel.root_dir%/../vendor/components/jquery/jquery.js'
+                '%kernel.root_dir%/../vendor/twbs/bootstrap/dist/js/bootstrap.js'
+                '%kernel.root_dir%/../vendor/components/underscore/underscore-min.js'
+                '%kernel.root_dir%/../vendor/moment/moment/min/moment.min.js'
+                '%kernel.root_dir%/../vendor/dimsemenov/magnific-popup/dist/jquery.magnific-popup.min.js'
+                                     
+
+                '@PadelSiteBundle/Resources/public/js/altijd/*'
+            
+            %}
+            <script src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+        {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        <div class="volledigepagina">
+        {% include 'menu.twig' %}
+        {% block body %}
+            {% macro test() %}
+            
+            {% for pagina in paginas %}
+                <div class="artikel nieuwartikel">
+                    {% if pagina.video|length < 0 %}
+                        <div class="video">
+                            {# pagina.video.responsive #}
+                        </div>
+                    {% else %}
+                        {% if pagina.image|length > 0 %}
+                            <div class="foto">
+                                <a href="{{ pagina.link }}"><img class="img-responsive" src="{{ paths.files }}{{ pagina.image }}"></a>
+                            </div>
+                        {% else %}
+                            {% if pagina.fotos|length > 0 %}
+                                
+                                <div class="foto">
+                                    <a href="{{ pagina.link }}"><img class="img-responsive" src="{{ paths.files }}{{ pagina.fotos.0.filename }}"></a>
+                                </div>
+                            {% endif %}
+                        {% endif %}
+                        
+
+                    {% endif %}
+                    <h2>{{ pagina.title }}</h2>
+                    <p>
+                        {{ pagina.teaser }}
+                    </p>
+                    <a id="leesverder" href="{{ pagina.link }}">Lees meer</a>
+                </div>
+
+                {% if loop.index == 1 or (loop.index - 1) is divisible by(3) %}
+                    <script>
+                        console.log($('.nieuwartikel'));
+                        $('.kolom1').append($('.nieuwartikel'));
+                        $('.nieuwartikel').removeClass('nieuwartikel');
+                    </script>
+                {% endif %}
+                {% if loop.index == 2 or (loop.index + 1) is divisible by(3) %}
+                    <script>
+                        $('.kolom2').append($('.nieuwartikel'));
+                        $('.nieuwartikel').removeClass('nieuwartikel');
+                    </script>
+                {% endif %}
+                {% if loop.index == 3 or (loop.index ) is divisible by(3) %}
+                    <script>
+                        $('.kolom3').append($('.nieuwartikel'));
+                        $('.nieuwartikel').removeClass('nieuwartikel');
+                    </script>
+                {% endif %}
+
+                
+            {% endfor %}
+            
+        {% endmacro %}
+
+        {% block volledigepagina %}
+            <div class="voorpagina">
+                <div class="antwoord">
+                    
+                </div>
+                <div class="kolom1">
+                    
+                </div>
+                <div class="kolom2">
+                   
+                </div>
+                <div class="kolom3">
+                    {% include 'twitter.twig' %}
+                    
+                    <!--<div class="artikel">
+                        {# include 'calendar.twig' #}
+                    </div> -->
+                    <!--<div class="artikel">
+                        {# include 'quotes.twig' #}  
+                    </div> -->
+                    {# include 'sponsorsslideshow.twig' #}
+
+                </div>
+                {{ _self.test() }}
+                {% include 'newscontrole.twig' %}
+            </div>
+        {% endblock %}
+
+        {% endblock %}
+        </div>
     </body>
 </html>

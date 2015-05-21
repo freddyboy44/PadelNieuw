@@ -1,0 +1,3053 @@
+@import url(http://fonts.googleapis.com/css?family=Niconne);
+@import url(http://fonts.googleapis.com/css?family=PT+Sans);
+@font-face {
+  font-family: 'blanchcaps';
+  src: url("../fonts/blanch_caps-webfont.eot");
+  src: url("../fonts/blanch_caps-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/blanch_caps-webfont.woff2") format("woff2"), url("../fonts/blanch_caps-webfont.woff") format("woff"), url("../fonts/blanch_caps-webfont.ttf") format("truetype"), url("../fonts/blanch_caps-webfont.svg#blanchcaps") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'varsity';
+  src: url("../fonts/varsity_regular-webfont.eot");
+  src: url("../fonts/varsity_regular-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/varsity_regular-webfont.woff2") format("woff2"), url("../fonts/varsity_regular-webfont.woff") format("woff"), url("../fonts/varsity_regular-webfont.ttf") format("truetype"), url("../fonts/varsity_regular-webfont.svg#varsity_regularvarsityRg") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@keyframes jump {
+  /* line 2, ../scss/_animations.scss */
+  0% {
+    top: 0;
+  }
+
+  /* line 5, ../scss/_animations.scss */
+  50% {
+    top: 140px;
+    height: 140px;
+  }
+
+  /* line 9, ../scss/_animations.scss */
+  55% {
+    top: 160px;
+    height: 120px;
+    border-radius: 70px / 60px;
+  }
+
+  /* line 14, ../scss/_animations.scss */
+  65% {
+    top: 120px;
+    height: 140px;
+    border-radius: 70px;
+  }
+
+  /* line 19, ../scss/_animations.scss */
+  95% {
+    top: 0;
+  }
+
+  /* line 22, ../scss/_animations.scss */
+  100% {
+    top: 0;
+  }
+}
+
+/**
+ * Styles for 'responsive video embeds'
+ */
+/* line 4, ../scss/_responsivevideo.scss */
+.responsive-video {
+  height: 0;
+  padding-top: 25px;
+  padding-bottom: 67.5%;
+  margin-bottom: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* line 7, ../scss/_responsivevideo.scss */
+.responsive-video.vimeo {
+  padding-top: 0;
+}
+
+/* line 10, ../scss/_responsivevideo.scss */
+.responsive-video.widescreen {
+  padding-bottom: 57.25%;
+}
+
+/* line 13, ../scss/_responsivevideo.scss */
+.responsive-video embed, .responsive-video iframe, .responsive-video object, .responsive-video video {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+@media (max-width: 767px) {
+  /* line 17, ../scss/_responsivevideo.scss */
+  .responsive-video {
+    padding-top: 0;
+  }
+}
+/* line 1, ../scss/_calendar.scss */
+.clndr {
+  width: 100%;
+  float: right;
+  /* background-color: $blauwekleur;
+  color: white; */
+  background-color: #25aae1;
+  color: white;
+  border-radius: 4px;
+  padding: 8px;
+  font-size: 11px;
+  margin-bottom: 16px;
+}
+@media (min-width: 420px) {
+  /* line 1, ../scss/_calendar.scss */
+  .clndr {
+    background-color: white;
+    color: #25aae1;
+  }
+}
+/* line 19, ../scss/_calendar.scss */
+.clndr .clndr-controls {
+  padding: 10px;
+}
+/* line 21, ../scss/_calendar.scss */
+.clndr .clndr-controls .clndr-previous-button, .clndr .clndr-controls .clndr-next-button {
+  width: 10%;
+}
+/* line 25, ../scss/_calendar.scss */
+.clndr .clndr-controls .clndr-previous-button:hover, .clndr .clndr-controls .clndr-previous-button:active, .clndr .clndr-controls .clndr-next-button:hover, .clndr .clndr-controls .clndr-next-button:active {
+  cursor: pointer;
+}
+/* line 29, ../scss/_calendar.scss */
+.clndr .clndr-controls .clndr-previous-button {
+  float: left;
+}
+/* line 32, ../scss/_calendar.scss */
+.clndr .clndr-controls .clndr-next-button {
+  float: right;
+  text-align: right;
+}
+/* line 37, ../scss/_calendar.scss */
+.clndr .clndr-controls .current-month {
+  width: 100%;
+  display: block;
+  text-align: center;
+}
+/* line 46, ../scss/_calendar.scss */
+.clndr .clndr-grid .days-of-the-week {
+  width: 100%;
+  border-bottom: solid 2px white;
+  margin-bottom: 5px;
+}
+/* line 51, ../scss/_calendar.scss */
+.clndr .clndr-grid .days-of-the-week .header-day {
+  display: block;
+  width: 14%;
+  float: left;
+  text-align: center;
+}
+/* line 60, ../scss/_calendar.scss */
+.clndr .clndr-grid .days .day {
+  display: block;
+  width: 14%;
+  float: left;
+  text-align: center;
+  padding: 4px;
+}
+/* line 68, ../scss/_calendar.scss */
+.clndr .clndr-grid .days .day.adjacent-month {
+  color: #68c4ea;
+}
+/* line 71, ../scss/_calendar.scss */
+.clndr .clndr-grid .days .day.event {
+  color: #faab13;
+  background-image: url("../images/calendarstripe.png");
+  background-size: 70%;
+  background-opacity: 50%;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+/* line 79, ../scss/_calendar.scss */
+.clndr .clndr-grid .days .day.today {
+  background-color: #ffd402;
+  color: #25aae1;
+}
+/* line 88, ../scss/_calendar.scss */
+.clndr .event-listing {
+  margin-top: 7px;
+  display: block;
+  overflow: hidden;
+  width: 100%;
+}
+/* line 94, ../scss/_calendar.scss */
+.clndr .event-listing .event-listing-title {
+  text-transform: uppercase;
+  width: 100%;
+  text-align: center;
+  color: #faab13;
+}
+
+/* line 3, ../scss/_nieuwsmenu.scss */
+.nieuwsmenu {
+  color: #25aae1;
+  position: relative;
+  height: 240px;
+  margin-bottom: 10px;
+}
+/* line 9, ../scss/_nieuwsmenu.scss */
+.nieuwsmenu .actiefitem1 {
+  display: block;
+}
+/* line 12, ../scss/_nieuwsmenu.scss */
+.nieuwsmenu .actiefitem2, .nieuwsmenu .actiefitem3, .nieuwsmenu .actiefitem4, .nieuwsmenu .actiefitem5 {
+  display: none;
+}
+/* line 16, ../scss/_nieuwsmenu.scss */
+.nieuwsmenu div {
+  width: 100%;
+  padding-top: 7px;
+  margin-bottom: 5px;
+}
+/* line 23, ../scss/_nieuwsmenu.scss */
+.nieuwsmenu img {
+  margin: auto;
+  display: block;
+  padding: 5px;
+  border-radius: 5px;
+}
+/* line 34, ../scss/_nieuwsmenu.scss */
+.nieuwsmenu p {
+  text-align: left;
+}
+/* line 40, ../scss/_nieuwsmenu.scss */
+.nieuwsmenu .actiefitem {
+  overflow: hidden;
+  height: 240px;
+  padding: 10px;
+  position: absolute;
+  top: 10px;
+}
+/* line 47, ../scss/_nieuwsmenu.scss */
+.nieuwsmenu .actiefitem .foto {
+  width: 50%;
+  float: left;
+  height: 100%;
+  max-width: 50%;
+  max-height: 100%;
+  -webkit-transition: background-image 140ms ease;
+  -moz-transition: background-image 140ms ease;
+  -ms-transition: background-image 140ms ease;
+  -o-transition: background-image 140ms ease;
+  transition: background-image 140ms ease;
+  background-image: url("");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+/* line 68, ../scss/_nieuwsmenu.scss */
+.nieuwsmenu .actiefitem .tekst {
+  width: 50%;
+  float: right;
+  height: 100%;
+}
+/* line 73, ../scss/_nieuwsmenu.scss */
+.nieuwsmenu .actiefitem .tekst h3 {
+  font-size: 3vw;
+}
+@media (min-width: 420px) {
+  /* line 73, ../scss/_nieuwsmenu.scss */
+  .nieuwsmenu .actiefitem .tekst h3 {
+    font-size: 26px;
+  }
+}
+/* line 82, ../scss/_nieuwsmenu.scss */
+.nieuwsmenu .actiefitem img {
+  margin: auto;
+  width: auto;
+  height: auto;
+  max-height: 100%;
+  max-width: 100%;
+  display: block;
+}
+/* line 95, ../scss/_nieuwsmenu.scss */
+.nieuwsmenu .actiefitem p {
+  margin-top: 7px;
+  height: 200px;
+  display: block;
+  text-align: left;
+}
+/* line 102, ../scss/_nieuwsmenu.scss */
+.nieuwsmenu .actiefitem a {
+  position: absolute;
+  bottom: 10px;
+  right: 70px;
+  background: #25aae1;
+  color: white;
+  padding: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+  border-radius: 3px;
+}
+/* line 114, ../scss/_nieuwsmenu.scss */
+.nieuwsmenu .actiefitem a:hover {
+  background: #1a8bb9;
+  color: #fcd100;
+}
+
+/* line 121, ../scss/_nieuwsmenu.scss */
+.nieuwsitems {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* line 127, ../scss/_nieuwsmenu.scss */
+.nieuwsitem {
+  padding-top: 7px;
+  margin-bottom: 7px;
+  border-bottom: solid 1px #7fcded;
+  margin-bottom: 3px;
+}
+/* line 134, ../scss/_nieuwsmenu.scss */
+.nieuwsitem div {
+  display: none;
+  font-size: 2vw;
+  overflow: visible;
+}
+@media (min-width: 420px) {
+  /* line 134, ../scss/_nieuwsmenu.scss */
+  .nieuwsitem div {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    padding-top: 7px;
+    margin-bottom: 5px;
+    color: #25aae1;
+  }
+}
+@media (min-width: 600px) {
+  /* line 134, ../scss/_nieuwsmenu.scss */
+  .nieuwsitem div {
+    font-size: 1.8vw;
+  }
+}
+@media (min-width: 720px) {
+  /* line 134, ../scss/_nieuwsmenu.scss */
+  .nieuwsitem div {
+    font-size: 14px;
+  }
+}
+/* line 156, ../scss/_nieuwsmenu.scss */
+.nieuwsitem img {
+  margin: auto;
+  display: block;
+  max-width: 100%;
+  height: auto;
+  padding: 5px;
+  border: solid 1px #25aae1;
+  border-radius: 5px;
+}
+/* line 166, ../scss/_nieuwsmenu.scss */
+.nieuwsitem span {
+  display: none;
+}
+/* line 169, ../scss/_nieuwsmenu.scss */
+.nieuwsitem p {
+  display: none;
+}
+
+/* line 174, ../scss/_nieuwsmenu.scss */
+.nieuwsitem:hover {
+  cursor: pointer;
+}
+
+/* line 178, ../scss/_nieuwsmenu.scss */
+.nieuwsitem.actief {
+  border-bottom: solid 4px #25aae1;
+}
+
+/* line 182, ../scss/_nieuwsmenu.scss */
+.items1, .items2, .items3, .items4, .items5 {
+  width: 100%;
+  max-width: 30%;
+  display: block;
+  float: left;
+}
+
+/* line 190, ../scss/_nieuwsmenu.scss */
+.items4 {
+  width: 25%;
+}
+
+/* line 193, ../scss/_nieuwsmenu.scss */
+.items5 {
+  width: 20%;
+}
+
+/* line 2, ../scss/_citaten.scss */
+.citaten {
+  background-color: #25aae1;
+  color: white;
+  text-align: center;
+  position: relative;
+  height: 100%;
+  border-radius: 4px;
+  padding: 7px;
+}
+@media (min-width: 420px) {
+  /* line 2, ../scss/_citaten.scss */
+  .citaten {
+    background-color: white;
+    color: #25aae1;
+  }
+}
+/* line 15, ../scss/_citaten.scss */
+.citaten .owl-item {
+  height: 100%;
+}
+/* line 18, ../scss/_citaten.scss */
+.citaten .citaat {
+  height: 100%;
+}
+/* line 21, ../scss/_citaten.scss */
+.citaten .citaat .auteur {
+  font-weight: 0;
+  bottom: -25px;
+  width: 100%;
+}
+/* line 28, ../scss/_citaten.scss */
+.citaten .citaat .spreuk {
+  font-size: 30px;
+  line-height: 1;
+  font-family: 'blanchcaps';
+  margin-bottom: 7px;
+  font-style: italic;
+}
+
+/* line 1, ../scss/_sponsors.scss */
+.sponsors {
+  background-color: white;
+  width: 100%;
+  margin-bottom: 16px;
+  border-radius: 4px;
+  padding: 7px;
+}
+@media (min-width: 420px) {
+  /* line 1, ../scss/_sponsors.scss */
+  .sponsors {
+    background-color: white;
+  }
+}
+/* line 11, ../scss/_sponsors.scss */
+.sponsors h2 {
+  color: #25aae1 !important;
+  text-align: center;
+  width: 100%;
+}
+
+/* line 1, ../scss/_responsive.scss */
+.responsive-video {
+  height: 0;
+  padding-top: 25px;
+  padding-bottom: 67.5%;
+  margin-bottom: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* line 4, ../scss/_responsive.scss */
+.responsive-video.vimeo {
+  padding-top: 0;
+}
+
+/* line 7, ../scss/_responsive.scss */
+.responsive-video.widescreen {
+  padding-bottom: 57.25%;
+}
+
+/* line 10, ../scss/_responsive.scss */
+.responsive-video embed, .responsive-video iframe, .responsive-video object, .responsive-video video {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+@media (max-width: 767px) {
+  /* line 14, ../scss/_responsive.scss */
+  .responsive-video {
+    padding-top: 0;
+  }
+}
+/* line 1, ../scss/_twitter.scss */
+.timeline {
+  color: #25aae1;
+}
+
+/* line 1, ../scss/_record-list.scss */
+.voorbeeld {
+  width: 100%;
+  border: 1px;
+  padding: 15px;
+}
+
+/* line 7, ../scss/_record-list.scss */
+.beheer {
+  background-color: white;
+  color: #25aae1;
+  padding: 10px;
+  border-radius: 4px;
+  overflow: hidden;
+  color: white;
+}
+/* line 16, ../scss/_record-list.scss */
+.beheer a.knop, .beheer a.nieuw, .beheer a.toon, .beheer a.bewerk {
+  padding: 5px 15px;
+  min-width: 100px;
+  color: white;
+  text-align: center;
+  display: inline-block;
+  border-radius: 2px;
+  margin-bottom: 2px;
+  background-color: #00a65a;
+  border-color: #005a31;
+}
+/* line 28, ../scss/_record-list.scss */
+.beheer a.nieuw {
+  background-color: #00a65a;
+  border-color: #005a31;
+}
+/* line 33, ../scss/_record-list.scss */
+.beheer a.toon {
+  background-color: #00a65a;
+  border-color: #005a31;
+}
+/* line 38, ../scss/_record-list.scss */
+.beheer a.bewerk {
+  background-color: #00a65a;
+  border-color: #005a31;
+}
+/* line 48, ../scss/_record-list.scss */
+.beheer form div {
+  margin-bottom: 3px;
+}
+/* line 51, ../scss/_record-list.scss */
+.beheer form label {
+  min-width: 150px;
+  width: 15%;
+  vertical-align: top;
+}
+/* line 56, ../scss/_record-list.scss */
+.beheer form input[type="text"], .beheer form textarea {
+  width: 70%;
+  min-width: 200px;
+  max-width: 500px;
+}
+/* line 62, ../scss/_record-list.scss */
+.beheer form textarea {
+  min-height: 200px;
+}
+/* line 65, ../scss/_record-list.scss */
+.beheer form input[type="file"] {
+  display: inline-block;
+}
+/* line 72, ../scss/_record-list.scss */
+.beheer .thumbnail {
+  max-height: 150px;
+  max-width: 150px;
+  border: 0;
+}
+
+/* line 78, ../scss/_record-list.scss */
+.records_list, .record_properties {
+  width: 100%;
+  color: #25aae1;
+  padding: 0px;
+}
+/* line 83, ../scss/_record-list.scss */
+.records_list thead, .record_properties thead {
+  background-color: white;
+  color: #25aae1;
+}
+/* line 87, ../scss/_record-list.scss */
+.records_list thead tr th, .record_properties thead tr th {
+  align: left;
+  padding-left: 0px;
+}
+/* line 96, ../scss/_record-list.scss */
+.records_list tbody tr, .record_properties tbody tr {
+  max-height: 70px;
+}
+/* line 99, ../scss/_record-list.scss */
+.records_list tbody tr td, .record_properties tbody tr td {
+  vertical-align: middle;
+  padding: 3px 0px;
+}
+/* line 104, ../scss/_record-list.scss */
+.records_list tbody a, .records_list tbody a:hover, .records_list tbody a:focus, .record_properties tbody a, .record_properties tbody a:hover, .record_properties tbody a:focus {
+  color: #25aae1;
+}
+/* line 107, ../scss/_record-list.scss */
+.records_list tbody a.knop, .records_list tbody a.knop:hover, .records_list tbody a.knop:focus, .record_properties tbody a.knop, .record_properties tbody a.knop:hover, .record_properties tbody a.knop:focus {
+  color: white;
+}
+/* line 110, ../scss/_record-list.scss */
+.records_list tbody ul, .record_properties tbody ul {
+  list-style: none;
+  padding-left: 0px;
+  margin: 0;
+}
+/* line 114, ../scss/_record-list.scss */
+.records_list tbody ul li, .record_properties tbody ul li {
+  list-style: none;
+  display: inline-block;
+  position: relative;
+}
+
+/* line 125, ../scss/_record-list.scss */
+#fotos ul {
+  list-style: none;
+}
+/* line 127, ../scss/_record-list.scss */
+#fotos ul li {
+  list-style: none;
+}
+/* line 130, ../scss/_record-list.scss */
+#fotos ul li.x {
+  float: left;
+  margin-right: 3px;
+}
+
+/* line 2, ../scss/_login.scss */
+.formuser form.modalform {
+  max-width: 100%;
+  overflow: hidden;
+}
+/* line 7, ../scss/_login.scss */
+.formuser form#loginformulier {
+  max-width: 330px;
+  width: 100%;
+}
+/* line 12, ../scss/_login.scss */
+.formuser .btn-social {
+  color: white;
+}
+/* line 16, ../scss/_login.scss */
+.formuser form {
+  width: 100%;
+  padding: 15px;
+  margin: 0 auto;
+}
+/* line 21, ../scss/_login.scss */
+.formuser form h2, .formuser form input[type="checkbox"] {
+  margin-bottom: 10px;
+}
+/* line 26, ../scss/_login.scss */
+.formuser form .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+/* line 35, ../scss/_login.scss */
+.formuser form .form-control:focus {
+  z-index: 2;
+  border-color: white;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(0, 0, 0, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(0, 0, 0, 0.6);
+}
+/* line 43, ../scss/_login.scss */
+.formuser form input[type="submit"] {
+  color: white;
+}
+/* line 47, ../scss/_login.scss */
+.formuser form input {
+  margin-bottom: 7px;
+}
+/* line 51, ../scss/_login.scss */
+.formuser form input[type="email"] {
+  margin-bottom: -1px;
+}
+/* line 56, ../scss/_login.scss */
+.formuser form input[type="password"] {
+  margin-bottom: 10px;
+}
+/* line 62, ../scss/_login.scss */
+.formuser form a, .formuser form a:hover, .formuser form a:focus {
+  color: white;
+}
+
+/* line 68, ../scss/_login.scss */
+.modal {
+  color: white;
+}
+/* line 69, ../scss/_login.scss */
+.modal .close {
+  width: 15px;
+  height: 15px;
+}
+/* line 74, ../scss/_login.scss */
+.modal h2 {
+  width: 100%;
+  display: inline-block;
+}
+/* line 81, ../scss/_login.scss */
+.modal input[type='submit'] {
+  color: white;
+}
+/* line 84, ../scss/_login.scss */
+.modal .modal-content {
+  background-color: #25aae1;
+}
+/* line 86, ../scss/_login.scss */
+.modal .modal-content .panel {
+  background: none;
+}
+/* line 91, ../scss/_login.scss */
+.modal .modal-header {
+  border-bottom: none;
+}
+/* line 95, ../scss/_login.scss */
+.modal .modal-footer {
+  border-top: none;
+}
+
+/*
+ * Social Buttons for Bootstrap
+ *
+ * Copyright 2013-2015 Panayiotis Lipiridis
+ * Licensed under the MIT License
+ *
+ * https://github.com/lipis/bootstrap-social
+ */
+/* line 10, ../scss/_social.scss */
+.btn-social {
+  position: relative;
+  padding-left: 44px;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* line 10, ../scss/_social.scss */
+.btn-social > :first-child {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 32px;
+  line-height: 34px;
+  font-size: 1.6em;
+  text-align: center;
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+/* line 11, ../scss/_social.scss */
+.btn-social.btn-lg {
+  padding-left: 61px;
+}
+
+/* line 11, ../scss/_social.scss */
+.btn-social.btn-lg > :first-child {
+  line-height: 45px;
+  width: 45px;
+  font-size: 1.8em;
+}
+
+/* line 12, ../scss/_social.scss */
+.btn-social.btn-sm {
+  padding-left: 38px;
+}
+
+/* line 12, ../scss/_social.scss */
+.btn-social.btn-sm > :first-child {
+  line-height: 28px;
+  width: 28px;
+  font-size: 1.4em;
+}
+
+/* line 13, ../scss/_social.scss */
+.btn-social.btn-xs {
+  padding-left: 30px;
+}
+
+/* line 13, ../scss/_social.scss */
+.btn-social.btn-xs > :first-child {
+  line-height: 20px;
+  width: 20px;
+  font-size: 1.2em;
+}
+
+/* line 14, ../scss/_social.scss */
+.btn-social-icon {
+  position: relative;
+  padding-left: 44px;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 34px;
+  width: 34px;
+  padding: 0;
+}
+
+/* line 14, ../scss/_social.scss */
+.btn-social-icon > :first-child {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 32px;
+  line-height: 34px;
+  font-size: 1.6em;
+  text-align: center;
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+/* line 15, ../scss/_social.scss */
+.btn-social-icon.btn-lg {
+  padding-left: 61px;
+}
+
+/* line 15, ../scss/_social.scss */
+.btn-social-icon.btn-lg > :first-child {
+  line-height: 45px;
+  width: 45px;
+  font-size: 1.8em;
+}
+
+/* line 16, ../scss/_social.scss */
+.btn-social-icon.btn-sm {
+  padding-left: 38px;
+}
+
+/* line 16, ../scss/_social.scss */
+.btn-social-icon.btn-sm > :first-child {
+  line-height: 28px;
+  width: 28px;
+  font-size: 1.4em;
+}
+
+/* line 17, ../scss/_social.scss */
+.btn-social-icon.btn-xs {
+  padding-left: 30px;
+}
+
+/* line 17, ../scss/_social.scss */
+.btn-social-icon.btn-xs > :first-child {
+  line-height: 20px;
+  width: 20px;
+  font-size: 1.2em;
+}
+
+/* line 18, ../scss/_social.scss */
+.btn-social-icon > :first-child {
+  border: none;
+  text-align: center;
+  width: 100% !important;
+}
+
+/* line 19, ../scss/_social.scss */
+.btn-social-icon.btn-lg {
+  height: 45px;
+  width: 45px;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* line 20, ../scss/_social.scss */
+.btn-social-icon.btn-sm {
+  height: 30px;
+  width: 30px;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* line 21, ../scss/_social.scss */
+.btn-social-icon.btn-xs {
+  height: 22px;
+  width: 22px;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* line 22, ../scss/_social.scss */
+.btn-adn {
+  color: #fff;
+  background-color: #d87a68;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 22, ../scss/_social.scss */
+.btn-adn:hover, .btn-adn:focus, .btn-adn:active, .btn-adn.active, .open > .dropdown-toggle.btn-adn {
+  color: #fff;
+  background-color: #ce563f;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 23, ../scss/_social.scss */
+.btn-adn:active, .btn-adn.active, .open > .dropdown-toggle.btn-adn {
+  background-image: none;
+}
+
+/* line 24, ../scss/_social.scss */
+.btn-adn.disabled, .btn-adn[disabled], fieldset[disabled] .btn-adn, .btn-adn.disabled:hover, .btn-adn[disabled]:hover, fieldset[disabled] .btn-adn:hover, .btn-adn.disabled:focus, .btn-adn[disabled]:focus, fieldset[disabled] .btn-adn:focus, .btn-adn.disabled:active, .btn-adn[disabled]:active, fieldset[disabled] .btn-adn:active, .btn-adn.disabled.active, .btn-adn[disabled].active, fieldset[disabled] .btn-adn.active {
+  background-color: #d87a68;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 25, ../scss/_social.scss */
+.btn-adn .badge {
+  color: #d87a68;
+  background-color: #fff;
+}
+
+/* line 26, ../scss/_social.scss */
+.btn-bitbucket {
+  color: #fff;
+  background-color: #205081;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 26, ../scss/_social.scss */
+.btn-bitbucket:hover, .btn-bitbucket:focus, .btn-bitbucket:active, .btn-bitbucket.active, .open > .dropdown-toggle.btn-bitbucket {
+  color: #fff;
+  background-color: #163758;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 27, ../scss/_social.scss */
+.btn-bitbucket:active, .btn-bitbucket.active, .open > .dropdown-toggle.btn-bitbucket {
+  background-image: none;
+}
+
+/* line 28, ../scss/_social.scss */
+.btn-bitbucket.disabled, .btn-bitbucket[disabled], fieldset[disabled] .btn-bitbucket, .btn-bitbucket.disabled:hover, .btn-bitbucket[disabled]:hover, fieldset[disabled] .btn-bitbucket:hover, .btn-bitbucket.disabled:focus, .btn-bitbucket[disabled]:focus, fieldset[disabled] .btn-bitbucket:focus, .btn-bitbucket.disabled:active, .btn-bitbucket[disabled]:active, fieldset[disabled] .btn-bitbucket:active, .btn-bitbucket.disabled.active, .btn-bitbucket[disabled].active, fieldset[disabled] .btn-bitbucket.active {
+  background-color: #205081;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 29, ../scss/_social.scss */
+.btn-bitbucket .badge {
+  color: #205081;
+  background-color: #fff;
+}
+
+/* line 30, ../scss/_social.scss */
+.btn-dropbox {
+  color: #fff;
+  background-color: #1087dd;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 30, ../scss/_social.scss */
+.btn-dropbox:hover, .btn-dropbox:focus, .btn-dropbox:active, .btn-dropbox.active, .open > .dropdown-toggle.btn-dropbox {
+  color: #fff;
+  background-color: #0d6aad;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 31, ../scss/_social.scss */
+.btn-dropbox:active, .btn-dropbox.active, .open > .dropdown-toggle.btn-dropbox {
+  background-image: none;
+}
+
+/* line 32, ../scss/_social.scss */
+.btn-dropbox.disabled, .btn-dropbox[disabled], fieldset[disabled] .btn-dropbox, .btn-dropbox.disabled:hover, .btn-dropbox[disabled]:hover, fieldset[disabled] .btn-dropbox:hover, .btn-dropbox.disabled:focus, .btn-dropbox[disabled]:focus, fieldset[disabled] .btn-dropbox:focus, .btn-dropbox.disabled:active, .btn-dropbox[disabled]:active, fieldset[disabled] .btn-dropbox:active, .btn-dropbox.disabled.active, .btn-dropbox[disabled].active, fieldset[disabled] .btn-dropbox.active {
+  background-color: #1087dd;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 33, ../scss/_social.scss */
+.btn-dropbox .badge {
+  color: #1087dd;
+  background-color: #fff;
+}
+
+/* line 34, ../scss/_social.scss */
+.btn-facebook {
+  color: #fff;
+  background-color: #3b5998;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 34, ../scss/_social.scss */
+.btn-facebook:hover, .btn-facebook:focus, .btn-facebook:active, .btn-facebook.active, .open > .dropdown-toggle.btn-facebook {
+  color: #fff;
+  background-color: #2d4373;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 35, ../scss/_social.scss */
+.btn-facebook:active, .btn-facebook.active, .open > .dropdown-toggle.btn-facebook {
+  background-image: none;
+}
+
+/* line 36, ../scss/_social.scss */
+.btn-facebook.disabled, .btn-facebook[disabled], fieldset[disabled] .btn-facebook, .btn-facebook.disabled:hover, .btn-facebook[disabled]:hover, fieldset[disabled] .btn-facebook:hover, .btn-facebook.disabled:focus, .btn-facebook[disabled]:focus, fieldset[disabled] .btn-facebook:focus, .btn-facebook.disabled:active, .btn-facebook[disabled]:active, fieldset[disabled] .btn-facebook:active, .btn-facebook.disabled.active, .btn-facebook[disabled].active, fieldset[disabled] .btn-facebook.active {
+  background-color: #3b5998;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 37, ../scss/_social.scss */
+.btn-facebook .badge {
+  color: #3b5998;
+  background-color: #fff;
+}
+
+/* line 38, ../scss/_social.scss */
+.btn-flickr {
+  color: #fff;
+  background-color: #ff0084;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 38, ../scss/_social.scss */
+.btn-flickr:hover, .btn-flickr:focus, .btn-flickr:active, .btn-flickr.active, .open > .dropdown-toggle.btn-flickr {
+  color: #fff;
+  background-color: #cc006a;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 39, ../scss/_social.scss */
+.btn-flickr:active, .btn-flickr.active, .open > .dropdown-toggle.btn-flickr {
+  background-image: none;
+}
+
+/* line 40, ../scss/_social.scss */
+.btn-flickr.disabled, .btn-flickr[disabled], fieldset[disabled] .btn-flickr, .btn-flickr.disabled:hover, .btn-flickr[disabled]:hover, fieldset[disabled] .btn-flickr:hover, .btn-flickr.disabled:focus, .btn-flickr[disabled]:focus, fieldset[disabled] .btn-flickr:focus, .btn-flickr.disabled:active, .btn-flickr[disabled]:active, fieldset[disabled] .btn-flickr:active, .btn-flickr.disabled.active, .btn-flickr[disabled].active, fieldset[disabled] .btn-flickr.active {
+  background-color: #ff0084;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 41, ../scss/_social.scss */
+.btn-flickr .badge {
+  color: #ff0084;
+  background-color: #fff;
+}
+
+/* line 42, ../scss/_social.scss */
+.btn-foursquare {
+  color: #fff;
+  background-color: #f94877;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 42, ../scss/_social.scss */
+.btn-foursquare:hover, .btn-foursquare:focus, .btn-foursquare:active, .btn-foursquare.active, .open > .dropdown-toggle.btn-foursquare {
+  color: #fff;
+  background-color: #f71752;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 43, ../scss/_social.scss */
+.btn-foursquare:active, .btn-foursquare.active, .open > .dropdown-toggle.btn-foursquare {
+  background-image: none;
+}
+
+/* line 44, ../scss/_social.scss */
+.btn-foursquare.disabled, .btn-foursquare[disabled], fieldset[disabled] .btn-foursquare, .btn-foursquare.disabled:hover, .btn-foursquare[disabled]:hover, fieldset[disabled] .btn-foursquare:hover, .btn-foursquare.disabled:focus, .btn-foursquare[disabled]:focus, fieldset[disabled] .btn-foursquare:focus, .btn-foursquare.disabled:active, .btn-foursquare[disabled]:active, fieldset[disabled] .btn-foursquare:active, .btn-foursquare.disabled.active, .btn-foursquare[disabled].active, fieldset[disabled] .btn-foursquare.active {
+  background-color: #f94877;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 45, ../scss/_social.scss */
+.btn-foursquare .badge {
+  color: #f94877;
+  background-color: #fff;
+}
+
+/* line 46, ../scss/_social.scss */
+.btn-github {
+  color: #fff;
+  background-color: #444;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 46, ../scss/_social.scss */
+.btn-github:hover, .btn-github:focus, .btn-github:active, .btn-github.active, .open > .dropdown-toggle.btn-github {
+  color: #fff;
+  background-color: #2b2b2b;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 47, ../scss/_social.scss */
+.btn-github:active, .btn-github.active, .open > .dropdown-toggle.btn-github {
+  background-image: none;
+}
+
+/* line 48, ../scss/_social.scss */
+.btn-github.disabled, .btn-github[disabled], fieldset[disabled] .btn-github, .btn-github.disabled:hover, .btn-github[disabled]:hover, fieldset[disabled] .btn-github:hover, .btn-github.disabled:focus, .btn-github[disabled]:focus, fieldset[disabled] .btn-github:focus, .btn-github.disabled:active, .btn-github[disabled]:active, fieldset[disabled] .btn-github:active, .btn-github.disabled.active, .btn-github[disabled].active, fieldset[disabled] .btn-github.active {
+  background-color: #444;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 49, ../scss/_social.scss */
+.btn-github .badge {
+  color: #444;
+  background-color: #fff;
+}
+
+/* line 50, ../scss/_social.scss */
+.btn-google {
+  color: #fff;
+  background-color: #dd4b39;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 50, ../scss/_social.scss */
+.btn-google:hover, .btn-google:focus, .btn-google:active, .btn-google.active, .open > .dropdown-toggle.btn-google {
+  color: #fff;
+  background-color: #c23321;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 51, ../scss/_social.scss */
+.btn-google:active, .btn-google.active, .open > .dropdown-toggle.btn-google {
+  background-image: none;
+}
+
+/* line 52, ../scss/_social.scss */
+.btn-google.disabled, .btn-google[disabled], fieldset[disabled] .btn-google, .btn-google.disabled:hover, .btn-google[disabled]:hover, fieldset[disabled] .btn-google:hover, .btn-google.disabled:focus, .btn-google[disabled]:focus, fieldset[disabled] .btn-google:focus, .btn-google.disabled:active, .btn-google[disabled]:active, fieldset[disabled] .btn-google:active, .btn-google.disabled.active, .btn-google[disabled].active, fieldset[disabled] .btn-google.active {
+  background-color: #dd4b39;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 53, ../scss/_social.scss */
+.btn-google .badge {
+  color: #dd4b39;
+  background-color: #fff;
+}
+
+/* line 54, ../scss/_social.scss */
+.btn-instagram {
+  color: #fff;
+  background-color: #3f729b;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 54, ../scss/_social.scss */
+.btn-instagram:hover, .btn-instagram:focus, .btn-instagram:active, .btn-instagram.active, .open > .dropdown-toggle.btn-instagram {
+  color: #fff;
+  background-color: #305777;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 55, ../scss/_social.scss */
+.btn-instagram:active, .btn-instagram.active, .open > .dropdown-toggle.btn-instagram {
+  background-image: none;
+}
+
+/* line 56, ../scss/_social.scss */
+.btn-instagram.disabled, .btn-instagram[disabled], fieldset[disabled] .btn-instagram, .btn-instagram.disabled:hover, .btn-instagram[disabled]:hover, fieldset[disabled] .btn-instagram:hover, .btn-instagram.disabled:focus, .btn-instagram[disabled]:focus, fieldset[disabled] .btn-instagram:focus, .btn-instagram.disabled:active, .btn-instagram[disabled]:active, fieldset[disabled] .btn-instagram:active, .btn-instagram.disabled.active, .btn-instagram[disabled].active, fieldset[disabled] .btn-instagram.active {
+  background-color: #3f729b;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 57, ../scss/_social.scss */
+.btn-instagram .badge {
+  color: #3f729b;
+  background-color: #fff;
+}
+
+/* line 58, ../scss/_social.scss */
+.btn-linkedin {
+  color: #fff;
+  background-color: #007bb6;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 58, ../scss/_social.scss */
+.btn-linkedin:hover, .btn-linkedin:focus, .btn-linkedin:active, .btn-linkedin.active, .open > .dropdown-toggle.btn-linkedin {
+  color: #fff;
+  background-color: #005983;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 59, ../scss/_social.scss */
+.btn-linkedin:active, .btn-linkedin.active, .open > .dropdown-toggle.btn-linkedin {
+  background-image: none;
+}
+
+/* line 60, ../scss/_social.scss */
+.btn-linkedin.disabled, .btn-linkedin[disabled], fieldset[disabled] .btn-linkedin, .btn-linkedin.disabled:hover, .btn-linkedin[disabled]:hover, fieldset[disabled] .btn-linkedin:hover, .btn-linkedin.disabled:focus, .btn-linkedin[disabled]:focus, fieldset[disabled] .btn-linkedin:focus, .btn-linkedin.disabled:active, .btn-linkedin[disabled]:active, fieldset[disabled] .btn-linkedin:active, .btn-linkedin.disabled.active, .btn-linkedin[disabled].active, fieldset[disabled] .btn-linkedin.active {
+  background-color: #007bb6;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 61, ../scss/_social.scss */
+.btn-linkedin .badge {
+  color: #007bb6;
+  background-color: #fff;
+}
+
+/* line 62, ../scss/_social.scss */
+.btn-microsoft {
+  color: #fff;
+  background-color: #2672ec;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 62, ../scss/_social.scss */
+.btn-microsoft:hover, .btn-microsoft:focus, .btn-microsoft:active, .btn-microsoft.active, .open > .dropdown-toggle.btn-microsoft {
+  color: #fff;
+  background-color: #125acd;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 63, ../scss/_social.scss */
+.btn-microsoft:active, .btn-microsoft.active, .open > .dropdown-toggle.btn-microsoft {
+  background-image: none;
+}
+
+/* line 64, ../scss/_social.scss */
+.btn-microsoft.disabled, .btn-microsoft[disabled], fieldset[disabled] .btn-microsoft, .btn-microsoft.disabled:hover, .btn-microsoft[disabled]:hover, fieldset[disabled] .btn-microsoft:hover, .btn-microsoft.disabled:focus, .btn-microsoft[disabled]:focus, fieldset[disabled] .btn-microsoft:focus, .btn-microsoft.disabled:active, .btn-microsoft[disabled]:active, fieldset[disabled] .btn-microsoft:active, .btn-microsoft.disabled.active, .btn-microsoft[disabled].active, fieldset[disabled] .btn-microsoft.active {
+  background-color: #2672ec;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 65, ../scss/_social.scss */
+.btn-microsoft .badge {
+  color: #2672ec;
+  background-color: #fff;
+}
+
+/* line 66, ../scss/_social.scss */
+.btn-openid {
+  color: #fff;
+  background-color: #f7931e;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 66, ../scss/_social.scss */
+.btn-openid:hover, .btn-openid:focus, .btn-openid:active, .btn-openid.active, .open > .dropdown-toggle.btn-openid {
+  color: #fff;
+  background-color: #da7908;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 67, ../scss/_social.scss */
+.btn-openid:active, .btn-openid.active, .open > .dropdown-toggle.btn-openid {
+  background-image: none;
+}
+
+/* line 68, ../scss/_social.scss */
+.btn-openid.disabled, .btn-openid[disabled], fieldset[disabled] .btn-openid, .btn-openid.disabled:hover, .btn-openid[disabled]:hover, fieldset[disabled] .btn-openid:hover, .btn-openid.disabled:focus, .btn-openid[disabled]:focus, fieldset[disabled] .btn-openid:focus, .btn-openid.disabled:active, .btn-openid[disabled]:active, fieldset[disabled] .btn-openid:active, .btn-openid.disabled.active, .btn-openid[disabled].active, fieldset[disabled] .btn-openid.active {
+  background-color: #f7931e;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 69, ../scss/_social.scss */
+.btn-openid .badge {
+  color: #f7931e;
+  background-color: #fff;
+}
+
+/* line 70, ../scss/_social.scss */
+.btn-pinterest {
+  color: #fff;
+  background-color: #cb2027;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 70, ../scss/_social.scss */
+.btn-pinterest:hover, .btn-pinterest:focus, .btn-pinterest:active, .btn-pinterest.active, .open > .dropdown-toggle.btn-pinterest {
+  color: #fff;
+  background-color: #9f191f;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 71, ../scss/_social.scss */
+.btn-pinterest:active, .btn-pinterest.active, .open > .dropdown-toggle.btn-pinterest {
+  background-image: none;
+}
+
+/* line 72, ../scss/_social.scss */
+.btn-pinterest.disabled, .btn-pinterest[disabled], fieldset[disabled] .btn-pinterest, .btn-pinterest.disabled:hover, .btn-pinterest[disabled]:hover, fieldset[disabled] .btn-pinterest:hover, .btn-pinterest.disabled:focus, .btn-pinterest[disabled]:focus, fieldset[disabled] .btn-pinterest:focus, .btn-pinterest.disabled:active, .btn-pinterest[disabled]:active, fieldset[disabled] .btn-pinterest:active, .btn-pinterest.disabled.active, .btn-pinterest[disabled].active, fieldset[disabled] .btn-pinterest.active {
+  background-color: #cb2027;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 73, ../scss/_social.scss */
+.btn-pinterest .badge {
+  color: #cb2027;
+  background-color: #fff;
+}
+
+/* line 74, ../scss/_social.scss */
+.btn-reddit {
+  color: #000;
+  background-color: #eff7ff;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 74, ../scss/_social.scss */
+.btn-reddit:hover, .btn-reddit:focus, .btn-reddit:active, .btn-reddit.active, .open > .dropdown-toggle.btn-reddit {
+  color: #000;
+  background-color: #bcddff;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 75, ../scss/_social.scss */
+.btn-reddit:active, .btn-reddit.active, .open > .dropdown-toggle.btn-reddit {
+  background-image: none;
+}
+
+/* line 76, ../scss/_social.scss */
+.btn-reddit.disabled, .btn-reddit[disabled], fieldset[disabled] .btn-reddit, .btn-reddit.disabled:hover, .btn-reddit[disabled]:hover, fieldset[disabled] .btn-reddit:hover, .btn-reddit.disabled:focus, .btn-reddit[disabled]:focus, fieldset[disabled] .btn-reddit:focus, .btn-reddit.disabled:active, .btn-reddit[disabled]:active, fieldset[disabled] .btn-reddit:active, .btn-reddit.disabled.active, .btn-reddit[disabled].active, fieldset[disabled] .btn-reddit.active {
+  background-color: #eff7ff;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 77, ../scss/_social.scss */
+.btn-reddit .badge {
+  color: #eff7ff;
+  background-color: #000;
+}
+
+/* line 78, ../scss/_social.scss */
+.btn-soundcloud {
+  color: #fff;
+  background-color: #f50;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 78, ../scss/_social.scss */
+.btn-soundcloud:hover, .btn-soundcloud:focus, .btn-soundcloud:active, .btn-soundcloud.active, .open > .dropdown-toggle.btn-soundcloud {
+  color: #fff;
+  background-color: #c40;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 79, ../scss/_social.scss */
+.btn-soundcloud:active, .btn-soundcloud.active, .open > .dropdown-toggle.btn-soundcloud {
+  background-image: none;
+}
+
+/* line 80, ../scss/_social.scss */
+.btn-soundcloud.disabled, .btn-soundcloud[disabled], fieldset[disabled] .btn-soundcloud, .btn-soundcloud.disabled:hover, .btn-soundcloud[disabled]:hover, fieldset[disabled] .btn-soundcloud:hover, .btn-soundcloud.disabled:focus, .btn-soundcloud[disabled]:focus, fieldset[disabled] .btn-soundcloud:focus, .btn-soundcloud.disabled:active, .btn-soundcloud[disabled]:active, fieldset[disabled] .btn-soundcloud:active, .btn-soundcloud.disabled.active, .btn-soundcloud[disabled].active, fieldset[disabled] .btn-soundcloud.active {
+  background-color: #f50;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 81, ../scss/_social.scss */
+.btn-soundcloud .badge {
+  color: #f50;
+  background-color: #fff;
+}
+
+/* line 82, ../scss/_social.scss */
+.btn-tumblr {
+  color: #fff;
+  background-color: #2c4762;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 82, ../scss/_social.scss */
+.btn-tumblr:hover, .btn-tumblr:focus, .btn-tumblr:active, .btn-tumblr.active, .open > .dropdown-toggle.btn-tumblr {
+  color: #fff;
+  background-color: #1c2d3f;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 83, ../scss/_social.scss */
+.btn-tumblr:active, .btn-tumblr.active, .open > .dropdown-toggle.btn-tumblr {
+  background-image: none;
+}
+
+/* line 84, ../scss/_social.scss */
+.btn-tumblr.disabled, .btn-tumblr[disabled], fieldset[disabled] .btn-tumblr, .btn-tumblr.disabled:hover, .btn-tumblr[disabled]:hover, fieldset[disabled] .btn-tumblr:hover, .btn-tumblr.disabled:focus, .btn-tumblr[disabled]:focus, fieldset[disabled] .btn-tumblr:focus, .btn-tumblr.disabled:active, .btn-tumblr[disabled]:active, fieldset[disabled] .btn-tumblr:active, .btn-tumblr.disabled.active, .btn-tumblr[disabled].active, fieldset[disabled] .btn-tumblr.active {
+  background-color: #2c4762;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 85, ../scss/_social.scss */
+.btn-tumblr .badge {
+  color: #2c4762;
+  background-color: #fff;
+}
+
+/* line 86, ../scss/_social.scss */
+.btn-twitter {
+  color: #fff;
+  background-color: #55acee;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 86, ../scss/_social.scss */
+.btn-twitter:hover, .btn-twitter:focus, .btn-twitter:active, .btn-twitter.active, .open > .dropdown-toggle.btn-twitter {
+  color: #fff;
+  background-color: #2795e9;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 87, ../scss/_social.scss */
+.btn-twitter:active, .btn-twitter.active, .open > .dropdown-toggle.btn-twitter {
+  background-image: none;
+}
+
+/* line 88, ../scss/_social.scss */
+.btn-twitter.disabled, .btn-twitter[disabled], fieldset[disabled] .btn-twitter, .btn-twitter.disabled:hover, .btn-twitter[disabled]:hover, fieldset[disabled] .btn-twitter:hover, .btn-twitter.disabled:focus, .btn-twitter[disabled]:focus, fieldset[disabled] .btn-twitter:focus, .btn-twitter.disabled:active, .btn-twitter[disabled]:active, fieldset[disabled] .btn-twitter:active, .btn-twitter.disabled.active, .btn-twitter[disabled].active, fieldset[disabled] .btn-twitter.active {
+  background-color: #55acee;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 89, ../scss/_social.scss */
+.btn-twitter .badge {
+  color: #55acee;
+  background-color: #fff;
+}
+
+/* line 90, ../scss/_social.scss */
+.btn-vimeo {
+  color: #fff;
+  background-color: #1ab7ea;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 90, ../scss/_social.scss */
+.btn-vimeo:hover, .btn-vimeo:focus, .btn-vimeo:active, .btn-vimeo.active, .open > .dropdown-toggle.btn-vimeo {
+  color: #fff;
+  background-color: #1295bf;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 91, ../scss/_social.scss */
+.btn-vimeo:active, .btn-vimeo.active, .open > .dropdown-toggle.btn-vimeo {
+  background-image: none;
+}
+
+/* line 92, ../scss/_social.scss */
+.btn-vimeo.disabled, .btn-vimeo[disabled], fieldset[disabled] .btn-vimeo, .btn-vimeo.disabled:hover, .btn-vimeo[disabled]:hover, fieldset[disabled] .btn-vimeo:hover, .btn-vimeo.disabled:focus, .btn-vimeo[disabled]:focus, fieldset[disabled] .btn-vimeo:focus, .btn-vimeo.disabled:active, .btn-vimeo[disabled]:active, fieldset[disabled] .btn-vimeo:active, .btn-vimeo.disabled.active, .btn-vimeo[disabled].active, fieldset[disabled] .btn-vimeo.active {
+  background-color: #1ab7ea;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 93, ../scss/_social.scss */
+.btn-vimeo .badge {
+  color: #1ab7ea;
+  background-color: #fff;
+}
+
+/* line 94, ../scss/_social.scss */
+.btn-vk {
+  color: #fff;
+  background-color: #587ea3;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 94, ../scss/_social.scss */
+.btn-vk:hover, .btn-vk:focus, .btn-vk:active, .btn-vk.active, .open > .dropdown-toggle.btn-vk {
+  color: #fff;
+  background-color: #466482;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 95, ../scss/_social.scss */
+.btn-vk:active, .btn-vk.active, .open > .dropdown-toggle.btn-vk {
+  background-image: none;
+}
+
+/* line 96, ../scss/_social.scss */
+.btn-vk.disabled, .btn-vk[disabled], fieldset[disabled] .btn-vk, .btn-vk.disabled:hover, .btn-vk[disabled]:hover, fieldset[disabled] .btn-vk:hover, .btn-vk.disabled:focus, .btn-vk[disabled]:focus, fieldset[disabled] .btn-vk:focus, .btn-vk.disabled:active, .btn-vk[disabled]:active, fieldset[disabled] .btn-vk:active, .btn-vk.disabled.active, .btn-vk[disabled].active, fieldset[disabled] .btn-vk.active {
+  background-color: #587ea3;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 97, ../scss/_social.scss */
+.btn-vk .badge {
+  color: #587ea3;
+  background-color: #fff;
+}
+
+/* line 98, ../scss/_social.scss */
+.btn-yahoo {
+  color: #fff;
+  background-color: #720e9e;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 98, ../scss/_social.scss */
+.btn-yahoo:hover, .btn-yahoo:focus, .btn-yahoo:active, .btn-yahoo.active, .open > .dropdown-toggle.btn-yahoo {
+  color: #fff;
+  background-color: #500a6f;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 99, ../scss/_social.scss */
+.btn-yahoo:active, .btn-yahoo.active, .open > .dropdown-toggle.btn-yahoo {
+  background-image: none;
+}
+
+/* line 100, ../scss/_social.scss */
+.btn-yahoo.disabled, .btn-yahoo[disabled], fieldset[disabled] .btn-yahoo, .btn-yahoo.disabled:hover, .btn-yahoo[disabled]:hover, fieldset[disabled] .btn-yahoo:hover, .btn-yahoo.disabled:focus, .btn-yahoo[disabled]:focus, fieldset[disabled] .btn-yahoo:focus, .btn-yahoo.disabled:active, .btn-yahoo[disabled]:active, fieldset[disabled] .btn-yahoo:active, .btn-yahoo.disabled.active, .btn-yahoo[disabled].active, fieldset[disabled] .btn-yahoo.active {
+  background-color: #720e9e;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 101, ../scss/_social.scss */
+.btn-yahoo .badge {
+  color: #720e9e;
+  background-color: #fff;
+}
+
+/* line 3, ../scss/_registration.scss */
+.registratieformulier .form-group label {
+  display: inline-block;
+  max-width: 100%;
+  font-weight: 700;
+  float: left;
+}
+/* line 10, ../scss/_registration.scss */
+.registratieformulier .form-group .input-group {
+  position: relative;
+  display: table;
+  border-collapse: separate;
+}
+/* line 16, ../scss/_registration.scss */
+.registratieformulier .form-group input[type='password'] {
+  max-height: 44px;
+}
+/* line 20, ../scss/_registration.scss */
+.registratieformulier .form-group input, .registratieformulier .form-group select, .registratieformulier .form-group input[type='email'] {
+  margin-bottom: 1px;
+  margin-right: 1px;
+}
+
+/* line 3, ../scss/_user.scss */
+.social .useractions {
+  position: relative;
+  display: inline-block;
+}
+/* line 7, ../scss/_user.scss */
+.social .useractions #userinfo:hover {
+  cursor: pointer;
+}
+/* line 10, ../scss/_user.scss */
+.social .useractions .usericoon {
+  height: 40px;
+  width: auto;
+  vertical-align: middle;
+}
+/* line 17, ../scss/_user.scss */
+.social .useractions #profiel {
+  display: none;
+  position: absolute;
+  top: 40px;
+  left: -55px;
+  width: 150px;
+  background-color: white;
+  text-align: center;
+  padding: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+  border-radius: 8px;
+  -webkit-box-shadow: rgba(0, 0, 255, 0.4) 0 0 25px, rgba(0, 128, 0, 0.2) 0 0 3px 1px inset;
+  -moz-box-shadow: rgba(0, 0, 255, 0.4) 0 0 25px, rgba(0, 128, 0, 0.2) 0 0 3px 1px inset;
+  box-shadow: rgba(0, 0, 255, 0.4) 0 0 25px, rgba(0, 128, 0, 0.2) 0 0 3px 1px inset;
+}
+/* line 29, ../scss/_user.scss */
+.social .useractions #profiel a {
+  color: #25aae1;
+}
+
+/* line 3, ../scss/_reservatie.scss */
+.overzichtreservaties img.icoon-veld {
+  max-height: 12px;
+  width: auto;
+}
+/* line 8, ../scss/_reservatie.scss */
+.overzichtreservaties .controls {
+  text-align: center;
+  display: block;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+/* line 15, ../scss/_reservatie.scss */
+.overzichtreservaties table {
+  width: 100%;
+}
+/* line 17, ../scss/_reservatie.scss */
+.overzichtreservaties table th, .overzichtreservaties table td.uur {
+  background-color: white;
+  color: #25aae1;
+  text-align: center;
+  width: 12.5%;
+}
+/* line 23, ../scss/_reservatie.scss */
+.overzichtreservaties table td.veld, .overzichtreservaties table td.uur {
+  vertical-align: middle;
+  text-align: center;
+}
+/* line 28, ../scss/_reservatie.scss */
+.overzichtreservaties table td {
+  height: 60px;
+}
+/* line 32, ../scss/_reservatie.scss */
+.overzichtreservaties table td.veld:hover {
+  cursor: pointer;
+}
+/* line 35, ../scss/_reservatie.scss */
+.overzichtreservaties table td.bezet:hover {
+  cursor: auto;
+}
+/* line 38, ../scss/_reservatie.scss */
+.overzichtreservaties table td.bezet {
+  background-color: #68c4ea;
+}
+/* line 41, ../scss/_reservatie.scss */
+.overzichtreservaties table td.tehoog {
+  height: 0px;
+}
+
+/* line 53, ../scss/_reservatie.scss */
+h4.modal-title {
+  display: inline-block;
+}
+
+/* line 20, ../scss/custom.scss */
+a.btn {
+  color: #25aae1 !important;
+}
+
+/* line 24, ../scss/custom.scss */
+.btn {
+  color: #25aae1;
+  min-height: 16px;
+}
+
+/* line 29, ../scss/custom.scss */
+.btn.btn-white {
+  color: white !important;
+}
+
+/* line 33, ../scss/custom.scss */
+a.btn.btn-danger i, a.btn.btn-success i {
+  color: white;
+}
+
+/* line 41, ../scss/custom.scss */
+html, body {
+  height: 100%;
+}
+
+/* line 45, ../scss/custom.scss */
+.nopadding {
+  padding: 0;
+}
+
+/* line 49, ../scss/custom.scss */
+a {
+  color: #25aae1;
+  text-decoration: none;
+}
+
+/* line 54, ../scss/custom.scss */
+a:hover, a:focus {
+  color: #167aa3;
+  text-decoration: none;
+}
+
+/* line 59, ../scss/custom.scss */
+.label-success, .label-danger {
+  padding: 10px;
+  width: 99%;
+  display: block;
+  overflow: hidden;
+  margin: auto;
+  border-radius: 4px;
+  font-size: 15px;
+}
+
+/* line 69, ../scss/custom.scss */
+.social {
+  position: absolute;
+  right: 0px;
+  background-color: white;
+  color: #25aae1;
+  width: 100%;
+  text-align: right;
+  padding-right: 10px;
+  padding-top: 10px;
+  margin-top: 0px;
+  top: 0px;
+}
+@media (min-width: 600px) {
+  /* line 69, ../scss/custom.scss */
+  .social {
+    background-color: transparent;
+    color: white;
+  }
+}
+/* line 87, ../scss/custom.scss */
+.social ul {
+  list-style: none;
+}
+/* line 89, ../scss/custom.scss */
+.social ul li {
+  display: inline;
+  width: 30px;
+}
+/* line 93, ../scss/custom.scss */
+.social ul li i {
+  width: 40px;
+  vertical-align: middle;
+}
+@media (min-width: 600px) {
+  /* line 69, ../scss/custom.scss */
+  .social {
+    right: 30px;
+  }
+}
+/* line 102, ../scss/custom.scss */
+.social a {
+  color: #25aae1;
+}
+@media (min-width: 600px) {
+  /* line 102, ../scss/custom.scss */
+  .social a {
+    color: white;
+  }
+}
+/* line 109, ../scss/custom.scss */
+.social a:hover {
+  color: #eff9fd;
+  text-shadow: 0px 2px 8px #eff9fd;
+}
+
+/* line 115, ../scss/custom.scss */
+#map-canvas {
+  width: 100%;
+  height: 350px;
+  background-color: #CCC;
+  margin-bottom: 15px;
+}
+
+/* line 122, ../scss/custom.scss */
+a.leesmeer {
+  position: relative;
+  display: inline-block;
+  background: #25aae1;
+  color: white;
+  padding: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+  border-radius: 3px;
+  float: right;
+}
+@media (min-width: 420px) {
+  /* line 122, ../scss/custom.scss */
+  a.leesmeer {
+    position: absolute;
+    bottom: 70px;
+    right: 70px;
+  }
+}
+
+/* line 141, ../scss/custom.scss */
+a.leesmeer:hover {
+  background: #1a8bb9;
+  color: #fcd100;
+}
+
+/* line 146, ../scss/custom.scss */
+.content {
+  overflow: hidden;
+  width: 100%;
+}
+
+/* line 152, ../scss/custom.scss */
+body {
+  color: white;
+  font-family: 'PT Sans', sans-serif;
+  margin: auto;
+}
+@media (min-width: 420px) {
+  /* line 152, ../scss/custom.scss */
+  body {
+    color: white;
+    background-color: #25aae1;
+  }
+}
+
+/* line 175, ../scss/custom.scss */
+.volledigepagina {
+  background-color: #25aae1;
+  margin: auto;
+  overflow: hidden;
+}
+@media (min-width: 1200px) {
+  /* line 175, ../scss/custom.scss */
+  .volledigepagina {
+    max-width: 960px;
+  }
+}
+
+/* line 184, ../scss/custom.scss */
+h1, h2, h3, h4, h5 {
+  font-family: 'blanchcaps';
+  position: relative;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+/* line 193, ../scss/custom.scss */
+h1 {
+  font-size: 12vw;
+}
+@media (min-width: 1200px) {
+  /* line 193, ../scss/custom.scss */
+  h1 {
+    font-size: 72px;
+  }
+}
+
+/* line 200, ../scss/custom.scss */
+h2 {
+  font-size: 10vw;
+  text-align: center;
+}
+@media (min-width: 420px) {
+  /* line 200, ../scss/custom.scss */
+  h2 {
+    font-size: 8vw;
+  }
+}
+@media (min-width: 600px) {
+  /* line 200, ../scss/custom.scss */
+  h2 {
+    font-size: 5vw;
+  }
+}
+@media (min-width: 1200px) {
+  /* line 200, ../scss/custom.scss */
+  h2 {
+    font-size: 48px;
+  }
+}
+
+/* line 215, ../scss/custom.scss */
+header {
+  width: 100%;
+  background-color: white;
+  border-radius: 4px;
+  margin-bottom: 7px;
+  overflow: hidden;
+}
+
+@media (min-width: 600px) {
+  /* line 226, ../scss/custom.scss */
+  .mobiel {
+    display: none;
+  }
+}
+
+/* line 232, ../scss/custom.scss */
+nav {
+  position: relative;
+}
+@media (min-width: 420px) {
+  /* line 232, ../scss/custom.scss */
+  nav {
+    margin-bottom: 25px;
+  }
+}
+/* line 239, ../scss/custom.scss */
+nav #menu {
+  width: 98%;
+  max-width: 900px;
+  margin: auto;
+  margin-top: 0px;
+  min-height: 50px;
+}
+@media (min-width: 600px) {
+  /* line 239, ../scss/custom.scss */
+  nav #menu {
+    margin-top: 15px;
+  }
+}
+/* line 256, ../scss/custom.scss */
+nav #menu .menudesktop {
+  display: none;
+  height: 170px;
+}
+@media (min-width: 600px) {
+  /* line 256, ../scss/custom.scss */
+  nav #menu .menudesktop {
+    display: block;
+  }
+}
+/* line 262, ../scss/custom.scss */
+nav #menu .menudesktop ul {
+  list-style: none;
+  height: 100%;
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+  background-size: 32% 50px, 32% 50px;
+  background-size: 32% 50px, 32% 50px;
+  background-repeat: no-repeat;
+}
+@media (min-width: 420px) {
+  /* line 262, ../scss/custom.scss */
+  nav #menu .menudesktop ul {
+    background-position: left 25px center, right 10px center;
+  }
+}
+@media (min-width: 1200px) {
+  /* line 262, ../scss/custom.scss */
+  nav #menu .menudesktop ul {
+    background-position: left 35px center, right 45px center;
+  }
+}
+/* line 281, ../scss/custom.scss */
+nav #menu .menudesktop ul li {
+  height: 100%;
+  float: left;
+  top: 0px;
+  width: 19.8%;
+  text-align: center;
+  position: relative;
+  display: table;
+  background-image: url("../images/wit.png");
+  background-repeat: no-repeat;
+  background-size: 100% 40px;
+  background-position: center center;
+}
+/* line 294, ../scss/custom.scss */
+nav #menu .menudesktop ul li a {
+  font-family: 'blanchcaps';
+  font-weight: 400;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  width: 100%;
+  text-transform: uppercase;
+  font-size: 2vw;
+}
+@media (min-width: 420px) {
+  /* line 294, ../scss/custom.scss */
+  nav #menu .menudesktop ul li a {
+    font-size: 5vw;
+  }
+}
+@media (min-width: 600px) {
+  /* line 294, ../scss/custom.scss */
+  nav #menu .menudesktop ul li a {
+    font-size: 4vw;
+  }
+}
+@media (min-width: 720px) {
+  /* line 294, ../scss/custom.scss */
+  nav #menu .menudesktop ul li a {
+    font-size: 3.3vw;
+  }
+}
+@media (min-width: 1200px) {
+  /* line 294, ../scss/custom.scss */
+  nav #menu .menudesktop ul li a {
+    font-size: 34px;
+  }
+}
+/* line 319, ../scss/custom.scss */
+nav #menu .menudesktop ul li #submenu-info {
+  z-index: 1000;
+  display: none;
+  background: none;
+  position: absolute;
+  left: -30px;
+  top: 65%;
+  background-color: white;
+  box-shadow: 4px 4px 5px #888888;
+  width: 200px;
+  height: auto;
+}
+@media (min-width: 600px) {
+  /* line 319, ../scss/custom.scss */
+  nav #menu .menudesktop ul li #submenu-info {
+    left: -45px;
+  }
+}
+@media (min-width: 720px) {
+  /* line 319, ../scss/custom.scss */
+  nav #menu .menudesktop ul li #submenu-info {
+    left: -10px;
+  }
+}
+@media (min-width: 1200px) {
+  /* line 319, ../scss/custom.scss */
+  nav #menu .menudesktop ul li #submenu-info {
+    width: 260px;
+    left: -45px;
+  }
+}
+/* line 346, ../scss/custom.scss */
+nav #menu .menudesktop ul li #submenu-info li {
+  width: 100%;
+  height: auto;
+  display: block;
+  clear: both;
+  text-align: center;
+}
+/* line 352, ../scss/custom.scss */
+nav #menu .menudesktop ul li #submenu-info li a {
+  text-align: center;
+  display: block;
+  width: 100%;
+}
+/* line 357, ../scss/custom.scss */
+nav #menu .menudesktop ul li #submenu-info li a:hover {
+  color: #167aa3;
+}
+/* line 361, ../scss/custom.scss */
+nav #menu .menudesktop ul li #submenu-info li img {
+  width: 16px;
+  height: 16px;
+  position: relative;
+}
+/* line 367, ../scss/custom.scss */
+nav #menu .menudesktop ul li #submenu-info li img:first-child {
+  left: -10px;
+}
+/* line 370, ../scss/custom.scss */
+nav #menu .menudesktop ul li #submenu-info li img:last-child {
+  right: -7px;
+}
+/* line 377, ../scss/custom.scss */
+nav #menu .menudesktop ul li.logo {
+  background: none;
+}
+/* line 378, ../scss/custom.scss */
+nav #menu .menudesktop ul li.logo img {
+  max-width: 100%;
+  height: auto;
+  max-height: 170px;
+  margin: auto;
+  display: block;
+}
+/* line 387, ../scss/custom.scss */
+nav #menu .menudesktop ul li:first-child {
+  background-image: url("../images/links.png");
+  background-repeat: no-repeat;
+  background-size: 100% 40px;
+  background-position: 10px center;
+  text-align: right;
+}
+/* line 395, ../scss/custom.scss */
+nav #menu .menudesktop ul li:first-child a {
+  text-align: right;
+}
+/* line 399, ../scss/custom.scss */
+nav #menu .menudesktop ul li:last-child {
+  background-image: url("../images/rechts.png");
+  background-repeat: no-repeat;
+  background-size: 100% 40px;
+  background-position: right 10px center;
+  text-align: left;
+}
+/* line 406, ../scss/custom.scss */
+nav #menu .menudesktop ul li:last-child a {
+  text-align: left;
+}
+/* line 411, ../scss/custom.scss */
+nav #menu .menudesktop ul li:nth-child(2) {
+  background-position: right 30px center;
+}
+/* line 414, ../scss/custom.scss */
+nav #menu .menudesktop ul li:nth-child(4) {
+  background-position: left 30px center;
+}
+/* line 423, ../scss/custom.scss */
+nav #menu #logo.mobiel {
+  margin-top: 8px;
+}
+/* line 427, ../scss/custom.scss */
+nav #menu .togglemobiel {
+  position: absolute;
+  right: 20px;
+  top: 50px;
+  width: 25px;
+  height: 25px;
+  padding: 5px;
+  border: solid 1px white;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+/* line 439, ../scss/custom.scss */
+nav #menu .togglemobiel img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+@media (min-width: 600px) {
+  /* line 427, ../scss/custom.scss */
+  nav #menu .togglemobiel {
+    display: none;
+  }
+}
+/* line 451, ../scss/custom.scss */
+nav #menu .togglemobiel:hover {
+  cursor: pointer;
+}
+/* line 455, ../scss/custom.scss */
+nav #menu .dummy {
+  height: 50px;
+  display: block;
+}
+@media (min-width: 600px) {
+  /* line 455, ../scss/custom.scss */
+  nav #menu .dummy {
+    display: none;
+  }
+}
+/* line 463, ../scss/custom.scss */
+nav #menu .logo {
+  background: none;
+  overflow: hidden;
+  margin: auto;
+  width: 100%;
+}
+/* line 471, ../scss/custom.scss */
+nav #menu .logo a {
+  background: none;
+  width: 100%;
+  display: block;
+}
+/* line 476, ../scss/custom.scss */
+nav #menu .logo img {
+  width: auto;
+  height: auto;
+  max-height: 170px;
+  margin: auto;
+  display: block;
+  margin-bottom: 10px;
+}
+/* line 486, ../scss/custom.scss */
+nav #menu .menumobiel {
+  display: none;
+  position: relative;
+}
+@media (min-width: 600px) {
+  /* line 486, ../scss/custom.scss */
+  nav #menu .menumobiel {
+    display: none !important;
+  }
+}
+/* line 494, ../scss/custom.scss */
+nav #menu .menumobiel ul {
+  margin: auto;
+  padding: 0px;
+  list-style: none;
+  display: block;
+  background-color: transparent;
+  border-radius: 4px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+/* line 503, ../scss/custom.scss */
+nav #menu .menumobiel ul li {
+  width: 100%;
+  margin: auto;
+  color: #25aae1;
+  padding: 8px;
+  padding-bottom: 0px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+/* line 515, ../scss/custom.scss */
+nav #menu .menumobiel ul li a {
+  font-family: 'blanchcaps';
+  text-align: center;
+  font-size: 9vw;
+  background: url("../images/menu-background.png");
+  background-position: center center;
+  background-size: 95%;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+@media (min-width: 420px) {
+  /* line 515, ../scss/custom.scss */
+  nav #menu .menumobiel ul li a {
+    font-size: 6vw;
+  }
+}
+/* line 531, ../scss/custom.scss */
+nav #menu .menumobiel ul li ul {
+  display: none;
+  width: 90%;
+  position: relative;
+  margin: auto;
+  padding: 0px;
+  margin-bottom: 0px;
+}
+/* line 540, ../scss/custom.scss */
+nav #menu .menumobiel ul li ul li {
+  background-color: transparent;
+  padding: 0px;
+  margin-bottom: 4px;
+}
+/* line 544, ../scss/custom.scss */
+nav #menu .menumobiel ul li ul li img {
+  width: 16px;
+  height: 16px;
+  margin-left: 7px;
+  margin-right: 7px;
+}
+/* line 550, ../scss/custom.scss */
+nav #menu .menumobiel ul li ul li a {
+  font-size: 7vw;
+  color: #25aae1;
+}
+/* line 554, ../scss/custom.scss */
+nav #menu .menumobiel ul li ul li a:hover {
+  color: #167aa3;
+}
+/* line 558, ../scss/custom.scss */
+nav #menu .menumobiel ul li ul li:first-child {
+  margin-top: 5px;
+}
+
+/* line 571, ../scss/custom.scss */
+section {
+  width: 100%;
+}
+@media (min-width: 600px) {
+  /* line 571, ../scss/custom.scss */
+  section {
+    width: 98%;
+    margin: auto;
+  }
+}
+
+/* line 583, ../scss/custom.scss */
+aside {
+  width: 100%;
+  padding: 0;
+}
+@media (min-width: 600px) {
+  /* line 583, ../scss/custom.scss */
+  aside {
+    width: 33%;
+    float: right;
+  }
+}
+
+/* line 595, ../scss/custom.scss */
+#partnersslideshow {
+  position: relative;
+  height: 150px;
+}
+/* line 599, ../scss/custom.scss */
+#partnersslideshow img {
+  max-height: 150px;
+  width: auto;
+  margin: auto;
+  display: block;
+  position: relative;
+  top: 75px;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+/* line 614, ../scss/custom.scss */
+.artikel {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  padding-top: 0px;
+  background-color: #25aae1;
+  color: white;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+@media (min-width: 420px) {
+  /* line 614, ../scss/custom.scss */
+  .artikel {
+    background-color: white;
+    color: #25aae1;
+    padding: 15px;
+  }
+}
+@media (min-width: 420px) {
+  /* line 614, ../scss/custom.scss */
+  .artikel {
+    color: #25aae1;
+    background-color: white;
+  }
+}
+/* line 634, ../scss/custom.scss */
+.artikel h2 {
+  background-image: url("../images/wimpeltje.png");
+  background-size: 100% 50px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  color: #25aae1;
+  padding: 7px;
+  text-align: center;
+  border-radius: 4px;
+}
+@media (min-width: 420px) {
+  /* line 634, ../scss/custom.scss */
+  .artikel h2 {
+    color: #25aae1;
+    background: none;
+  }
+}
+/* line 653, ../scss/custom.scss */
+.artikel p {
+  color: white;
+  overflow: hidden;
+}
+@media (min-width: 420px) {
+  /* line 653, ../scss/custom.scss */
+  .artikel p {
+    color: #25aae1;
+  }
+}
+/* line 661, ../scss/custom.scss */
+.artikel .datum {
+  text-align: center;
+  text-transform: uppercase;
+  font-family: 'blanchcaps';
+  font-size: 7vw;
+  position: relative;
+}
+@media (min-width: 420px) {
+  /* line 661, ../scss/custom.scss */
+  .artikel .datum {
+    font-size: 4vw;
+  }
+}
+@media (min-width: 600px) {
+  /* line 661, ../scss/custom.scss */
+  .artikel .datum {
+    font-size: 3vw;
+  }
+}
+@media (min-width: 1200px) {
+  /* line 661, ../scss/custom.scss */
+  .artikel .datum {
+    font-size: 30px;
+  }
+}
+/* line 677, ../scss/custom.scss */
+.artikel .datum:before, .artikel .datum:after {
+  border-bottom: solid 5px white;
+  width: 25%;
+  height: 50%;
+  content: "";
+  position: absolute;
+}
+@media (min-width: 420px) {
+  /* line 677, ../scss/custom.scss */
+  .artikel .datum:before, .artikel .datum:after {
+    border-bottom: solid 2px #25aae1;
+    width: 16%;
+  }
+}
+@media (min-width: 1200px) {
+  /* line 677, ../scss/custom.scss */
+  .artikel .datum:before, .artikel .datum:after {
+    border-bottom: solid 3px #25aae1;
+  }
+}
+/* line 691, ../scss/custom.scss */
+.artikel .datum:before {
+  left: 0%;
+}
+/* line 694, ../scss/custom.scss */
+.artikel .datum:after {
+  right: 0%;
+}
+/* line 699, ../scss/custom.scss */
+.artikel .foto {
+  display: none;
+  max-height: 150px;
+  width: 100%;
+}
+@media (min-width: 420px) {
+  /* line 699, ../scss/custom.scss */
+  .artikel .foto {
+    max-height: 250px;
+    display: inline-block;
+  }
+}
+/* line 707, ../scss/custom.scss */
+.artikel .foto img {
+  max-height: 150px;
+  display: block;
+  margin: auto;
+}
+@media (min-width: 720px) {
+  /* line 707, ../scss/custom.scss */
+  .artikel .foto img {
+    max-height: 250px;
+  }
+}
+/* line 718, ../scss/custom.scss */
+.artikel #leesverder {
+  padding: 5px 9px;
+  background-color: white;
+  color: #25aae1;
+  border-radius: 3px;
+  margin: auto;
+}
+@media (min-width: 420px) {
+  /* line 718, ../scss/custom.scss */
+  .artikel #leesverder {
+    background-color: #25aae1;
+    color: white;
+  }
+}
+/* line 731, ../scss/custom.scss */
+.artikel #leesverder:hover {
+  color: #167aa3;
+}
+@media (min-width: 420px) {
+  /* line 731, ../scss/custom.scss */
+  .artikel #leesverder:hover {
+    background-color: #167aa3;
+    color: white;
+  }
+}
+/* line 739, ../scss/custom.scss */
+.artikel .info-onderdeel {
+  width: 100%;
+  overflow: hidden;
+  clear: both;
+  margin-bottom: 15px;
+}
+/* line 745, ../scss/custom.scss */
+.artikel .info-onderdeel img {
+  width: 30%;
+  float: left;
+  display: block;
+  padding-top: 5px;
+  display: none;
+}
+@media (min-width: 600px) {
+  /* line 745, ../scss/custom.scss */
+  .artikel .info-onderdeel img {
+    display: inline-block;
+  }
+}
+@media (min-width: 1200px) {
+  /* line 745, ../scss/custom.scss */
+  .artikel .info-onderdeel img {
+    padding-top: 13px;
+  }
+}
+/* line 761, ../scss/custom.scss */
+.artikel .info-onderdeel h2, .artikel .info-onderdeel .tekst {
+  margin-bottom: 10px;
+  width: 100%;
+  color: #25aae1;
+  padding-left: 15px;
+  vertical-align: top;
+}
+@media (min-width: 600px) {
+  /* line 761, ../scss/custom.scss */
+  .artikel .info-onderdeel h2, .artikel .info-onderdeel .tekst {
+    width: 70%;
+    float: right;
+  }
+}
+@media (min-width: 600px) {
+  /* line 761, ../scss/custom.scss */
+  .artikel .info-onderdeel h2, .artikel .info-onderdeel .tekst {
+    text-align: left;
+  }
+}
+/* line 779, ../scss/custom.scss */
+.artikel .info-onderdeel h2 {
+  padding-top: 0px;
+}
+
+/* line 786, ../scss/custom.scss */
+.leesverder {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px;
+  background-color: white;
+  color: #25aae1;
+  border-radius: 3px;
+}
+@media (min-width: 420px) {
+  /* line 786, ../scss/custom.scss */
+  .leesverder {
+    background-color: #25aae1;
+    color: white;
+  }
+}
+
+/* line 801, ../scss/custom.scss */
+.leesverder:hover {
+  background-color: #167aa3;
+  color: white;
+}
+
+/* line 806, ../scss/custom.scss */
+.voorpagina {
+  overflow: hidden;
+  width: 99%;
+  margin: auto;
+}
+/* line 811, ../scss/custom.scss */
+.voorpagina .kolom1 {
+  width: 98%;
+  margin: auto;
+}
+@media (min-width: 420px) {
+  /* line 811, ../scss/custom.scss */
+  .voorpagina .kolom1 {
+    width: 50%;
+    padding: 7px;
+    float: left;
+  }
+}
+@media (min-width: 600px) {
+  /* line 811, ../scss/custom.scss */
+  .voorpagina .kolom1 {
+    width: 33%;
+    padding-right: 8px;
+    float: left;
+  }
+  /* line 824, ../scss/custom.scss */
+  .voorpagina .kolom1 div:first-child {
+    margin-top: 0px;
+  }
+}
+/* line 830, ../scss/custom.scss */
+.voorpagina .kolom2 {
+  width: 98%;
+  margin: auto;
+}
+@media (min-width: 420px) {
+  /* line 830, ../scss/custom.scss */
+  .voorpagina .kolom2 {
+    width: 50%;
+    padding: 7px;
+    float: right;
+  }
+}
+@media (min-width: 600px) {
+  /* line 830, ../scss/custom.scss */
+  .voorpagina .kolom2 {
+    float: left;
+    padding-left: 8px;
+    padding-right: 8px;
+    width: 34%;
+  }
+}
+/* line 845, ../scss/custom.scss */
+.voorpagina .kolom3 {
+  width: 98%;
+  margin: auto;
+}
+@media (min-width: 420px) {
+  /* line 845, ../scss/custom.scss */
+  .voorpagina .kolom3 {
+    width: 50%;
+    padding: 7px;
+    float: left;
+  }
+}
+@media (min-width: 600px) {
+  /* line 845, ../scss/custom.scss */
+  .voorpagina .kolom3 {
+    clear: none;
+    width: 33%;
+    padding-left: 8px;
+    float: right;
+  }
+}
+
+/* line 864, ../scss/custom.scss */
+.pagina {
+  border-radius: 7px;
+  background-color: #25aae1;
+  color: white;
+  padding: 15px;
+  overflow: hidden;
+}
+@media (min-width: 420px) {
+  /* line 864, ../scss/custom.scss */
+  .pagina {
+    background-color: white;
+    color: #25aae1;
+  }
+}
+/* line 875, ../scss/custom.scss */
+.pagina .tekst {
+  float: left;
+}
+/* line 877, ../scss/custom.scss */
+.pagina .tekst .foto {
+  top: 15px;
+  position: relative;
+  max-width: 340px;
+  width: 30%;
+  min-width: 160px;
+  height: 100%;
+  display: block;
+  float: right;
+}
+/* line 878, ../scss/custom.scss */
+.pagina .tekst .foto img {
+  width: 100%;
+  height: auto;
+}
+/* line 892, ../scss/custom.scss */
+.pagina .fotos {
+  overflow: hidden;
+  width: 100%;
+}
+/* line 895, ../scss/custom.scss */
+.pagina .fotos .foto {
+  width: 50%;
+  max-width: 100px;
+  padding: 5px;
+  overflow: hidden;
+  float: left;
+}
+@media (min-width: 600px) {
+  /* line 895, ../scss/custom.scss */
+  .pagina .fotos .foto {
+    width: 25%;
+  }
+}
+/* line 904, ../scss/custom.scss */
+.pagina .fotos .foto img {
+  display: inline-block;
+}
+/* line 910, ../scss/custom.scss */
+.pagina img {
+  width: 98%;
+  max-width: 250px;
+  height: auto;
+  display: block;
+  margin: auto;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  max-height: 200px;
+}
+@media (min-width: 600px) {
+  /* line 910, ../scss/custom.scss */
+  .pagina img {
+    float: right;
+  }
+}
+/* line 926, ../scss/custom.scss */
+.pagina hr {
+  clear: both;
+}
+/* line 929, ../scss/custom.scss */
+.pagina a.bewerk {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+/* line 935, ../scss/custom.scss */
+.pagina h2 {
+  margin-top: 0px;
+  background-image: url("../images/wimpeltje.png");
+  background-size: 100% 50px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  color: #25aae1;
+  margin-bottom: 7px;
+}
+@media (min-width: 420px) {
+  /* line 935, ../scss/custom.scss */
+  .pagina h2 {
+    color: #25aae1;
+    background: none;
+  }
+}
+
+/* line 952, ../scss/custom.scss */
+::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: #25aae1;
+}
+
+/* line 955, ../scss/custom.scss */
+:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #25aae1;
+  opacity: 1;
+}
+
+/* line 959, ../scss/custom.scss */
+::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #25aae1;
+  opacity: 1;
+}
+
+/* line 963, ../scss/custom.scss */
+:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  color: #25aae1;
+}
+
+/* line 967, ../scss/custom.scss */
+.contact {
+  width: 99%;
+  margin: auto;
+  background-color: #25aae1;
+  color: white;
+}
+/* line 973, ../scss/custom.scss */
+.contact h4 {
+  margin-bottom: 5px;
+}
+@media (min-width: 600px) {
+  /* line 967, ../scss/custom.scss */
+  .contact {
+    background-color: white;
+    color: #25aae1;
+  }
+}
+/* line 982, ../scss/custom.scss */
+.contact .kolom {
+  width: 98%;
+  float: left;
+  display: block;
+}
+@media (min-width: 420px) {
+  /* line 982, ../scss/custom.scss */
+  .contact .kolom {
+    width: 50%;
+  }
+}
+@media (min-width: 1200px) {
+  /* line 982, ../scss/custom.scss */
+  .contact .kolom {
+    width: 33.3%;
+    padding: 8px;
+  }
+}
+/* line 997, ../scss/custom.scss */
+.contact .kolom:last-child {
+  width: 100%;
+}
+@media (min-width: 420px) {
+  /* line 997, ../scss/custom.scss */
+  .contact .kolom:last-child {
+    border-top: solid 2px #25aae1;
+    width: 100%;
+  }
+}
+@media (min-width: 1200px) {
+  /* line 997, ../scss/custom.scss */
+  .contact .kolom:last-child {
+    border-top: none;
+    width: 33.3%;
+  }
+}
+/* line 1011, ../scss/custom.scss */
+.contact ul {
+  list-style: none;
+  padding: 0px;
+}
+/* line 1014, ../scss/custom.scss */
+.contact ul li {
+  display: inline-block;
+  margin: 5px;
+}
+/* line 1021, ../scss/custom.scss */
+.contact form label {
+  width: 40%;
+}
+/* line 1024, ../scss/custom.scss */
+.contact form label[for=form_message] {
+  width: 100%;
+}
+/* line 1027, ../scss/custom.scss */
+.contact form input, .contact form textarea, .contact form button {
+  width: 55%;
+  vertical-align: top;
+  border: solid 1px #25aae1;
+  color: #25aae1;
+}
+/* line 1033, ../scss/custom.scss */
+.contact form button {
+  max-width: 100px;
+}
+/* line 1037, ../scss/custom.scss */
+.contact form textarea {
+  height: 150px;
+}
+/* line 1042, ../scss/custom.scss */
+.contact form #recaptcha_table {
+  width: 100%;
+  border: none !important;
+}
+/* line 1048, ../scss/custom.scss */
+.contact form #recaptcha_challenge_image, .contact form #recaptcha_image {
+  width: 95%;
+  float: left;
+  border: none !important;
+}
+/* line 1054, ../scss/custom.scss */
+.contact form #recaptcha_response_field {
+  padding: 7px;
+  width: 95% !important;
+  border: solid 1px #25aae1 !important;
+}
+
+@media only screen and (max-width: 480px) {
+  /* line 1063, ../scss/custom.scss */
+  #recaptcha_challenge_image {
+    margin: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  /* line 1069, ../scss/custom.scss */
+  #recaptcha_response_field {
+    margin: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  /* line 1074, ../scss/custom.scss */
+  .recaptchatable #recaptcha_image {
+    margin: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  /* line 1089, ../scss/custom.scss */
+  .recaptchatable .recaptcha_r1_c1,
+  .recaptchatable .recaptcha_r3_c1,
+  .recaptchatable .recaptcha_r3_c2,
+  .recaptchatable .recaptcha_r7_c1,
+  .recaptchatable .recaptcha_r8_c1,
+  .recaptchatable .recaptcha_r3_c3,
+  .recaptchatable .recaptcha_r2_c1,
+  .recaptchatable .recaptcha_r4_c1,
+  .recaptchatable .recaptcha_r4_c2,
+  .recaptchatable .recaptcha_r4_c4,
+  .recaptchatable .recaptcha_image_cell {
+    margin: 0 !important;
+    width: 100% !important;
+    background: none !important;
+    height: auto !important;
+  }
+}
+/* line 1099, ../scss/custom.scss */
+.content {
+  width: 100%;
+  /* padding-left:7px;
+  padding-right:7px; */
+}
+/* line 1106, ../scss/custom.scss */
+.content article {
+  background-color: white;
+  border-radius: 4px;
+  color: #25aae1;
+  padding: 7px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+/* line 1117, ../scss/custom.scss */
+.content article .gegevens {
+  width: 100%;
+  background-color: #25aae1;
+  color: white;
+  overflow: hidden;
+  padding: 7px;
+  border-radius: 4px;
+  margin-bottom: 4px;
+}
+/* line 1125, ../scss/custom.scss */
+.content article .gegevens .auteur {
+  font-size: 12px;
+  width: 30%;
+  float: left;
+}
+/* line 1130, ../scss/custom.scss */
+.content article .gegevens .datum {
+  font-size: 12px;
+  width: 30%;
+  float: right;
+  text-align: right;
+}
+/* line 1138, ../scss/custom.scss */
+.content article .foto {
+  clear: both;
+}
+@media (min-width: 420px) {
+  /* line 1138, ../scss/custom.scss */
+  .content article .foto {
+    width: 30%;
+    float: left;
+  }
+}
+/* line 1145, ../scss/custom.scss */
+.content article .foto img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+/* line 1153, ../scss/custom.scss */
+.content article .tekst {
+  padding: 5px 2px;
+  font-size: 3vw;
+  margin-bottom: 15px;
+}
+@media (min-width: 420px) {
+  /* line 1153, ../scss/custom.scss */
+  .content article .tekst {
+    width: 69.9%;
+    float: right;
+    font-size: 2vw;
+    padding: 0px 7px;
+    margin-bottom: 0px;
+  }
+}
+@media (min-width: 600px) {
+  /* line 1153, ../scss/custom.scss */
+  .content article .tekst {
+    font-size: 1.6vw;
+    padding: 7px 0px;
+  }
+}
+@media (min-width: 1200px) {
+  /* line 1153, ../scss/custom.scss */
+  .content article .tekst {
+    font-size: 16px;
+    padding: 0px 10px;
+  }
+}
+
+/* line 1183, ../scss/custom.scss */
+.footerbeneden {
+  position: absolute;
+  bottom: 0px;
+}
+
+/* line 1188, ../scss/custom.scss */
+footer {
+  margin-top: 15px;
+  width: 100%;
+  display: block;
+  clear: both;
+  background-color: white;
+  color: #25aae1;
+  /* .kolom:first-child {
+  	text-align: right;
+  	h2 {
+  		text-align: right;
+  	}
+  } */
+}
+/* line 1197, ../scss/custom.scss */
+footer .volledigepagina {
+  background-color: white;
+  max-width: 960px;
+  margin: auto;
+}
+/* line 1203, ../scss/custom.scss */
+footer .kolom {
+  position: relative;
+  width: 100%;
+  float: left;
+  padding: 10px;
+  text-align: left;
+}
+@media (min-width: 600px) {
+  /* line 1203, ../scss/custom.scss */
+  footer .kolom {
+    width: 50%;
+    padding: 15px;
+  }
+}
+@media (min-width: 720px) {
+  /* line 1203, ../scss/custom.scss */
+  footer .kolom {
+    width: 25%;
+    padding: 5px;
+  }
+}
+/* line 1218, ../scss/custom.scss */
+footer .kolom h2 {
+  text-align: left;
+}
+/* line 1221, ../scss/custom.scss */
+footer .kolom img {
+  display: block;
+  margin: auto;
+  max-width: 75%;
+}
+/* line 1228, ../scss/custom.scss */
+footer .kolom a {
+  display: block;
+  margin-top: 7px;
+}
+/* line 1235, ../scss/custom.scss */
+footer .social {
+  color: #25aae1;
+  position: relative;
+  text-align: left;
+  right: 0px;
+  margin-bottom: 10px;
+}
+/* line 1241, ../scss/custom.scss */
+footer .social ul {
+  padding-left: 0px;
+}
+/* line 1244, ../scss/custom.scss */
+footer .social a {
+  color: #25aae1;
+  display: inline-block;
+}
+/* line 1248, ../scss/custom.scss */
+footer .social a:hover {
+  color: #52bbe7;
+}
+/* line 1253, ../scss/custom.scss */
+footer .copyright {
+  font-size: 12px;
+  margin: auto;
+  display: block;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+/* line 1270, ../scss/custom.scss */
+.nieuwsbrief input[type='text'] {
+  color: #25aae1;
+  border-color: solid 1px #25aae1;
+  width: 250px;
+  margin-right: 15px;
+  margin-bottom: 10px;
+}
+/* line 1277, ../scss/custom.scss */
+.nieuwsbrief input[type='submit'] {
+  color: #25aae1;
+}
+/* line 1280, ../scss/custom.scss */
+.nieuwsbrief .antwoord {
+  display: none;
+}

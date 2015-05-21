@@ -1,0 +1,25 @@
+.registratieformulier {
+	.form-group {
+		label {
+			  display: inline-block;
+			  max-width: 100%;
+			  font-weight: 700;
+			  float: left;
+		}
+
+		.input-group {
+			position: relative;
+			  display: table;
+			  border-collapse: separate;
+		}
+
+		input[type='password'] {
+			max-height: 44px;
+		}
+
+		input, select, input[type='email'] {
+			margin-bottom: 1px;
+			margin-right: 1px;
+		}
+	}
+}

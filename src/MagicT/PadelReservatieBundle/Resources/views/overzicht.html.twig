@@ -1,0 +1,157 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+	
+
+	
+	<div class="overzichtreservaties">
+		<div class="controls">
+			<div class="col-xs-offset-1 col-xs-2">
+				Vorige
+			</div>
+			<div class="col-xs-6">
+				Vandaag
+			</div>
+			<div class="col-xs-2">
+				Volgende
+			</div>
+		</div>
+		<table class="table table-bordered">
+			<thead>
+				<th>
+					
+				</th>
+				{% for veld in velden %}
+				    <th>
+				    	{{ veld.naam }}<br/>
+				    	<span class="overdekt">
+				    		{% if veld.overdekt %}
+				    			<img data-toggle="tooltip" data-placement="bottom" title="Overdekt" class="icoon-veld" src="/bundles/padelreservatie/images/overdekt.png" alt="Dubbelveld" />
+				    		{% endif %}
+				    	</span>
+				    	<span class="typeveld">
+				    		{% if veld.typeveld.naam == "Dubbelveld" %}	
+				    				
+								    <img data-toggle="tooltip" data-placement="bottom" title="Dubbelveld" class="icoon-veld" src="/bundles/padelreservatie/images/dubbelveld.png" alt="Dubbelveld" />
+				    		{% else %}
+			    					<img data-toggle="tooltip" data-placement="bottom" title="Enkelveld" class="icoon-veld" src="/bundles/padelreservatie/images/enkelveld.png" alt="Dubbelveld" />
+				    		{% endif %}
+				    	</span>	
+				    </th>
+				{% endfor %}
+			</thead>
+			
+			{% set start_date_kort = startuur|date("H") %}
+			{% set end_date_kort = einduur|date("H") %}
+			{% set regelovergeslaan = false %}
+			{% for uur in range(start_date_kort,end_date_kort,0.5) %}
+				
+				{% set uur = uur|replace({'.5':':30', '.0':':00'}) %}
+					
+				{% if uur|length == 1 %}
+					{% set uur = "0" ~ uur %}
+				{% endif %}
+				{% if uur|length == 2 %}
+					{% set uur = uur ~ ":00" %}
+				{% endif %}
+				{% if uur|length == 4 %}
+					{% set uur = "0" ~ uur %}
+				{% endif %}
+				
+				{% if uur >= startuur|date("H:i") %}
+						{% set einde_kortuur = (uur[:2]+1) ~ uur[2:] %}
+					   	<tr>{% spaceless %}
+					   		{% if loop.index == 1 or (loop.index is even and regelovergeslaan)  %}
+						   		<td class="uur" rowspan=2>{% spaceless %}
+						   			{{ uur }} : {{ einde_kortuur }}
+						   		{% endspaceless %}</td>
+					   		{% endif %}
+							{% for veld in velden %}
+
+								{% set start_uur_kort = veld.startuur|date("H:i") %}
+								{# veld.startuur|date("i") }} en {{ uur[3:2] #}
+								{% if veld.startuur|date("i") == uur[3:2] %}
+					   		
+							   		{# We zitten in een lijn waarvan het startuur gelijk is aan het getoonde uur links #}
+							   		<td rowspan=2 class="veld vrij" id="veld{{ veld.volgorde }}{{ uur|replace(':','t') }}">{% spaceless %}
+										vrij
+									{% endspaceless %}</td>
+							   	{% else %}
+									{% if loop.parent.loop.first or (loop.parent.loop.index == 2 and regelovergeslaan) %}
+										<td class="tehoog">{% spaceless %}
+											
+										{% endspaceless %}</td>
+									
+									{% endif %}
+							   	{% endif %}
+
+							{% endfor %}
+					   	{% endspaceless %}</tr>
+					{% else %}
+						{% set regelovergeslaan = true %}
+							
+					{% endif %}
+			{% endfor %}
+			
+			
+		</table>
+	</div>
+	<div id="modalbevestig" class="modal fade">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Sluit"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title">Reserveren</h4>
+	      </div>
+	      <div class="modal-body">
+	        <p>Hier komen alle gegevens van de reservatie</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Sluit</button>
+	        <button type="button" class="btn btn-primary">Bevestig</button>
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+	<script>
+
+		{% for veld in reservatiesperveld %}
+			{% for reservatie in veld %}
+				
+				{% set startuur = reservatie.startuur|date("H:i")|replace(':','t') %}
+				{% set veldid = 'veld' ~ reservatie.veld.volgorde ~ startuur %}
+				$veld = $('#{{ veldid }}');
+				$veld.addClass('bezet');
+				$veld.addClass('{{ reservatie.reservatietype.naam }}');
+				$veld.removeClass('vrij');
+				
+				$('#{{ veldid }}').html('{{ reservatie.speler1 }}');
+
+			{% endfor %}
+		{% endfor %}
+		$(function () {
+		  $('[data-toggle="tooltip"]').tooltip()
+		})
+		$('.vrij').click(function(){
+			$('.modal').modal();
+		})
+
+		function reposition() {
+	      var modal = $(this),
+	          dialog = modal.find('.modal-dialog');
+	          modal.css('display', 'block');
+	      
+	      // Dividing by two centers the modal exactly, but dividing by three 
+	      // or four works better for larger screens.
+	      dialog.css("margin-top", Math.max(0, ($(window).height() - dialog.height()) / 2));
+	  }
+	  
+	  $('#modalbevestig').on('show.bs.modal', reposition);
+	  
+	    // Reposition when the window is resized
+	  $(window).on('resize', function() {
+	      $('#modalbevestig:visible').each(reposition);
+	      
+	  });
+	</script>
+{% endblock %}

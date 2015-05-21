@@ -1,0 +1,102 @@
+.clndr {
+	width: 100%;
+	
+	//max-width: 420px;
+	float:right;
+	/* background-color: $blauwekleur;
+	color: white; */
+	@include breakpoint(phablet) {
+		background-color: white;
+		color: $blauwekleur;	
+	}
+	background-color: $blauwekleur;
+	color: white;
+	border-radius: 4px;
+	padding: 8px;
+	font-size: 11px;
+	margin-bottom: 16px;
+
+	.clndr-controls {
+		padding: 10px;
+		.clndr-previous-button, .clndr-next-button {
+			width: 10%;
+		}
+
+		.clndr-previous-button:hover, .clndr-previous-button:active, .clndr-next-button:hover, .clndr-next-button:active {
+			cursor: pointer;
+		}
+
+		.clndr-previous-button {
+			float: left;
+		}
+		.clndr-next-button {
+			float: right;
+			text-align: right;
+		}
+
+		.current-month {
+			width: 100%;
+			display: block;
+			text-align: center;
+		}
+	}
+	
+
+	.clndr-grid {
+		.days-of-the-week {
+			width: 100%;
+			border-bottom: solid 2px white;
+			margin-bottom: 5px;
+
+			.header-day {
+				display: block;
+				width: 14%;
+				float: left;
+				text-align: center;
+			}
+		}
+
+		.days {
+			.day {
+				display: block;
+				width: 14%;
+				float: left;
+				text-align: center;
+				padding: 4px;
+			}
+
+			.day.adjacent-month {
+				color: lighten($blauwekleur,15%);
+			}
+			.day.event {
+				color: $oranjekleur;
+				background-image: url('../images/calendarstripe.png');
+				background-size: 70%;
+				background-opacity: 50%;
+				background-position: center center;
+				background-repeat: no-repeat;
+			}
+			.day.today {
+				background-color: $gelekleur;
+				color:$blauwekleur;
+				//border-radius: 50%;
+			}
+			
+		}
+	}
+
+	.event-listing {
+		margin-top: 7px;
+		display: block;
+		overflow:hidden;
+		width: 100%;
+		
+		.event-listing-title {
+			text-transform: uppercase;
+			width: 100%;
+			text-align:center;
+			color: $oranjekleur;
+		}
+	}
+}
+
