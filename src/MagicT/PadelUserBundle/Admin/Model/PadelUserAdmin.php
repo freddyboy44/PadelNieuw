@@ -17,6 +17,10 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\UserBundle\Model\UserInterface;
+use Knp\Menu\ItemInterface as MenuItemInterface;
+
+use Sonata\AdminBundle\Admin\AdminInterface;
+
 
 use FOS\UserBundle\Model\UserManagerInterface;
 
@@ -59,6 +63,7 @@ class PadelUserAdmin extends Admin
             ->add('enabled', null, array('editable' => true))
             ->add('locked', null, array('editable' => true))
             ->add('createdAt')
+            ->add('lidtot')
         ;
 
         if ($this->isGranted('ROLE_ALLOWED_TO_SWITCH')) {
@@ -200,5 +205,18 @@ class PadelUserAdmin extends Admin
     public function getUserManager()
     {
         return $this->userManager;
+    }
+
+     protected function configureSideMenu(MenuItemInterface $menu, $action, AdminInterface $childAdmin = null)
+    {
+        if (!$childAdmin && !in_array($action, array('edit'))) {
+            return;
+        }
+
+        $admin = $this->isChild() ? $this->getParent() : $this;
+
+        $id = $admin->getRequest()->get('id');
+
+        //$menu->addChild('Lidmaatschappen', array('uri'=> $this->generateUrl('listLidAction', array('id' => $id))));
     }
 }

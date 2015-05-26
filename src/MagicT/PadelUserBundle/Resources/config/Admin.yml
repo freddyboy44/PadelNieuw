@@ -1,0 +1,35 @@
+services:
+    #sonata.admin.leden:
+    #    class: MagicT\PadelUserBundle\Admin\PadelUserAdmin
+    #    tags:
+    #        - { name: sonata.admin, manager_type: orm, group: "Leden", label: "Leden" }
+    #    arguments:
+    #        - ~
+    #        - MagicT\PadelUserBundle\Entity\PadelUser
+    #        - ~
+    #    calls:
+    #        - [ setTranslationDomain, [PadelUserBundle]]
+
+    sonata.admin.lidmaatschappen:
+        class: MagicT\PadelUserBundle\Admin\LidmaatschapAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: %sonata.user.admin.groupname%, label: "Lidmaatschappen" }
+        arguments:
+            - ~
+            - MagicT\PadelUserBundle\Entity\Lidmaatschap
+            - ~
+        calls:
+            - [ setTranslationDomain, [PadelUserBundle]]
+    sonata.admin.lidmaatschaptransactie:
+        class: MagicT\PadelUserBundle\Admin\LidmaatschapTransactieAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: %sonata.user.admin.groupname%, label: "Lidmaatschaptransacties" }
+        arguments:
+            - ~
+            - MagicT\PadelUserBundle\Entity\LidmaatschapTransactie
+            - ~
+        calls:
+            - [ setTranslationDomain, [PadelUserBundle]]
+    padellidmaatschap:
+        class: MagicT\PadelUserBundle\Entity\LidmaatschapTransactie
+        arguments: ["@security.context"]

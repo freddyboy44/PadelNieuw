@@ -72,7 +72,12 @@ class PadelUser extends BaseUser
      * @ORM\ManyToMany(targetEntity="PadelGroup")            
      * @ORM\JoinTable(name="padel_user_group")       
      */                                                 
-    protected  $groups;     
+    protected  $groups; 
+
+    /**
+     * @ORM\OneToMany(targetEntity="MagicT\PadelUserBundle\Entity\LidmaatschapTransactie", mappedBy="padelUser")
+     */
+    private $lidmaatschapTransacties;
 
     private $volledigenaam;  
 
@@ -82,7 +87,10 @@ class PadelUser extends BaseUser
         // your own logic
         
     }
-
+    public function __toString()
+    {
+        return $this->firstname . " " . $this->lastname;
+    }
     
 
     /**
@@ -388,6 +396,12 @@ class PadelUser extends BaseUser
     public function getIsLid()
     {
         return false;
+    }
+
+    public function getLidTot()
+    {
+        dump($this->lidmaatschapTransacties);
+        die();
     }
 
 }

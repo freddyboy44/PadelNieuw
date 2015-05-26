@@ -1,0 +1,18 @@
+services:
+    sonata.admin.typeveld:
+        class: MagicT\PadelReservatieBundle\Admin\TypeVeldAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Velden", label: "Typeveld" }
+        arguments:
+            - ~
+            - MagicT\PadelReservatieBundle\Entity\TypeVeld
+            - ~
+    sonata.admin.veld:
+        class: MagicT\PadelReservatieBundle\Admin\VeldAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Velden", label: "Veld" }
+        arguments:
+            - ~
+            - MagicT\PadelReservatieBundle\Entity\Veld
+            - ~            
+    

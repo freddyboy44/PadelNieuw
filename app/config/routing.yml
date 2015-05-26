@@ -37,3 +37,4 @@ padelreservatie:
     resource: "@PadelReservatieBundle/Controller/"
     type:     annotation
     prefix:   /reservatie
+

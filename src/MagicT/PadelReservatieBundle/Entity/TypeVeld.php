@@ -2,6 +2,8 @@
 
 namespace MagicT\PadelReservatieBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -51,6 +53,10 @@ class TypeVeld
      * 
      */
     private $veld;
+
+    public function __toString() {
+        return $this->naam;
+    }
 
     public function __construct() {
         $this->velden = new ArrayCollection();
