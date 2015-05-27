@@ -1,19 +1,32 @@
 {% extends 'base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}    
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+{% endblock %}
+{% block javascripts %}
+	{{ parent() }}
+	{% javascripts
+        'bundles/padelsite/js/jquery.autocomplete.min.js'
+    %}
+    <script src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+
+{% endblock %}
 {% block body %}
 	
-
 	
 	<div class="overzichtreservaties">
 		<div class="controls">
-			<div class="col-xs-offset-1 col-xs-2">
-				Vorige
+			<div id="datumvorige" class="col-xs-3">
+				<i class="fa  fa-angle-double-left">&nbsp;&nbsp;{{ "yesterday"|localizeddate('none', 'none', 'nl_NL', null, "cccc d MMMM") }}</i>
 			</div>
-			<div class="col-xs-6">
-				Vandaag
+			<div id="datumvandaag" class="col-xs-6">
+				{{ "now"|localizeddate('none', 'none', 'nl_NL', null, "cccc d MMMM") }}
 			</div>
-			<div class="col-xs-2">
-				Volgende
+			<div id="datumvolgende" class="col-xs-3">
+				<i class="fa ">{{ "tomorrow"|localizeddate('none', 'none', 'nl_NL', null, "cccc d MMMM") }}</i>&nbsp;&nbsp;<i class="fa  fa-angle-double-right"></i>
 			</div>
+			<span id="datumvandaaghidden" style="display: none">{{ "now"|date("m/d/Y") }}</span>
 		</div>
 		<table class="table table-bordered">
 			<thead>
@@ -103,29 +116,118 @@
 	        <h4 class="modal-title">Reserveren</h4>
 	      </div>
 	      <div class="modal-body">
-	        <p>Hier komen alle gegevens van de reservatie</p>
+	        <div class="row">
+	        	<div class="col-sm-4">
+	        		Datum :
+	        	</div>
+	        	<div id="reservatiedatum" class="col-sm-8">
+	        		26/05/2015
+	        	</div>
+	        	<div class="col-sm-4">
+	        		Uur :
+	        	</div>
+	        	<div id="reservatieuur" class="col-sm-8">
+	        		16:00 - 17:00
+	        	</div>
+	        	<div class="col-sm-4">
+	        		Veld :
+	        	</div>
+	        	<div id="reservatieveld" class="col-sm-8">
+	        		1 
+	        	</div>
+	        </div>
+	        <div class="row medespelers">
+				<div class="col-sm-4">
+	        		Medespelers :
+	        	</div>
+	        	<div class="col-sm-8">
+					<div id="searchfield">
+					    <form><input type="text" name="currency" class="biginput" id="autocomplete"></form>
+					  </div><!-- @end #searchfield -->
+					  <div id="outputbox">
+					    <p id="outputcontent"></p>
+					  </div>
+ 
+	        	</div>
+				
+	        </div>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Sluit</button>
-	        <button type="button" class="btn btn-primary">Bevestig</button>
+	        <button type="button" class="btn wit btn-primary">Bevestig</button>
 	      </div>
 	    </div><!-- /.modal-content -->
 	  </div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
+	<div class="modalloading"><!-- Place at bottom of page --></div>
+
+	<script>
+	$(function() {
+	    	
+
+	  var leden = [
+
+	  	{% for lid in leden %}
+
+	  		{ id: {{ lid.id }}, value: '{{ lid.firstname }} {{ lid.lastname }}' } {{ not loop.last ? ',' }}
+
+	  	{% endfor %}
+
+    
+  ];
+
+	  $('#autocomplete').autocomplete({
+	  lookup: leden,
+	  onSelect: function (suggestion) {
+	    var thehtml = '<strong>Naam:</strong> ' + suggestion.value + ' <br> <strong>Id:</strong> ' + suggestion.id;
+	    $('#outputcontent').html(thehtml);
+	  }
+	});
+
+
+	  });
+	
+		function reposition() {
+	      var modal = $(this),
+	          dialog = modal.find('.modal-dialog');
+	          modal.css('display', 'block');
+	      
+	      // Dividing by two centers the modal exactly, but dividing by three 
+	      // or four works better for larger screens.
+	      dialog.css("margin-top", Math.max(0, ($(window).height() - dialog.height()) / 2));
+	  }
+
+		$('#modalload').on('show.bs.modal', reposition);
+		$('#modalload:visible').each(reposition);
+
+	</script>
+
+
 
 	<script>
 
 		{% for veld in reservatiesperveld %}
 			{% for reservatie in veld %}
+				{% set naam = "" %}
+				{% for speler in reservatie.padelUser %}
+					{% set naam = naam ~ speler.firstname ~ " " ~ speler.lastname %}
+					{% if not loop.last %}
+						{% set naam = naam ~ "<br>" %}
+					{% endif %}
+				{% endfor %}
 				
+
 				{% set startuur = reservatie.startuur|date("H:i")|replace(':','t') %}
 				{% set veldid = 'veld' ~ reservatie.veld.volgorde ~ startuur %}
 				$veld = $('#{{ veldid }}');
 				$veld.addClass('bezet');
 				$veld.addClass('{{ reservatie.reservatietype.naam }}');
 				$veld.removeClass('vrij');
+				$veld.html('{{ naam|raw }}');
+
+
 				
-				$('#{{ veldid }}').html('{{ reservatie.speler1 }}');
+				//$('#{{ veldid }}').html('{{ reservatie.speler1 }}');
 
 			{% endfor %}
 		{% endfor %}
@@ -133,6 +235,16 @@
 		  $('[data-toggle="tooltip"]').tooltip()
 		})
 		$('.vrij').click(function(){
+			$naamveld = $(this).attr('id');
+			$nummerveld = $naamveld.substr(4,1);
+			$uur = $naamveld.substr(5,2);
+			$minuten = $naamveld.substr(8,2);
+			console.log("We spelen op veld " + $nummerveld + " van " + $uur + ":" + $minuten);
+			$datum = $('#datumvandaag').html();
+			$('#reservatieveld').html($nummerveld);
+			$('#reservatiedatum').html($datum);
+			$('#reservatieuur').html($uur + ":" + $minuten + " - " + (parseInt($uur)+1) + ":" + $minuten);
+
 			$('.modal').modal();
 		})
 
@@ -153,5 +265,103 @@
 	      $('#modalbevestig:visible').each(reposition);
 	      
 	  });
+
+	  $('#datumvorige').click(function(){
+	  	$datum = new Date($('#datumvandaaghidden').html());
+	  	$datum.setDate($datum.getDate()-1);
+	  	LaadVoorDatum($datum);
+	  })
+
+	  $('#datumvolgende').click(function(){
+	  	$datum = new Date($('#datumvandaaghidden').html());
+	  	$datum.setDate($datum.getDate()+1);
+	  	LaadVoorDatum($datum);
+	  })
+
+	  $(document).on({
+	      ajaxStart: function() { $('body').addClass("loading");    },
+	       ajaxStop: function() { $('body').removeClass("loading"); }    
+	  });
+
+	  function LaadVoorDatum($datum){
+	  	console.log("We laden voor datum : " + $datum);
+	  	//alert(Routing.generate('reservatie_op_datum', {"datum": $datum}));
+	  	//
+	  	$dag = $datum.getDate();
+	  	//$dag = 27;
+	  	$maand = parseInt($datum.getMonth())+1;
+
+	  	$jaar = $datum.getFullYear();
+	  	
+	  	moment.locale('nl');
+
+	  	$nieuwedag = moment($datum);
+	  	$nieuwevorigedag = moment($datum);
+	  	$nieuwevolgendedag = moment($datum);
+
+	  	$nieuwedag.locale('nl');
+	  	$nieuwevorigedag.subtract(1, "day");
+	  	$nieuwevolgendedag.add(1,"day");
+	  		  	
+		$('#datumvandaag').html($nieuwedag.format('dddd DD MMMM'));
+		$('#datumvorige').html($nieuwevorigedag.format('dddd DD MMMM'));
+		$('#datumvolgende').html($nieuwevolgendedag.format('dddd DD MMMM'));
+		$('#datumvandaaghidden').html($nieuwedag.format(''));
+
+	  	$('#modalload').modal('show');
+
+	  
+
+
+		$.ajax({
+		  url: Routing.generate('reservatie_op_datum', {"dag": $dag, "maand": $maand, "jaar": $jaar}),
+		  dataType: 'json',
+		})
+		  .done(function(data){
+		  	//console.log(data);
+
+		  	$('.veld.bezet').each(function(){
+		  		$(this).removeClass();
+		  		$(this).addClass('veld');
+		  		$(this).addClass('vrij');
+		  		$(this).html('vrij');
+
+		  		
+		  	})
+		  	jQuery.each(data, function(index, item) {
+            	if(!$.isEmptyObject(item)){
+            		jQuery.each(item, function(indexreservatie, reservatie) {
+            			
+            			$startuur = moment(reservatie.startuur).format("HH") + ":" + moment(reservatie.startuur).format("mm");
+            			$einduur = (parseInt(moment(reservatie.startuur).format("HH"))+1) + ":" + moment(reservatie.startuur).format("mm");
+
+            			$veld = reservatie.veld.volgorde;
+		            	
+		            	$veldnaam = "#veld" + $veld + moment(reservatie.startuur).format("HH") + "t" + moment(reservatie.startuur).format("mm");
+		            	$($veldnaam).addClass('bezet');
+		            	$($veldnaam).removeClass('vrij');
+
+		            	$spelers = "";
+		            	jQuery.each(reservatie.padel_user, function(indexspeler, speler) {
+		            		$spelers = $spelers + speler.firstname + " " + speler.lastname + "<br/>";
+		            	})
+		            	if($spelers.length){
+		            		$spelers = $spelers.substr(0,($spelers.length-5));
+		            	}
+		            	$($veldnaam).html($spelers);
+
+		        	});
+            	}
+        	});
+
+		  })
+		  .fail(function( data, statuscode ) {
+		    alert("Fout");
+		  });
+
+		$('#modalload').modal('hide');
+	  }
+
+
 	</script>
 {% endblock %}

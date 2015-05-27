@@ -73,6 +73,7 @@ doctrine:
                     SonataUserBundle: ~
                     PadelReservatieBundle: ~
                     PadelSiteBundle: ~
+                    DmishhSettingsBundle: ~
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -81,3 +82,33 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+dmishh_settings:
+    settings:
+        laatstgecontroleerd: ~
+
+fos_rest:
+    param_fetcher_listener: true
+    body_listener: true
+    format_listener: true
+    view:
+        view_response_listener: 'force'
+        formats:
+            xml: true
+            json : true
+        templating_formats:
+            html: true
+        force_redirects:
+            html: true
+        failed_validation: HTTP_BAD_REQUEST
+        default_engine: twig
+    routing_loader:
+        default_format: json
+
+jms_serializer:
+    metadata:
+        auto_detection: true
+        directories:
+            FOSUserBundle:
+                namespace_prefix: "FOS\\UserBundle"
+                path: "@PadelUserBundle/Resources/config/serializer"

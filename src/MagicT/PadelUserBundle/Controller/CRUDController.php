@@ -1,5 +1,4 @@
 <?php
-// src/Tutorial/BlogBundle/Controller/CommentAdminController.php
 
 namespace MagicT\PadelUserBundle\Controller;
 

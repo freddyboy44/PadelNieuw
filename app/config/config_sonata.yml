@@ -14,7 +14,7 @@ sonata_user:
         group: MagicT\PadelUserBundle\Entity\PadelGroup
     admin:                  # Admin Classes
         user:
-            class:          MagicT\PadelUserBundle\Admin\Model\UserAdmin         
+            class:          MagicT\PadelUserBundle\Admin\Model\PadelUserAdmin         
             controller:     PadelUserBundle:CRUD
 
 sonata_block:

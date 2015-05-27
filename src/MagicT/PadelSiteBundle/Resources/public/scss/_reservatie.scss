@@ -8,8 +8,23 @@
 	.controls {
 		text-align: center;
 		display: block;
-		margin-bottom: 20px;
+		//padding-bottom: 20px;
 		overflow: hidden;
+		padding: 20px 0px;
+		height: 40px;
+		background-color: white;
+		color: $blauwekleur;
+		#datumvorige, #datumvolgende {
+			font-size: 16px;
+			cursor: pointer;
+		}
+		#datumvandaag {
+			font-size: 22px;
+		}
+		#datumvorige, #datumvandaag, #datumvolgende {
+			@include vertical-align();
+			text-transform: uppercase;
+		}
 	}
 
 	table {
@@ -23,6 +38,7 @@
 		td.veld, td.uur {
 			vertical-align: middle;
 			text-align: center;
+			padding: 4px;
 		}
 
 		td {
@@ -37,19 +53,127 @@
 		}
 		td.bezet {
 			background-color: lighten($blauwekleur,15%);
+			font-size: 10px;
 		}
 		td.tehoog {
 			height: 0px;
+			background-image: url('../images/disabled.png')
 		}
-	}
-	
-	.modal {
-		.modal-header {
+		
+		td.vrij:hover {
+			//background-color: lighten($blauwekleur,25%);
+			-webkit-animation-name: greenPulse;
+		  -webkit-animation-duration: 2s;
+		  -webkit-animation-iteration-count: infinite;
 
 		}
+	}	
+}
+
+.modalloading {
+    display:    none;
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .8 ) 
+                url('../images/socceranimation.gif') 
+                50% 50% 
+                no-repeat;
+}
+
+/* When the body has the loading class, we turn
+   the scrollbar off with overflow:hidden */
+body.loading {
+    overflow: hidden;   
+}
+
+/* Anytime the body has the loading class, our
+   modal element will be visible */
+body.loading .modalloading {
+    display: block;
+}
+
+
+#modalbevestig {
+	.modal-content {
+		background-color: white;
+		color: $blauwekleur;
+
+		.modal-body {
+			.row.medespelers {
+				margin-top: 15px;
+				input {
+					width: 100%;
+					@include border-radius(5px);
+					border: solid 1px $blauwekleur;
+					padding: 3px;
+				}
+				input:active, input:focus {
+					-webkit-animation-name: glowingPulse;
+					  -webkit-animation-duration: 2s;
+					  -webkit-animation-iteration-count: infinite;
+				}
+			}
+		}
+
+		.modal-footer {
+			.btn.wit {
+				color: white;
+			}	
+		}
 	}
+
+	
 }
 
 h4.modal-title {
 	display: inline-block;
+}
+
+.autocomplete-suggestions { border: 1px solid #999; background: #fff; cursor: default; overflow: auto; color:$blauwekleur }
+.autocomplete-suggestion { padding: 10px 5px; font-size: 1.2em; white-space: nowrap; overflow: hidden; }
+.autocomplete-selected { background: #f0f0f0; }
+.autocomplete-suggestions strong { font-weight: normal; color: #3399ff; }
+#searchfield { display: block; width: 100%; text-align: center; margin-bottom: 35px; }
+ 
+#searchfield form {
+  display: inline-block;
+  background: #eeefed;
+  padding: 0;
+  margin: 0;
+  padding: 5px;
+  border-radius: 3px;
+  margin: 5px 0 0 0;
+}
+#searchfield form .biginput {
+  width: 600px;
+  height: 40px;
+  padding: 0 10px 0 10px;
+  background-color: #fff;
+  border: 1px solid #c8c8c8;
+  border-radius: 3px;
+
+  font-weight:normal;
+  font-size: 1.5em;
+  -webkit-transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+}
+#searchfield form .biginput:focus {
+  color: #858585;
+}
+
+
+@-webkit-keyframes greenPulse {
+  from { background-color: $blauwekleur; -webkit-box-shadow: 0 0 9px #333; }
+  50% { background-color: lighten($blauwekleur,10%); -webkit-box-shadow: 0 0 18px darken($blauwekleur,20%); }
+  to { background-color: lighten($blauwekleur, 0%); -webkit-box-shadow: 0 0 9px #333; }
+}
+@-webkit-keyframes glowingPulse {
+  from { -webkit-box-shadow: 0 0 9px #333; }
+  50% { -webkit-box-shadow: 0 0 18px darken($blauwekleur,20%); }
+  to { -webkit-box-shadow: 0 0 9px #333; }
 }

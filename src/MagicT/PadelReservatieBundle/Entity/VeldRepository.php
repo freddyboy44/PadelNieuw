@@ -12,5 +12,23 @@ use Doctrine\ORM\EntityRepository;
  */
 class VeldRepository extends EntityRepository
 {
-	
+	public function findOneRandom() {
+
+
+        $qb = $this->getEntityManager()->createQueryBuilder();
+
+        $count = $this->createQueryBuilder('u')
+             ->select('COUNT(u)')
+             ->getQuery()
+             ->getSingleScalarResult();
+             
+
+        $query = $this->createQueryBuilder('u')
+            ->setFirstResult(rand(0, $count - 1))
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+            
+        return $query;
+    }
 }

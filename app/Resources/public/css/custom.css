@@ -1612,10 +1612,84 @@
 .overzichtreservaties table td.tehoog {
   height: 0px;
 }
+/* line 45, ../scss/_reservatie.scss */
+.overzichtreservaties table td.vrij:hover {
+  -webkit-animation-name: greenPulse;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+}
 
-/* line 53, ../scss/_reservatie.scss */
+/* line 58, ../scss/_reservatie.scss */
+#modalbevestig .modal-content {
+  background-color: white;
+  color: #25aae1;
+}
+/* line 63, ../scss/_reservatie.scss */
+#modalbevestig .modal-content .modal-body .row.medespelers {
+  margin-top: 15px;
+}
+/* line 65, ../scss/_reservatie.scss */
+#modalbevestig .modal-content .modal-body .row.medespelers input {
+  width: 100%;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  border: solid 1px #25aae1;
+  padding: 3px;
+}
+/* line 71, ../scss/_reservatie.scss */
+#modalbevestig .modal-content .modal-body .row.medespelers input:active, #modalbevestig .modal-content .modal-body .row.medespelers input:focus {
+  -webkit-animation-name: glowingPulse;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+}
+/* line 80, ../scss/_reservatie.scss */
+#modalbevestig .modal-content .modal-footer .btn.wit {
+  color: white;
+}
+
+/* line 89, ../scss/_reservatie.scss */
 h4.modal-title {
   display: inline-block;
+}
+
+@-webkit-keyframes greenPulse {
+  /* line 93, ../scss/_reservatie.scss */
+  from {
+    background-color: #25aae1;
+    -webkit-box-shadow: 0 0 9px #333;
+  }
+
+  /* line 94, ../scss/_reservatie.scss */
+  50% {
+    background-color: #52bbe7;
+    -webkit-box-shadow: 0 0 18px #13698d;
+  }
+
+  /* line 95, ../scss/_reservatie.scss */
+  to {
+    background-color: #25aae1;
+    -webkit-box-shadow: 0 0 9px #333;
+  }
+}
+
+@-webkit-keyframes glowingPulse {
+  /* line 98, ../scss/_reservatie.scss */
+  from {
+    -webkit-box-shadow: 0 0 9px #333;
+  }
+
+  /* line 99, ../scss/_reservatie.scss */
+  50% {
+    -webkit-box-shadow: 0 0 18px #13698d;
+  }
+
+  /* line 100, ../scss/_reservatie.scss */
+  to {
+    -webkit-box-shadow: 0 0 9px #333;
+  }
 }
 
 /* line 20, ../scss/custom.scss */

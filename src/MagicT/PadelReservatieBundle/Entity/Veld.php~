@@ -228,4 +228,27 @@ class Veld
     {
         return $this->typeVeld;
     }
+
+    /**
+     * Set overdekt
+     *
+     * @param boolean $overdekt
+     * @return Veld
+     */
+    public function setOverdekt($overdekt)
+    {
+        $this->overdekt = $overdekt;
+
+        return $this;
+    }
+
+    /**
+     * Get overdekt
+     *
+     * @return boolean 
+     */
+    public function getOverdekt()
+    {
+        return $this->overdekt;
+    }
 }

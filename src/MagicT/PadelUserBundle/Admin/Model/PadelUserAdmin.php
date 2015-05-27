@@ -63,7 +63,10 @@ class PadelUserAdmin extends Admin
             ->add('enabled', null, array('editable' => true))
             ->add('locked', null, array('editable' => true))
             ->add('createdAt')
-            ->add('lidtot')
+            ->add('lidtot','datetime',array(
+                'format'=>'d/m/Y'
+                ))
+            ->add('islid',null,array('label'=>'Actief lid','editable'=>false))
         ;
 
         if ($this->isGranted('ROLE_ALLOWED_TO_SWITCH')) {
@@ -150,7 +153,8 @@ class PadelUserAdmin extends Admin
                     ))
                 ->add('dateOfBirth', 'birthday', array(
                     'required' => false,
-                    'label' => "Geboortedatum"
+                    'label' => "Geboortedatum",
+                    'widget' => 'single_text'
                     ))
                 ->add('gender', 'sonata_user_gender', array(
                     'required' => true,
@@ -178,6 +182,10 @@ class PadelUserAdmin extends Admin
                     ->add('enabled', null, array('required' => false))
                     ->add('credentialsExpired', null, array('required' => false))
                 ->end()->end()
+                ->tab('Lidmaatschap')
+
+                    ->add('lidmaatschapTransacties')
+                        
             ;
         }
 

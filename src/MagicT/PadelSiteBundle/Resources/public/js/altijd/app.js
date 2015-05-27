@@ -21,3 +21,4 @@ $(document).ready(function(){
         $('.menumobiel').slideToggle(200);
     })      
 })
+

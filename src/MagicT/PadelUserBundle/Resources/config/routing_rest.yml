@@ -1,0 +1,4 @@
+users : 
+  type: rest
+  resource:     "PadelUserBundle:PadelUserRest"
+  name_prefix:  api_

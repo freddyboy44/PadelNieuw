@@ -46,28 +46,28 @@ class Reservatie
     /**
      * @var integer
      *
-     * @ORM\Column(type="string", length=255, nullable=true, name="Speler1")
+     * 
      */
     private $speler1;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=255, nullable=true, name="Speler2")
+     * 
      */
     private $speler2;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=255, nullable=true, name="Speler3")
+     * 
      */
     private $speler3;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=255, nullable=true, name="Speler4")
+     * 
      */
     private $speler4;
 
@@ -100,9 +100,19 @@ class Reservatie
      */
     private $reservatieType;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="MagicT\PadelUserBundle\Entity\PadelUser", inversedBy="reservatie", fetch="EAGER")
+     * @ORM\JoinTable(
+     *     name="ReservatieUsers",
+     *     joinColumns={@ORM\JoinColumn(name="reservatie_id", referencedColumnName="id", nullable=false)},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="padel_user_id", referencedColumnName="id", nullable=false)}
+     * )
+     */
+    private $padelUser;
+
     public function __construct(){
         $this->dateCreated = new \DateTime("now");
-        
+        $this->padelUser = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**

@@ -101,7 +101,7 @@ class Reservatie
     private $reservatieType;
 
     /**
-     * @ORM\ManyToMany(targetEntity="MagicT\PadelUserBundle\Entity\PadelUser", inversedBy="reservatie")
+     * @ORM\ManyToMany(targetEntity="MagicT\PadelUserBundle\Entity\PadelUser", inversedBy="reservatie", fetch="EAGER")
      * @ORM\JoinTable(
      *     name="ReservatieUsers",
      *     joinColumns={@ORM\JoinColumn(name="reservatie_id", referencedColumnName="id", nullable=false)},
@@ -112,7 +112,7 @@ class Reservatie
 
     public function __construct(){
         $this->dateCreated = new \DateTime("now");
-        
+        $this->padelUser = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -407,5 +407,38 @@ class Reservatie
     public function getReservatieType()
     {
         return $this->reservatieType;
+    }
+
+    /**
+     * Add padelUser
+     *
+     * @param \MagicT\PadelUserBundle\Entity\PadelUser $padelUser
+     * @return Reservatie
+     */
+    public function addPadelUser(\MagicT\PadelUserBundle\Entity\PadelUser $padelUser)
+    {
+        $this->padelUser[] = $padelUser;
+
+        return $this;
+    }
+
+    /**
+     * Remove padelUser
+     *
+     * @param \MagicT\PadelUserBundle\Entity\PadelUser $padelUser
+     */
+    public function removePadelUser(\MagicT\PadelUserBundle\Entity\PadelUser $padelUser)
+    {
+        $this->padelUser->removeElement($padelUser);
+    }
+
+    /**
+     * Get padelUser
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPadelUser()
+    {
+        return $this->padelUser;
     }
 }

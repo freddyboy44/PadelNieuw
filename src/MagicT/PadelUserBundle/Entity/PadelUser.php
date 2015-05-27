@@ -7,10 +7,20 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Sonata\UserBundle\Entity\BaseUser as BaseUser;
+use Sonata\UserBundle\Entity\BaseGroup as BaseGroup;
+use MagicT\PadelUserBundle\Entity\PadelGroup;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\VirtualProperty;
+
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="padeluser",indexes={@ORM\Index(name="username_idx", columns={"username"})})
+ * @ORM\Entity(repositoryClass="MagicT\PadelUserBundle\Entity\PadelUserRepository")
+ * @ORM\HasLifecycleCallbacks()
+ * @ExclusionPolicy("all") 
  */
 class PadelUser extends BaseUser
 {
@@ -18,6 +28,7 @@ class PadelUser extends BaseUser
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Expose
      */
     protected $id;
 
@@ -60,8 +71,14 @@ class PadelUser extends BaseUser
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Expose
      */
     private $Lidnummer;
+
+    /**
+     * @ORM\Column(type="date",nullable=true, name="LidTot")
+     */
+    protected $lidtot;
 
     /**
      * @ORM\Column(type="string", length=10, nullable=true)
@@ -75,15 +92,17 @@ class PadelUser extends BaseUser
     protected  $groups; 
 
     /**
-     * @ORM\OneToMany(targetEntity="MagicT\PadelUserBundle\Entity\LidmaatschapTransactie", mappedBy="padelUser")
+     * @ORM\OneToMany(targetEntity="MagicT\PadelUserBundle\Entity\LidmaatschapTransactie", mappedBy="padelUser", fetch="EAGER")
      */
-    private $lidmaatschapTransacties;
+    protected $lidmaatschapTransacties;
 
-    private $volledigenaam;  
+
+    
 
     public function __construct()
     {
         parent::__construct();
+        $this->islid = $this->getIsLid();
         // your own logic
         
     }
@@ -92,6 +111,12 @@ class PadelUser extends BaseUser
         return $this->firstname . " " . $this->lastname;
     }
     
+    /**
+     * @VirtualProperty
+     */
+    public function getVolledigeNaam(){
+        return $this->firstname . " " . $this->lastname;
+    }
 
     /**
      * Get id
@@ -391,17 +416,94 @@ class PadelUser extends BaseUser
 
     
     /*
-     * Is het lid een actief lid, is een vorm van lidmaatschap geldig tot vandaag
+     * @ORM\postLoad
      */
-    public function getIsLid()
+    public function setIsLid()
     {
-        return false;
+       
+        $lidtot = $this->getLidTot();
+        if($lidtot>new \DateTime()){
+            return true;
+        }else{
+            return false;
+        }
     }
 
-    public function getLidTot()
+    public function getDatumLidTot()
     {
-        dump($this->lidmaatschapTransacties);
-        die();
+        $transacties = $this->getLidmaatschapTransacties();
+
+        foreach($transacties as $transactie) {
+            $begindatum = $transactie->getDatumGeldig();
+
+            //dump($transactie);
+            
+            $duur = $transactie->getLidmaatschap()->getPeriode();
+            $lidtot = $begindatum->add(new \DateInterval($duur));
+            return $lidtot;
+        }
+        
     }
 
+
+
+    /**
+     * Add lidmaatschapTransacties
+     *
+     * @param \MagicT\PadelUserBundle\Entity\LidmaatschapTransactie $lidmaatschapTransacties
+     * @return PadelUser
+     */
+    public function addLidmaatschapTransacty(\MagicT\PadelUserBundle\Entity\LidmaatschapTransactie $lidmaatschapTransacties)
+    {
+        $this->lidmaatschapTransacties[] = $lidmaatschapTransacties;
+
+        return $this;
+    }
+
+    /**
+     * Remove lidmaatschapTransacties
+     *
+     * @param \MagicT\PadelUserBundle\Entity\LidmaatschapTransactie $lidmaatschapTransacties
+     */
+    public function removeLidmaatschapTransacty(\MagicT\PadelUserBundle\Entity\LidmaatschapTransactie $lidmaatschapTransacties)
+    {
+        $this->lidmaatschapTransacties->removeElement($lidmaatschapTransacties);
+    }
+
+    /**
+     * Get lidmaatschapTransacties
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getLidmaatschapTransacties()
+    {
+        return $this->lidmaatschapTransacties;
+    }
+
+    
+
+    /**
+     * Set lidtot
+     *
+     * @param \DateTime $lidtot
+     * @return PadelUser
+     */
+    public function setLidtot($lidtot)
+    {
+        $this->lidtot = $lidtot;
+
+        return $this;
+    }
+
+    /**
+     * Get lidtot
+     *
+     * @return \DateTime 
+     */
+    public function getLidtot()
+    {
+        return $this->lidtot;
+    }
+
+    
 }

@@ -41,15 +41,61 @@
 		td.tehoog {
 			height: 0px;
 		}
-	}
-	
-	.modal {
-		.modal-header {
+
+		td.vrij:hover {
+			//background-color: lighten($blauwekleur,25%);
+			-webkit-animation-name: greenPulse;
+		  -webkit-animation-duration: 2s;
+		  -webkit-animation-iteration-count: infinite;
 
 		}
+	}	
+}
+
+
+
+#modalbevestig {
+	.modal-content {
+		background-color: white;
+		color: $blauwekleur;
+
+		.modal-body {
+			.row.medespelers {
+				margin-top: 15px;
+				input {
+					width: 100%;
+					@include border-radius(5px);
+					border: solid 1px $blauwekleur;
+					padding: 3px;
+				}
+				input:active, input:focus {
+					-webkit-animation-name: glowingPulse;
+					  -webkit-animation-duration: 2s;
+					  -webkit-animation-iteration-count: infinite;
+				}
+			}
+		}
+
+		.modal-footer {
+			.btn.wit {
+				color: white;
+			}	
+		}
 	}
+
+	
 }
 
 h4.modal-title {
 	display: inline-block;
+}
+@-webkit-keyframes greenPulse {
+  from { background-color: $blauwekleur; -webkit-box-shadow: 0 0 9px #333; }
+  50% { background-color: lighten($blauwekleur,10%); -webkit-box-shadow: 0 0 18px darken($blauwekleur,20%); }
+  to { background-color: lighten($blauwekleur, 0%); -webkit-box-shadow: 0 0 9px #333; }
+}
+@-webkit-keyframes glowingPulse {
+  from { -webkit-box-shadow: 0 0 9px #333; }
+  50% { -webkit-box-shadow: 0 0 18px darken($blauwekleur,20%); }
+  to { -webkit-box-shadow: 0 0 9px #333; }
 }

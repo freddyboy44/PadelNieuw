@@ -33,8 +33,23 @@ _sonata_admin:
 padelsite:
     resource: "@PadelSiteBundle/Controller"
 
+padeluser:
+    resource: "@PadelUserBundle/Controller"
+    type: annotation
+
 padelreservatie:
     resource: "@PadelReservatieBundle/Controller/"
     type:     annotation
     prefix:   /reservatie
 
+settings:
+    resource: "@DmishhSettingsBundle/Resources/config/routing.yml"
+    prefix: /settings
+
+rest : 
+  type : rest 
+  resource : "routing_rest.yml"
+  prefix : /api
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
