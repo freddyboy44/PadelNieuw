@@ -1629,7 +1629,7 @@
 /* line 54, ../scss/_reservatie.scss */
 .overzichtreservaties table td.bezet {
   background-color: #68c4ea;
-  font-size: 10px;
+  font-size: 14px;
 }
 /* line 58, ../scss/_reservatie.scss */
 .overzichtreservaties table td.tehoog {
@@ -1642,8 +1642,20 @@
   -webkit-animation-duration: 2s;
   -webkit-animation-iteration-count: infinite;
 }
+/* line 71, ../scss/_reservatie.scss */
+.overzichtreservaties table td.bezet.Onderhoud {
+  background-color: orange;
+}
+/* line 74, ../scss/_reservatie.scss */
+.overzichtreservaties table td.bezet.Les {
+  background-color: #ff6666;
+}
+/* line 77, ../scss/_reservatie.scss */
+.overzichtreservaties table td.bezet.Tornooi {
+  background-color: #ffc04d;
+}
 
-/* line 73, ../scss/_reservatie.scss */
+/* line 83, ../scss/_reservatie.scss */
 .modalloading {
   display: none;
   position: fixed;
@@ -1657,28 +1669,28 @@
 
 /* When the body has the loading class, we turn
    the scrollbar off with overflow:hidden */
-/* line 89, ../scss/_reservatie.scss */
+/* line 99, ../scss/_reservatie.scss */
 body.loading {
   overflow: hidden;
 }
 
 /* Anytime the body has the loading class, our
    modal element will be visible */
-/* line 95, ../scss/_reservatie.scss */
+/* line 105, ../scss/_reservatie.scss */
 body.loading .modalloading {
   display: block;
 }
 
-/* line 101, ../scss/_reservatie.scss */
+/* line 111, ../scss/_reservatie.scss */
 #modalbevestig .modal-content {
   background-color: white;
   color: #25aae1;
 }
-/* line 106, ../scss/_reservatie.scss */
+/* line 116, ../scss/_reservatie.scss */
 #modalbevestig .modal-content .modal-body .row.medespelers {
   margin-top: 15px;
 }
-/* line 108, ../scss/_reservatie.scss */
+/* line 118, ../scss/_reservatie.scss */
 #modalbevestig .modal-content .modal-body .row.medespelers input {
   width: 100%;
   -webkit-border-radius: 5px;
@@ -1689,23 +1701,23 @@ body.loading .modalloading {
   border: solid 1px #25aae1;
   padding: 3px;
 }
-/* line 114, ../scss/_reservatie.scss */
+/* line 124, ../scss/_reservatie.scss */
 #modalbevestig .modal-content .modal-body .row.medespelers input:active, #modalbevestig .modal-content .modal-body .row.medespelers input:focus {
   -webkit-animation-name: glowingPulse;
   -webkit-animation-duration: 2s;
   -webkit-animation-iteration-count: infinite;
 }
-/* line 123, ../scss/_reservatie.scss */
+/* line 133, ../scss/_reservatie.scss */
 #modalbevestig .modal-content .modal-footer .btn.wit {
   color: white;
 }
 
-/* line 132, ../scss/_reservatie.scss */
+/* line 142, ../scss/_reservatie.scss */
 h4.modal-title {
   display: inline-block;
 }
 
-/* line 136, ../scss/_reservatie.scss */
+/* line 146, ../scss/_reservatie.scss */
 .autocomplete-suggestions {
   border: 1px solid #999;
   background: #fff;
@@ -1714,7 +1726,7 @@ h4.modal-title {
   color: #25aae1;
 }
 
-/* line 137, ../scss/_reservatie.scss */
+/* line 147, ../scss/_reservatie.scss */
 .autocomplete-suggestion {
   padding: 10px 5px;
   font-size: 1.2em;
@@ -1722,18 +1734,18 @@ h4.modal-title {
   overflow: hidden;
 }
 
-/* line 138, ../scss/_reservatie.scss */
+/* line 148, ../scss/_reservatie.scss */
 .autocomplete-selected {
   background: #f0f0f0;
 }
 
-/* line 139, ../scss/_reservatie.scss */
+/* line 149, ../scss/_reservatie.scss */
 .autocomplete-suggestions strong {
   font-weight: normal;
   color: #3399ff;
 }
 
-/* line 140, ../scss/_reservatie.scss */
+/* line 150, ../scss/_reservatie.scss */
 #searchfield {
   display: block;
   width: 100%;
@@ -1741,7 +1753,7 @@ h4.modal-title {
   margin-bottom: 35px;
 }
 
-/* line 142, ../scss/_reservatie.scss */
+/* line 152, ../scss/_reservatie.scss */
 #searchfield form {
   display: inline-block;
   background: #eeefed;
@@ -1752,7 +1764,7 @@ h4.modal-title {
   margin: 5px 0 0 0;
 }
 
-/* line 151, ../scss/_reservatie.scss */
+/* line 161, ../scss/_reservatie.scss */
 #searchfield form .biginput {
   width: 600px;
   height: 40px;
@@ -1767,25 +1779,25 @@ h4.modal-title {
   transition: all 0.2s linear;
 }
 
-/* line 165, ../scss/_reservatie.scss */
+/* line 175, ../scss/_reservatie.scss */
 #searchfield form .biginput:focus {
   color: #858585;
 }
 
 @-webkit-keyframes greenPulse {
-  /* line 171, ../scss/_reservatie.scss */
+  /* line 181, ../scss/_reservatie.scss */
   from {
     background-color: #25aae1;
     -webkit-box-shadow: 0 0 9px #333;
   }
 
-  /* line 172, ../scss/_reservatie.scss */
+  /* line 182, ../scss/_reservatie.scss */
   50% {
     background-color: #52bbe7;
     -webkit-box-shadow: 0 0 18px #13698d;
   }
 
-  /* line 173, ../scss/_reservatie.scss */
+  /* line 183, ../scss/_reservatie.scss */
   to {
     background-color: #25aae1;
     -webkit-box-shadow: 0 0 9px #333;
@@ -1793,17 +1805,17 @@ h4.modal-title {
 }
 
 @-webkit-keyframes glowingPulse {
-  /* line 176, ../scss/_reservatie.scss */
+  /* line 186, ../scss/_reservatie.scss */
   from {
     -webkit-box-shadow: 0 0 9px #333;
   }
 
-  /* line 177, ../scss/_reservatie.scss */
+  /* line 187, ../scss/_reservatie.scss */
   50% {
     -webkit-box-shadow: 0 0 18px #13698d;
   }
 
-  /* line 178, ../scss/_reservatie.scss */
+  /* line 188, ../scss/_reservatie.scss */
   to {
     -webkit-box-shadow: 0 0 9px #333;
   }

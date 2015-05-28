@@ -13,13 +13,12 @@
                 '%kernel.root_dir%/../vendor/components/underscore/underscore-min.js'
                 '%kernel.root_dir%/../vendor/moment/moment/min/moment.min.js'
                 '%kernel.root_dir%/../vendor/dimsemenov/magnific-popup/dist/jquery.magnific-popup.min.js'
-                                     
-
                 '@PadelSiteBundle/Resources/public/js/altijd/*'
             
             %}
             <script src="{{ asset_url }}"></script>
             <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+            <script src="{{ asset('bundles/padelsite/js/nl.js') }}"></script>
             <script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
             {% endjavascripts %}
         {% endblock %}

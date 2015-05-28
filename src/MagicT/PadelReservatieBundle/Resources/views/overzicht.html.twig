@@ -57,7 +57,7 @@
 			{% set end_date_kort = einduur|date("H") %}
 			{% set regelovergeslaan = false %}
 			{% for uur in range(start_date_kort,end_date_kort,0.5) %}
-				
+
 				{% set uur = uur|replace({'.5':':30', '.0':':00'}) %}
 					
 				{% if uur|length == 1 %}
@@ -72,6 +72,7 @@
 				
 				{% if uur >= startuur|date("H:i") %}
 						{% set einde_kortuur = (uur[:2]+1) ~ uur[2:] %}
+
 					   	<tr>{% spaceless %}
 					   		{% if loop.index == 1 or (loop.index is even and regelovergeslaan)  %}
 						   		<td class="uur" rowspan=2>{% spaceless %}
@@ -118,19 +119,19 @@
 	      <div class="modal-body">
 	        <div class="row">
 	        	<div class="col-sm-4">
-	        		Datum :
+	        		<label>Datum :</label>
 	        	</div>
 	        	<div id="reservatiedatum" class="col-sm-8">
 	        		26/05/2015
 	        	</div>
 	        	<div class="col-sm-4">
-	        		Uur :
+	        		<label>Uur :</label>
 	        	</div>
 	        	<div id="reservatieuur" class="col-sm-8">
 	        		16:00 - 17:00
 	        	</div>
 	        	<div class="col-sm-4">
-	        		Veld :
+	        		<label>Veld :</label>
 	        	</div>
 	        	<div id="reservatieveld" class="col-sm-8">
 	        		1 
@@ -138,15 +139,15 @@
 	        </div>
 	        <div class="row medespelers">
 				<div class="col-sm-4">
-	        		Medespelers :
+					<span class="medespelers">Medespelers :</span>
 	        	</div>
 	        	<div class="col-sm-8">
 					<div id="searchfield">
-					    <form><input type="text" name="currency" class="biginput" id="autocomplete"></form>
-					  </div><!-- @end #searchfield -->
-					  <div id="outputbox">
-					    <p id="outputcontent"></p>
-					  </div>
+						<input type="text" name="zoekspeler" class="biginput" id="autocomplete">
+					</div><!-- @end #searchfield -->
+					<div id="outputbox">
+					  	<p id="outputcontent"></p>
+					</div>
  
 	        	</div>
 				
@@ -165,23 +166,14 @@
 	$(function() {
 	    	
 
-	  var leden = [
-
-	  	{% for lid in leden %}
-
-	  		{ id: {{ lid.id }}, value: '{{ lid.firstname }} {{ lid.lastname }}' } {{ not loop.last ? ',' }}
-
-	  	{% endfor %}
-
-    
-  ];
+	  var leden = [{% for lid in leden %}{ id: {{ lid.id }}, value: '{{ lid.firstname }} {{ lid.lastname }}', geboortedatum: '{{ lid.geboortedatum }}' } {{ not loop.last ? ',' }}{% endfor %}];
 
 	  $('#autocomplete').autocomplete({
-	  lookup: leden,
-	  onSelect: function (suggestion) {
-	    var thehtml = '<strong>Naam:</strong> ' + suggestion.value + ' <br> <strong>Id:</strong> ' + suggestion.id;
-	    $('#outputcontent').html(thehtml);
-	  }
+		  lookup: leden,
+		  onSelect: function (suggestion) {
+		    var thehtml = '<strong>Naam:</strong> ' + suggestion.value + ' <br> <strong>Id:</strong> ' + suggestion.id;
+		    $('#outputcontent').html(thehtml);
+		  }
 	});
 
 
@@ -221,13 +213,15 @@
 				{% set veldid = 'veld' ~ reservatie.veld.volgorde ~ startuur %}
 				$veld = $('#{{ veldid }}');
 				$veld.addClass('bezet');
+
 				$veld.addClass('{{ reservatie.reservatietype.naam }}');
 				$veld.removeClass('vrij');
 				$veld.html('{{ naam|raw }}');
 
 
 				
-				//$('#{{ veldid }}').html('{{ reservatie.speler1 }}');
+				
+
 
 			{% endfor %}
 		{% endfor %}
@@ -329,29 +323,26 @@
 		  		
 		  	})
 		  	jQuery.each(data, function(index, item) {
-            	if(!$.isEmptyObject(item)){
-            		jQuery.each(item, function(indexreservatie, reservatie) {
             			
-            			$startuur = moment(reservatie.startuur).format("HH") + ":" + moment(reservatie.startuur).format("mm");
-            			$einduur = (parseInt(moment(reservatie.startuur).format("HH"))+1) + ":" + moment(reservatie.startuur).format("mm");
+            	$startuur = moment(item.startuur).format("HH") + ":" + moment(item.startuur).format("mm");
+    			$einduur = (parseInt(moment(item.startuur).format("HH"))+1) + ":" + moment(item.startuur).format("mm");
 
-            			$veld = reservatie.veld.volgorde;
-		            	
-		            	$veldnaam = "#veld" + $veld + moment(reservatie.startuur).format("HH") + "t" + moment(reservatie.startuur).format("mm");
-		            	$($veldnaam).addClass('bezet');
-		            	$($veldnaam).removeClass('vrij');
+    			$veld = item.veld.volgorde;
+            	
+            	$veldnaam = "#veld" + $veld + moment(item.startuur).format("HH") + "t" + moment(item.startuur).format("mm");
+            	$($veldnaam).addClass('bezet');
+            	$($veldnaam).addClass(item.reservatie_type._naam);
+            	$($veldnaam).removeClass('vrij');
 
-		            	$spelers = "";
-		            	jQuery.each(reservatie.padel_user, function(indexspeler, speler) {
-		            		$spelers = $spelers + speler.firstname + " " + speler.lastname + "<br/>";
-		            	})
-		            	if($spelers.length){
-		            		$spelers = $spelers.substr(0,($spelers.length-5));
-		            	}
-		            	$($veldnaam).html($spelers);
-
-		        	});
+            	$spelers = "";
+            	jQuery.each(item.padel_user, function(indexspeler, speler) {
+            		$spelers = $spelers + speler.firstname + " " + speler.lastname + "<br/>";
+            	})
+            	if($spelers.length){
+            		$spelers = $spelers.substr(0,($spelers.length-5));
             	}
+            	$($veldnaam).html($spelers);
+
         	});
 
 		  })

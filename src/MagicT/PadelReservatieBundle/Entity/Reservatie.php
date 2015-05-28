@@ -3,12 +3,16 @@
 namespace MagicT\PadelReservatieBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\MaxDepth;
 
 /**
  * Reservatie
  *
  * 
  * @ORM\Entity(repositoryClass="MagicT\PadelReservatieBundle\Entity\ReservatieRepository")
+ * @ExclusionPolicy("all")
  * 
  */
 class Reservatie
@@ -48,29 +52,7 @@ class Reservatie
      *
      * 
      */
-    private $speler1;
-
-    /**
-     * @var string
-     *
-     * 
-     */
-    private $speler2;
-
-    /**
-     * @var string
-     *
-     * 
-     */
-    private $speler3;
-
-    /**
-     * @var string
-     *
-     * 
-     */
-    private $speler4;
-
+    
     /**
      * @var boolean
      *
@@ -80,23 +62,29 @@ class Reservatie
 
     /**
      * @ORM\Column(type="date", nullable=true)
+     * @Expose
      */
     private $datum;
 
     /**
      * @ORM\Column(type="time", nullable=true)
+     * @Expose
      */
     private $startuur;
 
     /**
      * @ORM\ManyToOne(targetEntity="MagicT\PadelReservatieBundle\Entity\Veld", inversedBy="reservatie")
      * @ORM\JoinColumn(name="veld_id", referencedColumnName="id")
+     * @Expose
+     * @MaxDepth(2)
      */
     private $veld;
 
     /**
      * @ORM\ManyToOne(targetEntity="MagicT\PadelReservatieBundle\Entity\ReservatieType", inversedBy="reservaties")
      * @ORM\JoinColumn(name="reservatie_type_id", referencedColumnName="id")
+     * @MaxDepth(1)
+     * @Expose
      */
     private $reservatieType;
 
@@ -107,6 +95,8 @@ class Reservatie
      *     joinColumns={@ORM\JoinColumn(name="reservatie_id", referencedColumnName="id", nullable=false)},
      *     inverseJoinColumns={@ORM\JoinColumn(name="padel_user_id", referencedColumnName="id", nullable=false)}
      * )
+     * @MaxDepth(2) 
+     * @Expose
      */
     private $padelUser;
 

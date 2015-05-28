@@ -92,7 +92,7 @@ class PadelUser extends BaseUser
     protected  $groups; 
 
     /**
-     * @ORM\OneToMany(targetEntity="MagicT\PadelUserBundle\Entity\LidmaatschapTransactie", mappedBy="padelUser", fetch="EAGER")
+     * @ORM\OneToMany(targetEntity="MagicT\PadelUserBundle\Entity\LidmaatschapTransactie", mappedBy="padelUser")
      */
     protected $lidmaatschapTransacties;
 

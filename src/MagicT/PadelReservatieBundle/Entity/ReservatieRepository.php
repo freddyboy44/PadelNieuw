@@ -13,6 +13,7 @@ use Doctrine\ORM\EntityRepository;
 class ReservatieRepository extends EntityRepository
 {
 	public function findVoorDag($datum) {
+
 		$qb = $this->getEntityManager()->createQueryBuilder();
 		$query = $qb->select('r')
             ->from('PadelReservatieBundle:Reservatie', 'r')
@@ -20,6 +21,7 @@ class ReservatieRepository extends EntityRepository
 		  	->setParameter('datum', date_format($datum,'Y-m-d'))
             ->getQuery()
             ->getResult();
+            
         return $query;
 	}
 
