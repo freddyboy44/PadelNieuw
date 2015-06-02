@@ -2,6 +2,7 @@
 
 namespace MagicT\PadelReservatieBundle\Entity;
 use MagicT\PadelReservatieBundle\Entity\Reservatie;
+use MagicT\PadelUserBundle\Entity\PadelUser;
 use Doctrine\ORM\EntityRepository;
 
 /**
@@ -54,4 +55,40 @@ class ReservatieRepository extends EntityRepository
             ->getResult();
         return $query;
 	}
+
+	public function findVoorUser(PadelUser $padeluser) {
+
+		$qb = $this->getEntityManager()->createQueryBuilder();
+
+		$query = $qb->select('r')
+            ->from('PadelReservatieBundle:Reservatie', 'r')
+            ->leftjoin('r.padelUser','u', 'WITH', 'u = :user')
+            	->setParameter('user',$padeluser)->addSelect('u')            
+            ->where('r.datum >= :datum')
+		  	->setParameter('datum', date_format(new \DateTime(),'Y-m-d'))
+		  	->setParameter('user', $padeluser)
+            ->getQuery();
+          
+        return $query;
+	}
+	public function findAantalVoorUser(PadelUser $padeluser, $datum = null)
+	{
+		$qb = $this->getEntityManager()->createQueryBuilder();
+
+		$query = $qb->select('count(distinct r.id)')
+            ->from('PadelReservatieBundle:Reservatie', 'r')
+            ->leftjoin('r.padelUser','u', 'WITH', 'u = :user')
+            ->setParameter('user',$padeluser)           
+		  	->setParameter('user', $padeluser);
+
+        if(!is_null($datum)){
+        	$query
+        		->where('r.datum >= :datum')
+		  		->setParameter('datum', date_format($datum,'Y-m-d'));
+        }
+        
+        return $query->getQuery()->getSingleScalarResult();
+	}
+
+
 }

@@ -7,7 +7,6 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Veld
  *
- * 
  * @ORM\Entity(repositoryClass="MagicT\PadelReservatieBundle\Entity\VeldRepository")
  */
 class Veld
@@ -48,6 +47,7 @@ class Veld
      * @ORM\Column(type="integer", nullable=true, name="Volgorde")
      */
     private $volgorde;
+    
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
@@ -251,4 +251,6 @@ class Veld
     {
         return $this->overdekt;
     }
+
+    
 }

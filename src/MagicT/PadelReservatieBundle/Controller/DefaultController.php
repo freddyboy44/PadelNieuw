@@ -2,12 +2,16 @@
 
 namespace MagicT\PadelReservatieBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Request;
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use MagicT\PadelReservatieBundle\Entity\ReservatieRepository;
 use MagicT\PadelReservatieBundle\Entity\ReservatieTypeRepository;
 use MagicT\PadelReservatieBundle\Entity\Reservatie;
+use MagicT\PadelReservatieBundle\Entity\ReservatieType;
 use JMS\Serializer\SerializationContext;
 
 use MagicT\PadelUserBundle\Entity\PadelUserRepository;
@@ -78,6 +82,94 @@ class DefaultController extends Controller
     }
 
     /**
+     * Ajax call om reservatie op te slaan
+     *
+     * @Route("/slaop", name="saveajaxreservatie", options={"expose"=true})
+     * @Method("POST")
+     */
+    public function saveajaxAction(Request $request)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+
+        if(is_null($user)){
+            return new Response("Geen gebruiker ingelogd");
+        }
+        
+        $allemaal = $request->query->all();
+        $users = $request->get('users');
+        $veld = $request->get('nummerveld');
+        $datum = new \DateTime($request->get('datum'));
+        $startuur = new \DateTime($request->get('startuur'));
+        $reservatietype = $request->get('reservatietype');
+
+        
+        //dump($this->get('security.token_storage')->getToken()->getUser());
+        //die();
+        $reservatie = new Reservatie();
+        $reservatie->setCreatedBy($this->get('security.token_storage')->getToken()->getUser());
+        $reservatie->setDatum($datum);
+        $reservatie->setStartuur($startuur);
+        $reservatie->setVeld($em->getRepository('PadelReservatieBundle:Veld')->find($veld));
+        $reservatie->setReservatieType($em->getRepository('PadelReservatieBundle:ReservatieType')->find($reservatietype));
+        $reservatie->setDatum($datum);
+        $users = explode(",", join($users));
+        dump($reservatie);
+
+        foreach($users as $speler){
+            $padelspeler = $em->getRepository('PadelUserBundle:PadelUser')->find($speler);
+            $reservatie->addPadelUser($padelspeler);
+        }
+        //dump($reservatie);
+        //die();
+
+        $em->persist($reservatie);
+        $em->flush();       
+        
+        $response = array("code" => 200, "success" => true);
+        return new Response(json_encode($response)); 
+    }
+
+    /**
+     * Ajax call om reservatie op te slaan
+     *
+     * @Route("/verwijderreservatie", name="verwijderajaxreservatie", options={"expose"=true})
+     * @Method("DELETE")
+     */
+    public function verwijderreservatieAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $reservatieid = $request->get('reservatieid');
+
+        $voortdoen = false;
+        if($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')){
+            $voortdoen = true;
+        }else{
+
+        }
+
+        if($voortdoen){
+            $reservatie = $em->getRepository('PadelReservatieBundle:Reservatie')->find($reservatieid);
+            if(!is_null($reservatie)){
+                $em->remove($reservatie);
+                $em->flush();
+                $response = array("code" => 200, "success" => true);
+                return new Response(json_encode($response));     
+            }else{
+                $response = array("code" => 404, "success" => false);
+                return new Response(json_encode($response));     
+            }
+        }else{
+            $response = array("code" => 401, "success" => false);
+            return new Response(json_encode($response)); 
+        }
+        
+    }
+    
+
+    /**
      * @Route("/{jaar}/{maand}/{dag}", name="reservatie_op_datum", options={"expose"=true})
      * 
      */
@@ -98,9 +190,11 @@ class DefaultController extends Controller
             }
         }
                 
-        
-        
+        $user = $this->get('security.token_storage')->getToken()->getUser();
 
+        $magreserveren = $doc->getRepository('PadelUserBundle:PadelUser')->magReserveren($user);
+        
+        
         if($ajax){
             $reservatiesvoordag = $doc->getRepository('PadelReservatieBundle:Reservatie')->findVoorDag($datum);
             //dump($reservatiesvoordag);
@@ -140,7 +234,8 @@ class DefaultController extends Controller
                     'einduur' => $einduur,
                     'velden' => $velden,
                     'datum' => $datum,
-                    'leden'=>$leden
+                    'leden'=>$leden,
+                    'magreserveren' => $magreserveren
                 )
             );
         }
@@ -166,6 +261,7 @@ class DefaultController extends Controller
         return false;
     }
 
+    
 
 }
 

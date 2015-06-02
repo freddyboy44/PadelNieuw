@@ -2,7 +2,7 @@
 
 namespace MagicT\PadelUserBundle\Entity;
 
-use MagicT\PadelUserBundle\Entity\User;
+use MagicT\PadelUserBundle\Entity\PadelUser;
 use Doctrine\ORM\EntityRepository;
 
 /**
@@ -46,5 +46,22 @@ class PadelUserRepository extends EntityRepository
             ->getOneOrNullResult();
             
         return $query;
+    }
+
+    public function magReserveren(PadelUser $padeluser)
+    {
+
+        
+        $maxaantal = $padeluser->getMaxaantalreservaties();
+        if($maxaantal==0){
+            return true;
+        }else{
+            $antwoord = $this->getEntityManager()->getRepository('PadelReservatieBundle:Reservatie')->findAantalVoorUser($padeluser,new \DateTime());
+            if($antwoord<$maxaantal){
+                return true;
+            }else{
+                return false;
+            }
+        }
     }
 }

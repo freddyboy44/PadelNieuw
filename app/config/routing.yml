@@ -53,3 +53,9 @@ rest :
 
 fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+
+fos_login_js:
+    pattern: /login
+    defaults: { _controller: FOS\UserBundle\Controller\SecurityController::login }
+    options:
+        expose: true

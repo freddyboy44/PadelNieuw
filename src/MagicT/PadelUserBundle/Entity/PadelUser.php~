@@ -9,12 +9,18 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Sonata\UserBundle\Entity\BaseUser as BaseUser;
 use Sonata\UserBundle\Entity\BaseGroup as BaseGroup;
 use MagicT\PadelUserBundle\Entity\PadelGroup;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\VirtualProperty;
+
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="padeluser",indexes={@ORM\Index(name="username_idx", columns={"username"})})
  * @ORM\Entity(repositoryClass="MagicT\PadelUserBundle\Entity\PadelUserRepository")
  * @ORM\HasLifecycleCallbacks()
+ * @ExclusionPolicy("all") 
  */
 class PadelUser extends BaseUser
 {
@@ -22,6 +28,7 @@ class PadelUser extends BaseUser
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Expose
      */
     protected $id;
 
@@ -64,6 +71,7 @@ class PadelUser extends BaseUser
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Expose
      */
     private $Lidnummer;
 
@@ -81,12 +89,23 @@ class PadelUser extends BaseUser
      * @ORM\ManyToMany(targetEntity="PadelGroup")            
      * @ORM\JoinTable(name="padel_user_group")       
      */                                                 
-    protected  $groups; 
+    protected $groups; 
 
     /**
-     * @ORM\OneToMany(targetEntity="MagicT\PadelUserBundle\Entity\LidmaatschapTransactie", mappedBy="padelUser", fetch="EAGER")
+     * @ORM\Column(type="integer")
+     */
+    private $maxaantalreservaties=1;
+
+    /**
+     * @ORM\OneToMany(targetEntity="MagicT\PadelUserBundle\Entity\LidmaatschapTransactie", mappedBy="padelUser")
      */
     protected $lidmaatschapTransacties;
+
+    /**
+     * @ORM\OneToMany(targetEntity="MagicT\PadelReservatieBundle\Entity\Reservatie", mappedBy="createdBy")
+     */
+    protected $reservatie;
+
 
 
     
@@ -94,7 +113,7 @@ class PadelUser extends BaseUser
     public function __construct()
     {
         parent::__construct();
-        $this->islid = $this->getIsLid();
+        //$this->islid = $this->getIsLid();
         // your own logic
         
     }
@@ -103,6 +122,12 @@ class PadelUser extends BaseUser
         return $this->firstname . " " . $this->lastname;
     }
     
+    /**
+     * @VirtualProperty
+     */
+    public function getVolledigeNaam(){
+        return $this->firstname . " " . $this->lastname;
+    }
 
     /**
      * Get id
@@ -415,7 +440,7 @@ class PadelUser extends BaseUser
         }
     }
 
-    public function getLidTot()
+    public function getDatumLidTot()
     {
         $transacties = $this->getLidmaatschapTransacties();
 
@@ -428,7 +453,6 @@ class PadelUser extends BaseUser
             $lidtot = $begindatum->add(new \DateInterval($duur));
             return $lidtot;
         }
-        return "hallo";
         
     }
 
@@ -465,6 +489,56 @@ class PadelUser extends BaseUser
     public function getLidmaatschapTransacties()
     {
         return $this->lidmaatschapTransacties;
+    }
+
+    
+
+    /**
+     * Set lidtot
+     *
+     * @param \DateTime $lidtot
+     * @return PadelUser
+     */
+    public function setLidtot($lidtot)
+    {
+        $this->lidtot = $lidtot;
+
+        return $this;
+    }
+
+    /**
+     * Get lidtot
+     *
+     * @return \DateTime 
+     */
+    public function getLidtot()
+    {
+        return $this->lidtot;
+    }
+
+    
+
+    /**
+     * Set maxaantalreservaties
+     *
+     * @param integer $maxaantalreservaties
+     * @return PadelUser
+     */
+    public function setMaxaantalreservaties($maxaantalreservaties)
+    {
+        $this->maxaantalreservaties = $maxaantalreservaties;
+
+        return $this;
+    }
+
+    /**
+     * Get maxaantalreservaties
+     *
+     * @return integer 
+     */
+    public function getMaxaantalreservaties()
+    {
+        return $this->maxaantalreservaties;
     }
 
     

@@ -23,6 +23,7 @@ class Reservatie
      * @ORM\Column(type="integer", name="id")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Expose
      */
     private $id;
 
@@ -41,9 +42,10 @@ class Reservatie
     private $dateUpdated;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(type="integer", nullable=true, name="CreatedBy")
+     * @ORM\ManyToOne(
+     *     targetEntity="MagicT\PadelUserBundle\Entity\PadelUser", inversedBy="reservatie"
+     * )
+     * 
      */
     private $createdBy;
 
@@ -89,10 +91,10 @@ class Reservatie
     private $reservatieType;
 
     /**
-     * @ORM\ManyToMany(targetEntity="MagicT\PadelUserBundle\Entity\PadelUser", inversedBy="reservatie", fetch="EAGER")
+     * @ORM\ManyToMany(targetEntity="MagicT\PadelUserBundle\Entity\PadelUser", inversedBy="reservatie", orphanRemoval=true, fetch="EAGER")
      * @ORM\JoinTable(
      *     name="ReservatieUsers",
-     *     joinColumns={@ORM\JoinColumn(name="reservatie_id", referencedColumnName="id", nullable=false)},
+     *     joinColumns={@ORM\JoinColumn(name="reservatie_id", referencedColumnName="id", nullable=false,onDelete="CASCADE")},
      *     inverseJoinColumns={@ORM\JoinColumn(name="padel_user_id", referencedColumnName="id", nullable=false)}
      * )
      * @MaxDepth(2) 
@@ -169,28 +171,7 @@ class Reservatie
         return $this->dateUpdated;
     }
 
-    /**
-     * Set createdBy
-     *
-     * @param integer $createdBy
-     * @return Reservatie
-     */
-    public function setCreatedBy($createdBy)
-    {
-        $this->createdBy = $createdBy;
-
-        return $this;
-    }
-
-    /**
-     * Get createdBy
-     *
-     * @return integer 
-     */
-    public function getCreatedBy()
-    {
-        return $this->createdBy;
-    }
+    
 
     /**
      * Set speler1
@@ -430,5 +411,28 @@ class Reservatie
     public function getPadelUser()
     {
         return $this->padelUser;
+    }
+
+    /**
+     * Set createdBy
+     *
+     * @param \MagicT\PadelUserBundle\Entity\PadelUser $createdBy
+     * @return Reservatie
+     */
+    public function setCreatedBy(\MagicT\PadelUserBundle\Entity\PadelUser $createdBy = null)
+    {
+        $this->createdBy = $createdBy;
+
+        return $this;
+    }
+
+    /**
+     * Get createdBy
+     *
+     * @return \MagicT\PadelUserBundle\Entity\PadelUser 
+     */
+    public function getCreatedBy()
+    {
+        return $this->createdBy;
     }
 }

@@ -45,6 +45,12 @@ class TypeVeld
     private $beschikbaar;
 
     /**
+     * @var  integer
+     * @ORM\Column(type="integer", nullable=false, name="MinimumSpelers", options={"default":0})
+     */
+    private $minimumspelers;
+
+    /**
      * @ORM\OneToMany(targetEntity="MagicT\PadelReservatieBundle\Entity\Veld", mappedBy="typeVeld")
      */
     private $velden;
@@ -172,5 +178,28 @@ class TypeVeld
     public function getVelden()
     {
         return $this->velden;
+    }
+
+    /**
+     * Set minimumspelers
+     *
+     * @param integer $minimumspelers
+     * @return Veld
+     */
+    public function setMinimumspelers($minimumspelers)
+    {
+        $this->minimumspelers = $minimumspelers;
+
+        return $this;
+    }
+
+    /**
+     * Get minimumspelers
+     *
+     * @return integer 
+     */
+    public function getMinimumspelers()
+    {
+        return $this->minimumspelers;
     }
 }

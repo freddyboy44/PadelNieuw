@@ -1,0 +1,85 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+{% if error %}
+    ... {{ error.messageKey|trans(error.messageData, 'security') }} ...
+{% endif %}
+
+<form id="loginformulier" action="{{ path("fos_user_security_check") }}" method="post">
+    <h2>Gelieve in te loggen</h2>
+    <label for="inputEmail" class="sr-only">Email :</label>
+    <input id="username" name="_username" value="{{ last_username }}" class="form-control" placeholder="Email" required autofocus>
+    <label for="inputPassword" class="sr-only">Wachtwoord :</label>
+    <input type="password" id="password" name="_password" class="form-control" placeholder="Wachtwoord" required>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" id="remember_me" name="_remember_me" value="on"> Onthoud me
+      </label>
+    </div>
+    <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" class="btn btn-lg btn-primary btn-block" type="submit">
+     <a href="connect/facebook" class="btn btn-block btn-social btn-facebook btn-white">
+      <i class="fa fa-twitter"></i> Log in met Facebook
+    </a>
+    <a  href="connect/google"class="btn btn-block btn-social btn-google btn-white">
+      <i class="fa fa-google"></i> Log in met Google
+    </a>
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+    <br/>
+    <a href="{{ path('fos_user_registration_register') }}">Registreren</a><br/>
+    <a href="#" data-target="#pwdvergeten" data-toggle="modal">Wachtwoord vergeten</a>
+</form>
+
+<div id="pwdvergeten" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+  <div class="modal-content">
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h2 class="text-center">Wachtwoord vergeten</h2>
+      </div>
+      <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request modalform">
+	      <div class="modal-body">
+	          <div class="col-md-12">
+	                <div class="panel panel-default">
+	                    <div class="panel-body">
+	                        <div class="text-center">
+	                          
+	                          <p>Als je je wachtwoord vergeten bent.<br/>
+	                          	Vul hier uw emailadres in.</p>
+	                            <div class="panel-body">
+	                                <fieldset>
+	                                    <div class="form-group">
+	                                        <input type="text" id="username" name="username" required="required" class="form-control"/>
+	                                    </div>
+	                                    <input class="btn btn-lg btn-primary btn-block" value="Verstuur" type="submit">
+	                                </fieldset>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	      </div>
+	  </form>
+      <div class="modal-footer">
+          <div class="col-md-12">
+          <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+		  </div>	
+      </div>
+  </div>
+  </div>
+</div>
+<script>
+function centerModals(){
+  $('.modal').each(function(i){
+    var $clone = $(this).clone().css('display', 'block').appendTo('body');
+    var top = Math.round(($clone.height() - $clone.find('.modal-content').height()) / 2);
+    top = top > 0 ? top : 0;
+    $clone.remove();
+    $(this).find('.modal-content').css("margin-top", top);
+  });
+}
+$('.modal').on('show.bs.modal', centerModals);
+$(window).on('resize', centerModals);
+</script>
+{% endblock fos_user_content %}

@@ -3,12 +3,16 @@
 namespace MagicT\PadelReservatieBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\MaxDepth;
 
 /**
  * Reservatie
  *
  * 
  * @ORM\Entity(repositoryClass="MagicT\PadelReservatieBundle\Entity\ReservatieRepository")
+ * @ExclusionPolicy("all")
  * 
  */
 class Reservatie
@@ -37,9 +41,10 @@ class Reservatie
     private $dateUpdated;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(type="integer", nullable=true, name="CreatedBy")
+     * @ORM\ManyToOne(
+     *     targetEntity="MagicT\PadelUserBundle\Entity\PadelUser", inversedBy="reservatie"
+     * )
+     * 
      */
     private $createdBy;
 
@@ -48,29 +53,7 @@ class Reservatie
      *
      * 
      */
-    private $speler1;
-
-    /**
-     * @var string
-     *
-     * 
-     */
-    private $speler2;
-
-    /**
-     * @var string
-     *
-     * 
-     */
-    private $speler3;
-
-    /**
-     * @var string
-     *
-     * 
-     */
-    private $speler4;
-
+    
     /**
      * @var boolean
      *
@@ -80,33 +63,41 @@ class Reservatie
 
     /**
      * @ORM\Column(type="date", nullable=true)
+     * @Expose
      */
     private $datum;
 
     /**
      * @ORM\Column(type="time", nullable=true)
+     * @Expose
      */
     private $startuur;
 
     /**
      * @ORM\ManyToOne(targetEntity="MagicT\PadelReservatieBundle\Entity\Veld", inversedBy="reservatie")
      * @ORM\JoinColumn(name="veld_id", referencedColumnName="id")
+     * @Expose
+     * @MaxDepth(2)
      */
     private $veld;
 
     /**
      * @ORM\ManyToOne(targetEntity="MagicT\PadelReservatieBundle\Entity\ReservatieType", inversedBy="reservaties")
      * @ORM\JoinColumn(name="reservatie_type_id", referencedColumnName="id")
+     * @MaxDepth(1)
+     * @Expose
      */
     private $reservatieType;
 
     /**
-     * @ORM\ManyToMany(targetEntity="MagicT\PadelUserBundle\Entity\PadelUser", inversedBy="reservatie", fetch="EAGER")
+     * @ORM\ManyToMany(targetEntity="MagicT\PadelUserBundle\Entity\PadelUser", inversedBy="reservatie", orphanRemoval=true, fetch="EAGER")
      * @ORM\JoinTable(
      *     name="ReservatieUsers",
      *     joinColumns={@ORM\JoinColumn(name="reservatie_id", referencedColumnName="id", nullable=false)},
      *     inverseJoinColumns={@ORM\JoinColumn(name="padel_user_id", referencedColumnName="id", nullable=false)}
      * )
+     * @MaxDepth(2) 
+     * @Expose
      */
     private $padelUser;
 
@@ -179,28 +170,7 @@ class Reservatie
         return $this->dateUpdated;
     }
 
-    /**
-     * Set createdBy
-     *
-     * @param integer $createdBy
-     * @return Reservatie
-     */
-    public function setCreatedBy($createdBy)
-    {
-        $this->createdBy = $createdBy;
-
-        return $this;
-    }
-
-    /**
-     * Get createdBy
-     *
-     * @return integer 
-     */
-    public function getCreatedBy()
-    {
-        return $this->createdBy;
-    }
+    
 
     /**
      * Set speler1
@@ -407,5 +377,38 @@ class Reservatie
     public function getReservatieType()
     {
         return $this->reservatieType;
+    }
+
+    /**
+     * Add padelUser
+     *
+     * @param \MagicT\PadelUserBundle\Entity\PadelUser $padelUser
+     * @return Reservatie
+     */
+    public function addPadelUser(\MagicT\PadelUserBundle\Entity\PadelUser $padelUser)
+    {
+        $this->padelUser[] = $padelUser;
+
+        return $this;
+    }
+
+    /**
+     * Remove padelUser
+     *
+     * @param \MagicT\PadelUserBundle\Entity\PadelUser $padelUser
+     */
+    public function removePadelUser(\MagicT\PadelUserBundle\Entity\PadelUser $padelUser)
+    {
+        $this->padelUser->removeElement($padelUser);
+    }
+
+    /**
+     * Get padelUser
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPadelUser()
+    {
+        return $this->padelUser;
     }
 }

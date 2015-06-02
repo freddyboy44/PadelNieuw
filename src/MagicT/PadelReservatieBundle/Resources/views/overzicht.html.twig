@@ -7,6 +7,9 @@
 	{{ parent() }}
 	{% javascripts
         'bundles/padelsite/js/jquery.autocomplete.min.js'
+        'bundles/padelsite/js/bootstrap-datepicker.min.js'
+        'bundles/padelsite/js/bootstrap-datepicker.nl-BE.min.js'
+
     %}
     <script src="{{ asset_url }}"></script>
             {% endjavascripts %}
@@ -16,15 +19,30 @@
 	
 	
 	<div class="overzichtreservaties">
+		<div id="gebruiker" style="display:none">{{ is_granted('ROLE_SUPER_ADMIN') ? '1' }}</div>
+		<div id="userid" style="display:none">{{ app.user.id }}</div>
+		<div id="usernaam" style="display:none">{{ app.user.firstname ~ " " ~ app.user.lastname }}</div>
+		<div id="reserverenmogelijk" style="display:none">{{ magreserveren == false ? '0' : '1' }}</div>
+		<div id="naamveldhidden" style="display:none"></div>
+		<div id="currentuserid" style="display:none">{{ app.user.id }}</div>
+		<div id="maximumreservaties" style="display:none">{{ app.user.maxaantalreservaties }}</div>
 		<div class="controls">
-			<div id="datumvorige" class="col-xs-3">
-				<i class="fa  fa-angle-double-left">&nbsp;&nbsp;{{ "yesterday"|localizeddate('none', 'none', 'nl_NL', null, "cccc d MMMM") }}</i>
+			<div id="datumvorige" class="col-xs-1" style="visibility: hidden;">
+				<i class="fa fa-2x fa-angle-double-left"></i>
 			</div>
 			<div id="datumvandaag" class="col-xs-6">
-				{{ "now"|localizeddate('none', 'none', 'nl_NL', null, "cccc d MMMM") }}
+				<div class="input-group date">
+				  <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input id="datumvandaagvalue" type="text" class="form-control" value="{{ "now"|localizeddate('none', 'none', 'nl_NL', null, "cccc d MMMM") }}">
+				</div>
+				
 			</div>
-			<div id="datumvolgende" class="col-xs-3">
-				<i class="fa ">{{ "tomorrow"|localizeddate('none', 'none', 'nl_NL', null, "cccc d MMMM") }}</i>&nbsp;&nbsp;<i class="fa  fa-angle-double-right"></i>
+			<div id="datumweek" class="col-xs-3">
+				<div id="dagenweek" class="row">
+					
+				</div>
+			</div>
+			<div id="datumvolgende" class="col-xs-1">
+				<i class="fa fa-2x fa-angle-double-right"></i>
 			</div>
 			<span id="datumvandaaghidden" style="display: none">{{ "now"|date("m/d/Y") }}</span>
 		</div>
@@ -36,6 +54,7 @@
 				{% for veld in velden %}
 				    <th>
 				    	{{ veld.naam }}<br/>
+				    	<span id="aantalopveld{{ veld.volgorde }}" style="display:none">{{ veld.typeveld.minimumspelers }}</span>
 				    	<span class="overdekt">
 				    		{% if veld.overdekt %}
 				    			<img data-toggle="tooltip" data-placement="bottom" title="Overdekt" class="icoon-veld" src="/bundles/padelreservatie/images/overdekt.png" alt="Dubbelveld" />
@@ -109,6 +128,69 @@
 			
 		</table>
 	</div>
+	
+	<div id="modalreserverennietmogelijk" class="modal fade">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <!-- <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title">Reserveren niet mogelijk</h4>
+	      </div> -->
+	      <div class="modal-body">
+	        <p>Reserveren is momomenteel niet mogelijk.</p>
+	        <p>U kan maximum 1 reservatie doen</p>
+	        <p>Bekijk <a href="#">hier</a> uw reservaties</p>
+	        <p>Indien er een fout in het spel is, verwittig ons zo spoeding mogelijk! </p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+	<div id="modalverwijderen" class="modal fade">
+		<div id="verwijderid" style="display:hidden"></div>
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <!-- <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title">Reserveren niet mogelijk</h4>
+	      </div> -->
+	      <div class="modal-body">
+	      	<H1>Verwijderen</H1>
+	      	<p>
+	      		Bent u zeker dat u de reservatie met de volgende gegevens wenst te verwijderen ?
+	      	</p>
+	      	<div class="row">
+	        	<div class="col-xs-4 labeltje">
+	        		Datum :
+	        	</div>
+	        	<div id="verwijderreservatiedatum" class="col-xs-8">
+	        		26/05/2015
+	        	</div>
+	        	<div class="col-xs-4 labeltje">
+	        		Uur :
+	        	</div>
+	        	<div id="verwijderreservatieuur" class="col-xs-8">
+	        		16:00 - 17:00
+	        	</div>
+	        	<div class="col-xs-4 labeltje">
+	        		Veld :
+	        	</div>
+	        	<div id="verwijderreservatieveld" class="col-xs-8">
+	        		1 
+	        	</div>
+	        </div>
+	      </div>
+	      <div class="modal-footer">
+	      	<button type="button" id="deletereservatie" class="btn btn-primary">Verwijder</button>
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Annuleer</button>
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
 	<div id="modalbevestig" class="modal fade">
 	  <div class="modal-dialog">
 	    <div class="modal-content">
@@ -118,35 +200,53 @@
 	      </div>
 	      <div class="modal-body">
 	        <div class="row">
-	        	<div class="col-sm-4">
-	        		<label>Datum :</label>
+	        	<div class="col-xs-4 labeltje">
+	        		Datum :
 	        	</div>
-	        	<div id="reservatiedatum" class="col-sm-8">
+	        	<div id="reservatiedatum" class="col-xs-8">
 	        		26/05/2015
 	        	</div>
-	        	<div class="col-sm-4">
-	        		<label>Uur :</label>
+	        	<div class="col-xs-4 labeltje">
+	        		Uur :
 	        	</div>
-	        	<div id="reservatieuur" class="col-sm-8">
+	        	<div id="reservatieuur" class="col-xs-8">
 	        		16:00 - 17:00
 	        	</div>
-	        	<div class="col-sm-4">
-	        		<label>Veld :</label>
+	        	<div class="col-xs-4 labeltje">
+	        		Veld :
 	        	</div>
-	        	<div id="reservatieveld" class="col-sm-8">
+	        	<div id="reservatieveld" class="col-xs-8">
 	        		1 
 	        	</div>
 	        </div>
 	        <div class="row medespelers">
-				<div class="col-sm-4">
-					<span class="medespelers">Medespelers :</span>
+				<div class="col-xs-4 labeltje">
+					<div class="medespelers ">Medespelers :</div>
+					<div class="minimumspelers labeltje"></div>
+					<div class="minimumspelershidden" style="display:none"></div>
 	        	</div>
-	        	<div class="col-sm-8">
+	        	<div class="col-xs-8">
 					<div id="searchfield">
-						<input type="text" name="zoekspeler" class="biginput" id="autocomplete">
+						<input type="text" name="zoekspeler" class="biginput" id="autocomplete" placeholder="Zoek een lid">
 					</div><!-- @end #searchfield -->
 					<div id="outputbox">
-					  	<p id="outputcontent"></p>
+						<div class="lijstmedespelershidden" style="display:none"></div>
+						<table class="lijstmedespelers table table-striped">
+							<tr>
+								<th>
+									#
+								</th>
+								<th>
+									Id
+								</th>
+								<th>
+									Naam
+								</th>
+								<th></th>
+
+							</tr>
+							<span id="outputcontent"></span>
+						</table>
 					</div>
  
 	        	</div>
@@ -155,7 +255,7 @@
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Sluit</button>
-	        <button type="button" class="btn wit btn-primary">Bevestig</button>
+	        <button type="button" id="maakreservatie" class="btn wit btn-primary disabled">Bevestig</button>
 	      </div>
 	    </div><!-- /.modal-content -->
 	  </div><!-- /.modal-dialog -->
@@ -163,21 +263,104 @@
 	<div class="modalloading"><!-- Place at bottom of page --></div>
 
 	<script>
-	$(function() {
-	    	
+		function laadWeekdagen(){
+			$datum = $('#datumvandaagvalue').val();
+			moment.locale('nl');
+			$nieuwedag = moment($datum,"dddd DD MMMM");
+			$('#dagenweek').html("");
 
-	  var leden = [{% for lid in leden %}{ id: {{ lid.id }}, value: '{{ lid.firstname }} {{ lid.lastname }}', geboortedatum: '{{ lid.geboortedatum }}' } {{ not loop.last ? ',' }}{% endfor %}];
+			for($teller=1;$teller<5;$teller++){
+				$nieuwedag.add(1,"d");
+				var $html = "<div date-id='" + $teller + "' class='col-xs-3'>" + $nieuwedag.format('dd DD') + "</div>";
+				$('#dagenweek').html($('#dagenweek').html()+ $html);
+				console.log($nieuwedag.format('dddd DD MM'));
+			}
+		}
 
+		$(document).ready(function(){
+			$('.lijstmedespelershidden').html($('.lijstmedespelers').html());
+			console.log($('.lijstmedespelershidden').html());
+			laadWeekdagen();
+			
+		})
+
+		moment.locale('nl');
+	   $('.input-group.date').datepicker({
+		    format: "DD dd MM",
+		    todayBtn: "linked",
+		    autoclose: true,
+		    todayHighlight: true,
+		    language: "nl-BE",
+		    orientation: "top",
+		    startDate: moment().format('dddd DD MMMM')
+		}).on('changeDate', function(){
+			$datum = $('#datumvandaagvalue').val();
+			
+			$nieuwedag = moment($datum,"dddd DD MMMM");
+			//console.log($nieuwedag);
+			LaadVoorDatum($nieuwedag.toDate());
+		});
+
+
+	  var leden = [{% for lid in leden %}{ id: {{ lid.id }}, value: '{{ lid.firstname }} {{ lid.lastname }}', geboortedatum: '{{ lid.dateofbirth|date('d/m/Y') }}' } {{ not loop.last ? ',' }}{% endfor %}];
+	  var geselecteerd = [];
+	  
 	  $('#autocomplete').autocomplete({
 		  lookup: leden,
+		  showNoSuggestionNotice: true,
+		  noSuggestionNotice: 'Geen leden gevonden',
 		  onSelect: function (suggestion) {
-		    var thehtml = '<strong>Naam:</strong> ' + suggestion.value + ' <br> <strong>Id:</strong> ' + suggestion.id;
-		    $('#outputcontent').html(thehtml);
+		  	
+		  	if($.inArray(suggestion.value, geselecteerd)==-1){
+				aantalingevuld = $('.lijstmedespelers tr').length;  	
+			  	var thehtml = '<tr id="rij' + aantalingevuld + '"><td>' + aantalingevuld + '</td><td>' + suggestion.id + '</td><td>' +   suggestion.value + '</td><td><i id="verwijderspeler' + aantalingevuld + '" class="verwijderspeler fa fa-trash-o"></i></td>';
+			  	$('.lijstmedespelers tr:last').after(thehtml);
+			  	geselecteerd.push(suggestion.value);
+			  	$(this).autocomplete('clearCache');
+			  	ControleerVoldoendeSpelers();
+		  	}
+		  	$('#autocomplete').val('');
+
 		  }
-	});
+		});
+
+	  $('body').on('click', '.verwijderspeler', function() {
+		    //console.log($(this).parent().parent().attr('id'));
+		    $(this).parent().parent().remove();
+
+		    $parentrij = $(this).parent().parent();
+
+		    $naamveld = $parentrij.find('td:nth-child(3)');
+		    $naam = $naamveld.html();
+		    $index = geselecteerd.indexOf($naam);
+		    $parentrij.remove();
+		    if($index>-1){
+		    	geselecteerd.splice($index,1);
+		    }
+		    $('#autocomplete').val('');
+		    $('#autocomplete').autocomplete('clearCache');
+		    
+		    //console.log($naamveld);
+
+		});
+
+	  function ControleerVoldoendeSpelers(){
+	  	$aantalnodig = $('.minimumspelershidden').html();
+	  	$aantalingevuld = parseInt($('.lijstmedespelers tr').length)-1;
+
+	  	console.log("Er zijn er " + $aantalnodig + " nodig en er zijn er " + $aantalingevuld + " ingevuld " );
+
+	  	if($aantalingevuld<$aantalnodig){
+	  		$('.minimumspelers').css("display","inline-block");
+			$('#maakreservatie').addClass('disabled');
+	  	}else{
+	  		$('.minimumspelers').css("display","none");
+			$('#maakreservatie').removeClass('disabled');
+	  	}
+	  }
 
 
-	  });
+	 
 	
 		function reposition() {
 	      var modal = $(this),
@@ -192,22 +375,30 @@
 		$('#modalload').on('show.bs.modal', reposition);
 		$('#modalload:visible').each(reposition);
 
-	</script>
 
-
-
-	<script>
+	
 
 		{% for veld in reservatiesperveld %}
+			{% set verwijdermogelijk = false %}
 			{% for reservatie in veld %}
 				{% set naam = "" %}
+				{% set speleradmin = false %}
 				{% for speler in reservatie.padelUser %}
 					{% set naam = naam ~ speler.firstname ~ " " ~ speler.lastname %}
 					{% if not loop.last %}
 						{% set naam = naam ~ "<br>" %}
 					{% endif %}
+					{% if speler.id == app.user.id %}
+						{% set speleradmin = true %}
+					{% endif %}
+					{% if speler == app.user and not is_granted('ROLE_SUPER_ADMIN') %}
+						{% set verwijdermogelijk = true %}
+						{% set naam = naam ~ "<span data-id='" ~ reservatie.id ~ "' class='verwijderreservatie'><i class='fa fa-trash-o'></i></span>" %}
+					{% endif %}	
 				{% endfor %}
-				
+				{% if is_granted('ROLE_SUPER_ADMIN')  %}
+					{% set naam = naam ~ "<span data-id='" ~ reservatie.id ~ "' class='verwijderreservatie'><i class='fa fa-trash-o'></i></span>" %}
+				{% endif %}
 
 				{% set startuur = reservatie.startuur|date("H:i")|replace(':','t') %}
 				{% set veldid = 'veld' ~ reservatie.veld.volgorde ~ startuur %}
@@ -216,30 +407,48 @@
 
 				$veld.addClass('{{ reservatie.reservatietype.naam }}');
 				$veld.removeClass('vrij');
-				$veld.html('{{ naam|raw }}');
-
-
-				
-				
-
+				$veld.html("{{ naam|raw }}");
 
 			{% endfor %}
 		{% endfor %}
 		$(function () {
 		  $('[data-toggle="tooltip"]').tooltip()
 		})
-		$('.vrij').click(function(){
-			$naamveld = $(this).attr('id');
-			$nummerveld = $naamveld.substr(4,1);
-			$uur = $naamveld.substr(5,2);
-			$minuten = $naamveld.substr(8,2);
-			console.log("We spelen op veld " + $nummerveld + " van " + $uur + ":" + $minuten);
-			$datum = $('#datumvandaag').html();
-			$('#reservatieveld').html($nummerveld);
-			$('#reservatiedatum').html($datum);
-			$('#reservatieuur').html($uur + ":" + $minuten + " - " + (parseInt($uur)+1) + ":" + $minuten);
 
-			$('.modal').modal();
+		$('.vrij').click(function(){
+
+			if(!$(this).hasClass('bezet')){
+				if($('#reserverenmogelijk').html()=="1"){
+					thehtml = "";
+					aantalingevuld = $('.lijstmedespelers tr').length;  	
+					$('.lijstmedespelers').html($('.lijstmedespelershidden').html());
+				  	var thehtml = '<tr id="rij' + aantalingevuld + '"><td>' + aantalingevuld + '</td><td>' + $('#userid').html() + '</td><td>' + $('#usernaam').html() + '</td><td>';
+				  	if($('#gebruiker').html()==1){
+				  		thehtml = thehtml + '<i id="verwijderspeler' + aantalingevuld + '" class="verwijderspeler fa fa-trash-o"></i></td>';
+				  	}
+				  	$('.lijstmedespelers tr:last').after(thehtml);
+				  	geselecteerd.push($('#usernaam').html());
+
+					$naamveld = $(this).attr('id');
+					$('#naamveldhidden').html($naamveld);
+					$nummerveld = $naamveld.substr(4,1);
+					$uur = $naamveld.substr(5,2);
+					$minuten = $naamveld.substr(8,2);
+					$datum = $('#datumvandaagvalue').val();
+					//alert($datum);
+					$('#reservatieveld').html($nummerveld);
+					$('#reservatiedatum').html($datum);
+					$('#reservatieuur').html($uur + ":" + $minuten + " - " + (parseInt($uur)+1) + ":" + $minuten);
+					$naamaantal = '#aantalopveld'+ $nummerveld;
+					$aantalspelers = $($naamaantal).html();
+					$('.minimumspelers').html("Minimum " + $aantalspelers + " spelers");
+					$('.minimumspelershidden').html($aantalspelers);
+					ControleerVoldoendeSpelers();
+					$('#modalbevestig').modal();
+				}else{
+					$('#modalreserverennietmogelijk').modal();
+				}
+			}
 		})
 
 		function reposition() {
@@ -253,10 +462,13 @@
 	  }
 	  
 	  $('#modalbevestig').on('show.bs.modal', reposition);
+	  $('#modalreserverennietmogelijk').on('show.bs.modal', reposition);
+	  $('#modalverwijderen').on('show.bs.modal', reposition);
 	  
 	    // Reposition when the window is resized
 	  $(window).on('resize', function() {
 	      $('#modalbevestig:visible').each(reposition);
+	      $('#modalreserverennietmogelijk:visible').each(reposition);
 	      
 	  });
 
@@ -278,17 +490,13 @@
 	  });
 
 	  function LaadVoorDatum($datum){
+	  	geselecteerd = [];
+	  	$('.lijstmedespelers').html($('.lijstmedespelershidden').html());
 	  	console.log("We laden voor datum : " + $datum);
-	  	//alert(Routing.generate('reservatie_op_datum', {"datum": $datum}));
-	  	//
 	  	$dag = $datum.getDate();
-	  	//$dag = 27;
 	  	$maand = parseInt($datum.getMonth())+1;
-
 	  	$jaar = $datum.getFullYear();
 	  	
-	  	moment.locale('nl');
-
 	  	$nieuwedag = moment($datum);
 	  	$nieuwevorigedag = moment($datum);
 	  	$nieuwevolgendedag = moment($datum);
@@ -296,12 +504,20 @@
 	  	$nieuwedag.locale('nl');
 	  	$nieuwevorigedag.subtract(1, "day");
 	  	$nieuwevolgendedag.add(1,"day");
-	  		  	
-		$('#datumvandaag').html($nieuwedag.format('dddd DD MMMM'));
-		$('#datumvorige').html($nieuwevorigedag.format('dddd DD MMMM'));
-		$('#datumvolgende').html($nieuwevolgendedag.format('dddd DD MMMM'));
-		$('#datumvandaaghidden').html($nieuwedag.format(''));
 
+	  	if($nieuwedag>moment()){
+	  		console.log("we zouden het moeten kunnen ");
+	  		$('#datumvorige').css('visibility','visible');
+	  	}else{
+	  		$('#datumvorige').css('visibility','hidden');
+	  	}
+	  		  	
+		//$('#datumvandaag').html($nieuwedag.format('dddd DD MMMM'));
+		//$('#datumvorige').html('<i class="fa fa-angle-double-left">&nbsp;&nbsp;' + $nieuwevorigedag.format('dddd DD MMMM') + '</i>');
+		//$('#datumvolgende').html('<i class="fa ">' + $nieuwevolgendedag.format('dddd DD MMMM') + '</i>&nbsp;&nbsp;<i class="fa  fa-angle-double-right"></i>'  );
+		$('#datumvandaagvalue').val($nieuwedag.format('dddd DD MMMM'));
+		$('#datumvandaaghidden').html($nieuwedag.format(''));
+		laadWeekdagen();
 	  	$('#modalload').modal('show');
 
 	  
@@ -335,23 +551,122 @@
             	$($veldnaam).removeClass('vrij');
 
             	$spelers = "";
+            	$currentuserid = $('#currentuserid').html();
+            	$speleradmin = false;
             	jQuery.each(item.padel_user, function(indexspeler, speler) {
             		$spelers = $spelers + speler.firstname + " " + speler.lastname + "<br/>";
+            		if(speler.id == $currentuserid | $('#gebruiker').html()==1){
+            			$speleradmin = true;
+            		}
             	})
             	if($spelers.length){
             		$spelers = $spelers.substr(0,($spelers.length-5));
+            	}
+            	if($speleradmin){
+            		$spelers = $spelers + "<span data-id='" + item.id + "' class='verwijderreservatie'><i class='fa fa-trash-o'></i></span>";
             	}
             	$($veldnaam).html($spelers);
 
         	});
 
 		  })
-		  .fail(function( data, statuscode ) {
-		    alert("Fout");
+		  .fail(function( data, statusCode ) {
+		  	
+		    	window.location = Routing.generate('fos_login_js');
+		    
 		  });
 
 		$('#modalload').modal('hide');
 	  }
+
+	  $('#maakreservatie').click(function(){
+	  	$naamveld = $('#naamveldhidden').html();
+	  	$nummerveld = $naamveld.substr(4,1);
+		$uur = $naamveld.substr(5,2);
+		$minuten = $naamveld.substr(8,2);
+		$datum = $('#datumvandaagvalue').val();
+		moment.locale('nl');
+		$nieuwedag = moment($datum,"dddd DD MMMM");
+		console.log("We hebben veld " + $nummerveld + " om " + $uur + ":" + $minuten + " op " + $nieuwedag.toDate());
+		$users = "";
+		$teller = 1;
+		$('.lijstmedespelers > tbody > tr').each(function(){
+			$id = String($(this).attr('id'));
+			console.log("Id : " + $id.indexOf('rij'));
+
+			if($id.indexOf('rij')==0){
+				$userid = $(this).children('td:nth-child(2)').html();
+				$users = $users + $userid + ",";
+				$teller++;
+			}
+			
+		});
+		console.log("Usersvoor: " + $users);
+		if($users.length > 0){
+			$users = $users.substr(0, $users.length - 1);
+		}
+
+		console.log("users: "  + $users);
+	  	if(true){
+		  	$.ajax({
+		  		method:'POST',
+		  		data: {
+		  			'nummerveld': $nummerveld,
+		  			'startuur' : $uur + ":" + $minuten + ":00",
+		  			'datum' : $nieuwedag.format("YYYY-MM-DD"),
+		  			'reservatietype': 1,
+		  			'users' : { $users }
+		  		},
+			  url: Routing.generate('saveajaxreservatie'),
+			}).done(function() {
+				if($('#maximumreservaties').html()!=0){
+					$('#reserverenmogelijk').html('0');	
+				}
+				
+				$( this ).addClass( "done" );
+			  	$('.modal').modal('hide');
+				LaadVoorDatum($nieuwedag.toDate());
+			  	
+			})
+		}
+	  })
+
+		$('td').on('click', '.verwijderreservatie', function(){
+			console.log($(this));
+			$reservatieid = $(this).data('id');
+			$naamveld = $(this).parent().attr('id');
+			$nummerveld = $naamveld.substr(4,1);
+			$uur = $naamveld.substr(5,2);
+			$minuten = $naamveld.substr(8,2);
+			$datum = $('#datumvandaagvalue').val();
+			$('#verwijderreservatieveld').html($nummerveld);
+			$('#verwijderreservatiedatum').html($datum);
+			$('#verwijderreservatieuur').html($uur + ":" + $minuten + " - " + (parseInt($uur)+1) + ":" + $minuten);
+			console.log("We moeten reservatie op veld " + $nummerveld + " op " + $datum + " om " + $uur + ":" + $minuten + " verwijderen");
+			$('#verwijderid').html($reservatieid);
+			$('#modalverwijderen').modal();
+			
+		})
+
+		$('#deletereservatie').click(function(){
+			$datum = $('#datumvandaagvalue').val();
+			moment.locale('nl');
+			$nieuwedag = moment($datum,"dddd DD MMMM");
+			$reservatieid = $('#verwijderid').html();
+			$.ajax({
+		  		method:'DELETE',
+		  		data: {
+		  			'reservatieid': $reservatieid
+		  		},
+			  url: Routing.generate('verwijderajaxreservatie'),
+			}).done(function() {
+				
+				$( this ).addClass( "done" );
+			  	$('#modalverwijderen').modal('hide');
+				LaadVoorDatum($nieuwedag.toDate());
+			  	
+			})
+		})
 
 
 	</script>

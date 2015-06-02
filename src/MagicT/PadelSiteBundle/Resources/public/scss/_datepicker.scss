@@ -1,0 +1,7 @@
+.datepicker {
+	color: $blauwekleur;
+	.disabled.day, .disabled.day:hover {
+		color: lighten($blauwekleur,25%);
+	}
+
+}

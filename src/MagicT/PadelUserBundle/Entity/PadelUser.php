@@ -89,12 +89,23 @@ class PadelUser extends BaseUser
      * @ORM\ManyToMany(targetEntity="PadelGroup")            
      * @ORM\JoinTable(name="padel_user_group")       
      */                                                 
-    protected  $groups; 
+    protected $groups; 
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $maxaantalreservaties=1;
 
     /**
      * @ORM\OneToMany(targetEntity="MagicT\PadelUserBundle\Entity\LidmaatschapTransactie", mappedBy="padelUser")
      */
     protected $lidmaatschapTransacties;
+
+    /**
+     * @ORM\OneToMany(targetEntity="MagicT\PadelReservatieBundle\Entity\Reservatie", mappedBy="createdBy")
+     */
+    protected $reservatie;
+
 
 
     
@@ -102,7 +113,7 @@ class PadelUser extends BaseUser
     public function __construct()
     {
         parent::__construct();
-        $this->islid = $this->getIsLid();
+        //$this->islid = $this->getIsLid();
         // your own logic
         
     }
@@ -506,4 +517,64 @@ class PadelUser extends BaseUser
     }
 
     
+
+    /**
+     * Set maxaantalreservaties
+     *
+     * @param integer $maxaantalreservaties
+     * @return PadelUser
+     */
+    public function setMaxaantalreservaties($maxaantalreservaties)
+    {
+        $this->maxaantalreservaties = $maxaantalreservaties;
+
+        return $this;
+    }
+
+    /**
+     * Get maxaantalreservaties
+     *
+     * @return integer 
+     */
+    public function getMaxaantalreservaties()
+    {
+        return $this->maxaantalreservaties;
+    }
+
+    
+
+    
+
+    /**
+     * Add reservatie
+     *
+     * @param \MagicT\PadelReservatieBundle\Entity\Reservatie $reservatie
+     * @return PadelUser
+     */
+    public function addReservatie(\MagicT\PadelReservatieBundle\Entity\Reservatie $reservatie)
+    {
+        $this->reservatie[] = $reservatie;
+
+        return $this;
+    }
+
+    /**
+     * Remove reservatie
+     *
+     * @param \MagicT\PadelReservatieBundle\Entity\Reservatie $reservatie
+     */
+    public function removeReservatie(\MagicT\PadelReservatieBundle\Entity\Reservatie $reservatie)
+    {
+        $this->reservatie->removeElement($reservatie);
+    }
+
+    /**
+     * Get reservatie
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getReservatie()
+    {
+        return $this->reservatie;
+    }
 }
