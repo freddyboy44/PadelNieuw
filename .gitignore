@@ -9,3 +9,4 @@
 /composer.phar
 /vendor/
 /web/bundles/
+/src/MagicT/PadelSiteBundle/Resources/public/.sass-cache/

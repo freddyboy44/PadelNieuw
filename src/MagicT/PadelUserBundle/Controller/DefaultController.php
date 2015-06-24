@@ -20,7 +20,7 @@ class DefaultController extends Controller
         $product = $this->getDoctrine()
         ->getRepository('PadelUserBundle:PadelUser')
         ->find(6);
-        dump($product);
+        //dump($product);
         die();
     }
 

@@ -25,9 +25,13 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        <div class="volledigepagina">
-        {% include 'menu.twig' %}
+        
+            {% include 'menu.twig' %}
+        
+        {% block fullpage %}
+            <div class="volledigepagina">
         {% block body %}
+            
             {% macro test() %}
             
             {% for pagina in paginas %}
@@ -110,9 +114,10 @@
                 {{ _self.test() }}
                 {% include 'newscontrole.twig' %}
             </div>
-        {% endblock %}
+            {% endblock %} 
 
-        {% endblock %}
+        {% endblock %} <!-- body -->
         </div>
+    {% endblock %} <!-- fullpage -->
     </body>
 </html>

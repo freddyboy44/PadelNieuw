@@ -70,7 +70,8 @@ class DefaultController extends Controller
             $reservatie->setDatum($datum);
             $reservatie->setStartUur($startuur);
 
-            dump($reservatie);
+            //
+            //dump($reservatie);
 
             $em->persist($reservatie);
             $em->flush();
@@ -116,7 +117,7 @@ class DefaultController extends Controller
         $reservatie->setReservatieType($em->getRepository('PadelReservatieBundle:ReservatieType')->find($reservatietype));
         $reservatie->setDatum($datum);
         $users = explode(",", join($users));
-        dump($reservatie);
+        //dump($reservatie);
 
         foreach($users as $speler){
             $padelspeler = $em->getRepository('PadelUserBundle:PadelUser')->find($speler);

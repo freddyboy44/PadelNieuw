@@ -49,7 +49,12 @@ class LidmaatschapTransactie
 
     public function __toString()
     {
-        return $this->getLidmaatschap()->getNaam();
+        if(!is_null($this->getLidmaatschap())){
+            return $this->getLidmaatschap()->getNaam();
+        }
+        return "fout";
+
+        
     }
 
     public function __construct()

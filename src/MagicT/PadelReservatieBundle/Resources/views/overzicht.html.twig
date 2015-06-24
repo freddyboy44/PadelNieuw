@@ -15,7 +15,7 @@
             {% endjavascripts %}
 
 {% endblock %}
-{% block body %}
+{% block fullpage %}
 	
 	
 	<div class="overzichtreservaties">
@@ -269,13 +269,15 @@
 			$nieuwedag = moment($datum,"dddd DD MMMM");
 			$('#dagenweek').html("");
 
-			for($teller=1;$teller<5;$teller++){
+			for($teller=1;$teller<7;$teller++){
 				$nieuwedag.add(1,"d");
-				var $html = "<div date-id='" + $teller + "' class='col-xs-3'>" + $nieuwedag.format('dd DD') + "</div>";
+				var $html = "<div data-id='" + $teller + "' class='dag col-xs-2'><span class='dagletters'>" + $nieuwedag.format('dd') + "</span><span class='dagcijfers'>" + $nieuwedag.format('DD') + "</span></div>";
 				$('#dagenweek').html($('#dagenweek').html()+ $html);
-				console.log($nieuwedag.format('dddd DD MM'));
+				//console.log($nieuwedag.format('dddd DD MM'));
 			}
 		}
+
+
 
 		$(document).ready(function(){
 			$('.lijstmedespelershidden').html($('.lijstmedespelers').html());
@@ -334,6 +336,7 @@
 		    $naam = $naamveld.html();
 		    $index = geselecteerd.indexOf($naam);
 		    $parentrij.remove();
+
 		    if($index>-1){
 		    	geselecteerd.splice($index,1);
 		    }
@@ -635,6 +638,8 @@
 			console.log($(this));
 			$reservatieid = $(this).data('id');
 			$naamveld = $(this).parent().attr('id');
+			$spelers = $(this).html();
+			console.log($spelers);
 			$nummerveld = $naamveld.substr(4,1);
 			$uur = $naamveld.substr(5,2);
 			$minuten = $naamveld.substr(8,2);
@@ -668,6 +673,21 @@
 			})
 		})
 
+		$('body').on('click', 'div.dag',function(){
+
+			$hoeveeldagen = parseInt($(this).data('id'));
+			$datum = $('#datumvandaagvalue').val();
+			moment.locale('nl');
+			$nieuwedag = moment($datum,"dddd DD MMMM");
+			console.log("Hoevel dagen: " + $hoeveeldagen);
+			$nieuwedag = moment($datum,"dddd DD MMMM").add($hoeveeldagen, "d");
+			console.log($nieuwedag);
+			//$nieuwedag  = $nieuwedag.add($hoeveeldagen);
+			LaadVoorDatum($nieuwedag.toDate());
+
+		})
+			
+			
 
 	</script>
 {% endblock %}

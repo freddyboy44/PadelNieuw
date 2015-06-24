@@ -1564,12 +1564,17 @@
   color: #25aae1;
 }
 
-/* line 3, ../scss/_reservatie.scss */
+/* line 1, ../scss/_reservatie.scss */
+.overzichtreservaties {
+  width: 98%;
+  margin: auto;
+}
+/* line 4, ../scss/_reservatie.scss */
 .overzichtreservaties img.icoon-veld {
   max-height: 12px;
   width: auto;
 }
-/* line 8, ../scss/_reservatie.scss */
+/* line 9, ../scss/_reservatie.scss */
 .overzichtreservaties .controls {
   text-align: center;
   display: block;
@@ -1582,23 +1587,23 @@
   border-bottom: none;
 }
 @media (min-width: 1200px) {
-  /* line 8, ../scss/_reservatie.scss */
+  /* line 9, ../scss/_reservatie.scss */
   .overzichtreservaties .controls {
     padding: 40px 0px;
   }
 }
-/* line 23, ../scss/_reservatie.scss */
+/* line 24, ../scss/_reservatie.scss */
 .overzichtreservaties .controls #datumvorige, .overzichtreservaties .controls #datumvolgende {
   font-size: 16px;
   cursor: pointer;
 }
-/* line 28, ../scss/_reservatie.scss */
+/* line 29, ../scss/_reservatie.scss */
 .overzichtreservaties .controls #datumvandaag .input-group {
   margin: auto;
   width: 100%;
   max-width: 300px;
 }
-/* line 33, ../scss/_reservatie.scss */
+/* line 34, ../scss/_reservatie.scss */
 .overzichtreservaties .controls #datumvandaag input {
   background-color: #25aae1;
   box-shadow: none;
@@ -1608,13 +1613,21 @@
   text-transform: uppercase;
   font-size: 22px;
 }
-/* line 42, ../scss/_reservatie.scss */
+/* line 43, ../scss/_reservatie.scss */
+.overzichtreservaties .controls #datumvandaag input:hover {
+  cursor: pointer;
+}
+/* line 46, ../scss/_reservatie.scss */
 .overzichtreservaties .controls #datumvandaag .input-group-addon {
   background-color: #25aae1;
   color: white;
   border: none;
 }
-/* line 48, ../scss/_reservatie.scss */
+/* line 52, ../scss/_reservatie.scss */
+.overzichtreservaties .controls #datumvandaag:hover {
+  cursor: pointer;
+}
+/* line 56, ../scss/_reservatie.scss */
 .overzichtreservaties .controls #datumvorige, .overzichtreservaties .controls #datumvandaag, .overzichtreservaties .controls #datumvolgende, .overzichtreservaties .controls #datumweek {
   position: relative;
   top: 50%;
@@ -1623,110 +1636,144 @@
   transform: translateY(-50%);
   text-transform: uppercase;
 }
-/* line 53, ../scss/_reservatie.scss */
+/* line 61, ../scss/_reservatie.scss */
 .overzichtreservaties .controls #datumweek {
   text-transform: uppercase;
   font-size: 22px;
 }
-/* line 59, ../scss/_reservatie.scss */
+/* line 64, ../scss/_reservatie.scss */
+.overzichtreservaties .controls #datumweek .dag {
+  padding: 0;
+}
+/* line 67, ../scss/_reservatie.scss */
+.overzichtreservaties .controls #datumweek .dag:hover {
+  cursor: pointer;
+}
+/* line 70, ../scss/_reservatie.scss */
+.overzichtreservaties .controls #datumweek .dagletters, .overzichtreservaties .controls #datumweek .dagcijfers {
+  text-transform: uppercase;
+  width: 95%;
+  float: left;
+}
+/* line 75, ../scss/_reservatie.scss */
+.overzichtreservaties .controls #datumweek .dagletters {
+  background-color: white;
+  color: #25aae1;
+  text-align: center;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+/* line 82, ../scss/_reservatie.scss */
+.overzichtreservaties .controls #datumweek .dagcijfers {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border: solid 1px white;
+}
+/* line 90, ../scss/_reservatie.scss */
 .overzichtreservaties table {
   width: 100%;
 }
-/* line 61, ../scss/_reservatie.scss */
+/* line 92, ../scss/_reservatie.scss */
 .overzichtreservaties table th, .overzichtreservaties table td.uur {
   background-color: white;
   color: #25aae1;
   text-align: center;
   width: 12.5%;
 }
-/* line 67, ../scss/_reservatie.scss */
+/* line 98, ../scss/_reservatie.scss */
 .overzichtreservaties table td.veld, .overzichtreservaties table td.uur {
   vertical-align: middle;
   text-align: center;
   padding: 4px;
 }
-/* line 73, ../scss/_reservatie.scss */
+/* line 104, ../scss/_reservatie.scss */
 .overzichtreservaties table td {
   position: relative;
   height: 85px;
 }
-/* line 78, ../scss/_reservatie.scss */
+@media (min-width: 720px) {
+  /* line 104, ../scss/_reservatie.scss */
+  .overzichtreservaties table td {
+    height: 65px;
+  }
+}
+/* line 112, ../scss/_reservatie.scss */
 .overzichtreservaties table td.veld:hover {
   cursor: pointer;
 }
-/* line 81, ../scss/_reservatie.scss */
+/* line 115, ../scss/_reservatie.scss */
 .overzichtreservaties table td.bezet:hover {
   cursor: auto;
 }
-/* line 84, ../scss/_reservatie.scss */
+/* line 118, ../scss/_reservatie.scss */
 .overzichtreservaties table td.bezet {
   padding-top: 5px;
   background-color: #68c4ea;
   font-size: 14px;
 }
-/* line 89, ../scss/_reservatie.scss */
+/* line 123, ../scss/_reservatie.scss */
 .overzichtreservaties table td.tehoog {
   height: 0px;
   background-image: url("../images/disabled.png");
 }
-/* line 94, ../scss/_reservatie.scss */
+/* line 128, ../scss/_reservatie.scss */
 .overzichtreservaties table td.vrij:hover {
   -webkit-animation-name: greenPulse;
   -webkit-animation-duration: 2s;
   -webkit-animation-iteration-count: infinite;
 }
-/* line 102, ../scss/_reservatie.scss */
+/* line 136, ../scss/_reservatie.scss */
 .overzichtreservaties table td.bezet.Onderhoud {
   background-color: orange;
 }
-/* line 105, ../scss/_reservatie.scss */
+/* line 139, ../scss/_reservatie.scss */
 .overzichtreservaties table td.bezet.Les {
   background-color: #ff6666;
 }
-/* line 108, ../scss/_reservatie.scss */
+/* line 142, ../scss/_reservatie.scss */
 .overzichtreservaties table td.bezet.Tornooi {
   background-color: #ffc04d;
 }
-/* line 112, ../scss/_reservatie.scss */
+/* line 146, ../scss/_reservatie.scss */
 .overzichtreservaties table span.verwijderreservatie {
   position: absolute;
   top: 0px;
   right: 5px;
 }
-/* line 117, ../scss/_reservatie.scss */
+/* line 151, ../scss/_reservatie.scss */
 .overzichtreservaties table span.verwijderreservatie:hover {
   cursor: pointer;
 }
 
-/* line 125, ../scss/_reservatie.scss */
+/* line 159, ../scss/_reservatie.scss */
 #modalreserverennietmogelijk .modal-content {
   background-color: red;
   color: white;
 }
-/* line 128, ../scss/_reservatie.scss */
+/* line 162, ../scss/_reservatie.scss */
 #modalreserverennietmogelijk .modal-content a, #modalreserverennietmogelijk .modal-content a:hover, #modalreserverennietmogelijk .modal-content a:focus {
   color: white;
   text-decoration: underline;
 }
-/* line 132, ../scss/_reservatie.scss */
+/* line 166, ../scss/_reservatie.scss */
 #modalreserverennietmogelijk .modal-content button.btn-default {
   color: red;
 }
-/* line 135, ../scss/_reservatie.scss */
+/* line 169, ../scss/_reservatie.scss */
 #modalreserverennietmogelijk .modal-content p {
   text-align: center;
   width: 100%;
 }
 
-/* line 144, ../scss/_reservatie.scss */
+/* line 178, ../scss/_reservatie.scss */
 #modalverwijderen .modal-content {
   background-color: #ff6161;
 }
-/* line 146, ../scss/_reservatie.scss */
+/* line 180, ../scss/_reservatie.scss */
 #modalverwijderen .modal-content h1 {
   text-align: center;
 }
-/* line 150, ../scss/_reservatie.scss */
+/* line 184, ../scss/_reservatie.scss */
 #modalverwijderen .modal-content .btn-primary {
   background: none;
   background-color: #ff7a7a;
@@ -1734,7 +1781,7 @@
   border: solid 1px white;
 }
 
-/* line 159, ../scss/_reservatie.scss */
+/* line 193, ../scss/_reservatie.scss */
 .modalloading {
   display: none;
   position: fixed;
@@ -1748,24 +1795,24 @@
 
 /* When the body has the loading class, we turn
    the scrollbar off with overflow:hidden */
-/* line 175, ../scss/_reservatie.scss */
+/* line 209, ../scss/_reservatie.scss */
 body.loading {
   overflow: hidden;
 }
 
 /* Anytime the body has the loading class, our
    modal element will be visible */
-/* line 181, ../scss/_reservatie.scss */
+/* line 215, ../scss/_reservatie.scss */
 body.loading .modalloading {
   display: block;
 }
 
-/* line 190, ../scss/_reservatie.scss */
+/* line 224, ../scss/_reservatie.scss */
 #modalbevestig .modal-content {
   background-color: white;
   color: #25aae1;
 }
-/* line 195, ../scss/_reservatie.scss */
+/* line 229, ../scss/_reservatie.scss */
 #modalbevestig .modal-content .modal-header h4 {
   background-color: #25aae1;
   color: white;
@@ -1778,33 +1825,33 @@ body.loading .modalloading {
   border-radius: 2px;
 }
 @media (min-width: 600px) {
-  /* line 195, ../scss/_reservatie.scss */
+  /* line 229, ../scss/_reservatie.scss */
   #modalbevestig .modal-content .modal-header h4 {
     font-size: 32px;
   }
 }
 @media (min-width: 1200px) {
-  /* line 195, ../scss/_reservatie.scss */
+  /* line 229, ../scss/_reservatie.scss */
   #modalbevestig .modal-content .modal-header h4 {
     font-size: 40px;
   }
 }
-/* line 210, ../scss/_reservatie.scss */
+/* line 244, ../scss/_reservatie.scss */
 #modalbevestig .modal-content .modal-body .labeltje {
   text-align: right;
 }
-/* line 213, ../scss/_reservatie.scss */
+/* line 247, ../scss/_reservatie.scss */
 #modalbevestig .modal-content .modal-body .row.medespelers {
   margin-top: 10px;
   height: 45px;
 }
-/* line 224, ../scss/_reservatie.scss */
+/* line 258, ../scss/_reservatie.scss */
 #modalbevestig .modal-content .modal-body .row.medespelers div.minimumspelers {
   font-size: 11px;
   color: red;
   display: block;
 }
-/* line 229, ../scss/_reservatie.scss */
+/* line 263, ../scss/_reservatie.scss */
 #modalbevestig .modal-content .modal-body .row.medespelers input {
   width: 100%;
   -webkit-border-radius: 5px;
@@ -1815,50 +1862,50 @@ body.loading .modalloading {
   border: solid 1px #25aae1;
   padding: 3px;
 }
-/* line 235, ../scss/_reservatie.scss */
+/* line 269, ../scss/_reservatie.scss */
 #modalbevestig .modal-content .modal-body .row.medespelers input:active, #modalbevestig .modal-content .modal-body .row.medespelers input:focus {
   -webkit-animation-name: glowingPulse;
   -webkit-animation-duration: 2s;
   -webkit-animation-iteration-count: infinite;
 }
-/* line 242, ../scss/_reservatie.scss */
+/* line 276, ../scss/_reservatie.scss */
 #modalbevestig .modal-content .modal-body .row.medespelers table.lijstmedespelers th {
   background-color: #25aae1;
   color: white;
   font-size: 12px;
   font-weight: normal;
 }
-/* line 249, ../scss/_reservatie.scss */
+/* line 283, ../scss/_reservatie.scss */
 #modalbevestig .modal-content .modal-body .row.medespelers table.lijstmedespelers th:first-child {
   display: none;
 }
-/* line 252, ../scss/_reservatie.scss */
+/* line 286, ../scss/_reservatie.scss */
 #modalbevestig .modal-content .modal-body .row.medespelers table.lijstmedespelers th:nth-child(2) {
   width: 15%;
 }
-/* line 255, ../scss/_reservatie.scss */
+/* line 289, ../scss/_reservatie.scss */
 #modalbevestig .modal-content .modal-body .row.medespelers table.lijstmedespelers th:last-child {
   width: 15%;
 }
-/* line 260, ../scss/_reservatie.scss */
+/* line 294, ../scss/_reservatie.scss */
 #modalbevestig .modal-content .modal-body .row.medespelers table.lijstmedespelers tr td:first-child {
   display: none;
 }
-/* line 264, ../scss/_reservatie.scss */
+/* line 298, ../scss/_reservatie.scss */
 #modalbevestig .modal-content .modal-body .row.medespelers table.lijstmedespelers i.verwijderspeler:hover {
   cursor: pointer;
 }
-/* line 276, ../scss/_reservatie.scss */
+/* line 310, ../scss/_reservatie.scss */
 #modalbevestig .modal-content .modal-footer .btn.wit {
   color: white;
 }
 
-/* line 285, ../scss/_reservatie.scss */
+/* line 319, ../scss/_reservatie.scss */
 h4.modal-title {
   display: inline-block;
 }
 
-/* line 289, ../scss/_reservatie.scss */
+/* line 323, ../scss/_reservatie.scss */
 .autocomplete-suggestions {
   border: 1px solid #999;
   background: #fff;
@@ -1867,7 +1914,7 @@ h4.modal-title {
   color: #25aae1;
 }
 
-/* line 290, ../scss/_reservatie.scss */
+/* line 324, ../scss/_reservatie.scss */
 .autocomplete-suggestion {
   padding: 10px 5px;
   font-size: 1.2em;
@@ -1875,18 +1922,18 @@ h4.modal-title {
   overflow: hidden;
 }
 
-/* line 291, ../scss/_reservatie.scss */
+/* line 325, ../scss/_reservatie.scss */
 .autocomplete-selected {
   background: #f0f0f0;
 }
 
-/* line 292, ../scss/_reservatie.scss */
+/* line 326, ../scss/_reservatie.scss */
 .autocomplete-suggestions strong {
   font-weight: normal;
   color: #3399ff;
 }
 
-/* line 293, ../scss/_reservatie.scss */
+/* line 327, ../scss/_reservatie.scss */
 #searchfield {
   display: block;
   width: 100%;
@@ -1894,17 +1941,17 @@ h4.modal-title {
   margin-bottom: 35px;
 }
 
-/* line 295, ../scss/_reservatie.scss */
+/* line 329, ../scss/_reservatie.scss */
 .autocomplete-suggestion:hover {
   background-color: rgba(37, 170, 225, 0.7);
   color: white;
 }
-/* line 298, ../scss/_reservatie.scss */
+/* line 332, ../scss/_reservatie.scss */
 .autocomplete-suggestion:hover strong {
   color: white;
 }
 
-/* line 304, ../scss/_reservatie.scss */
+/* line 338, ../scss/_reservatie.scss */
 #searchfield form {
   display: inline-block;
   background: #eeefed;
@@ -1915,7 +1962,7 @@ h4.modal-title {
   margin: 5px 0 0 0;
 }
 
-/* line 313, ../scss/_reservatie.scss */
+/* line 347, ../scss/_reservatie.scss */
 #searchfield form .biginput {
   width: 600px;
   height: 40px;
@@ -1930,25 +1977,25 @@ h4.modal-title {
   transition: all 0.2s linear;
 }
 
-/* line 327, ../scss/_reservatie.scss */
+/* line 361, ../scss/_reservatie.scss */
 #searchfield form .biginput:focus {
   color: #858585;
 }
 
 @-webkit-keyframes greenPulse {
-  /* line 333, ../scss/_reservatie.scss */
+  /* line 367, ../scss/_reservatie.scss */
   from {
     background-color: #25aae1;
     -webkit-box-shadow: 0 0 9px #333;
   }
 
-  /* line 334, ../scss/_reservatie.scss */
+  /* line 368, ../scss/_reservatie.scss */
   50% {
     background-color: #52bbe7;
     -webkit-box-shadow: 0 0 18px #13698d;
   }
 
-  /* line 335, ../scss/_reservatie.scss */
+  /* line 369, ../scss/_reservatie.scss */
   to {
     background-color: #25aae1;
     -webkit-box-shadow: 0 0 9px #333;
@@ -1956,17 +2003,17 @@ h4.modal-title {
 }
 
 @-webkit-keyframes glowingPulse {
-  /* line 338, ../scss/_reservatie.scss */
+  /* line 372, ../scss/_reservatie.scss */
   from {
     -webkit-box-shadow: 0 0 9px #333;
   }
 
-  /* line 339, ../scss/_reservatie.scss */
+  /* line 373, ../scss/_reservatie.scss */
   50% {
     -webkit-box-shadow: 0 0 18px #13698d;
   }
 
-  /* line 340, ../scss/_reservatie.scss */
+  /* line 374, ../scss/_reservatie.scss */
   to {
     -webkit-box-shadow: 0 0 9px #333;
   }
